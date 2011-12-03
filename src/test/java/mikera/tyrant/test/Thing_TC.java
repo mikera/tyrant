@@ -348,8 +348,8 @@ public class Thing_TC extends TyrantTestCase {
     }
 
     public void testGetFlaggedItems() {
-        Thing money = Coin.createMoney(21);
-        Thing moreMoney = Coin.createMoney(200);
+        Thing money = Coin.createExactMoney(21);
+        Thing moreMoney = Coin.createExactMoney(200);
         Thing evenMoreMoney = Lib.create("6 silver coin");
         Thing food = Lib.create("chicken leg");
         Thing moreFood = Lib.create("dead fly");
@@ -376,8 +376,8 @@ public class Thing_TC extends TyrantTestCase {
     }
 
     public void testGetFlaggedContents() {
-        Thing money = Coin.createMoney(21);
-        Thing moreMoney = Coin.createMoney(200);
+        Thing money = Coin.createExactMoney(21);
+        Thing moreMoney = Coin.createExactMoney(200);
         Thing evenMoreMoney = Lib.create("6 silver coin");
         Thing food = Lib.create("chicken leg");
         Thing moreFood = Lib.create("dead fly");

@@ -79,7 +79,7 @@ public class Coin {
     }
     
     public static Thing createRandomMoney(int v) {
-        return createMoney(v);
+        return createRoundedMoney(v);
     }
     
     /**
@@ -88,7 +88,7 @@ public class Coin {
      *
      * @param amount Amount that will be rounded in units of copper.
      */
-    public static Thing createMoney(int amount) {
+    public static Thing createRoundedMoney(int amount) {
         int type = 0;
         
         if (amount >= 1000) {
@@ -104,6 +104,34 @@ public class Coin {
             amount /= 10;
         
         if (amount <= 0) amount = 1;
+        
+        String name="copper coin";
+        switch (type) {
+            case 1: name="silver coin"; break;
+            case 2: name="gold coin"; break;
+            case 3: name="sovereign"; break;
+        }
+        
+        Thing t=Lib.create(name);
+        t.set("Number",amount);
+        return t;
+    }
+    
+    /**
+     * Create a single money stack.
+     * Return a exact amount.
+     *
+     * @param amount Value of money in units of copper.
+     */
+    public static Thing createExactMoney(int amount) {
+        int type = 0;
+        
+        while ((amount>=10)&&(type<3)&&((amount%10)==0)) {
+        	type++;
+        	amount /=10;
+        }
+
+        if (amount <= 0) throw new Error("Can't creae zero or negative money!");
         
         String name="copper coin";
         switch (type) {
@@ -166,7 +194,7 @@ public class Coin {
     	level=Rand.d(level);
     	int amount=(int)(10*level*Math.pow(1.1,level));
     	if (amount<=0) amount=1;
-    	return createMoney(Rand.d(amount));
+    	return createRoundedMoney(Rand.d(amount));
     }
 
 

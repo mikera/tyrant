@@ -242,7 +242,7 @@ class DeepForest {
 
 		makePath(m,w / 2, h - 4, es.x, es.y);
 		m.fillArea(w / 2 - 1, h - 8, w / 2 + 1, h - 1, m.floor());
-		m.addThing(Coin.createMoney(600), es.x, es.y);
+		m.addThing(Coin.createRoundedMoney(600), es.x, es.y);
 		// addThing(new Coin(1,20),es.x,es.y);
 
 		// your goal

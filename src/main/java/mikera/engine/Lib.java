@@ -816,7 +816,7 @@ public class Lib extends Object implements Serializable, Cloneable {
             case 12 :
                 return Missile.createMissile(level);
             case 13 :
-                return Coin.createMoney(Rand.d(10 + level * 5)
+                return Coin.createRoundedMoney(Rand.d(10 + level * 5)
                 * Rand.d(3 + level * 5));
             case 14 :
                 return RangedWeapon.createRangedWeapon(level);

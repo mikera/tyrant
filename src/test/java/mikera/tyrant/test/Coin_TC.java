@@ -14,19 +14,19 @@ import mikera.tyrant.Coin;
 public class Coin_TC extends TyrantTestCase {
 
     public void testCreate_cooper() {
-        Thing coins = Coin.createMoney(9);
+        Thing coins = Coin.createRoundedMoney(9);
     }
 
     public void testCreate_silver() {
-        Thing coins = Coin.createMoney(123);
+        Thing coins = Coin.createRoundedMoney(123);
     }
 
     public void testCreate_gold() {
-        Thing coins = Coin.createMoney(9999);
+        Thing coins = Coin.createRoundedMoney(9999);
     }
 
 	public void testCreate_gold2() {
- 		Thing coins = Coin.createMoney(999999);
+ 		Thing coins = Coin.createRoundedMoney(999999);
     }
 
     /**
@@ -40,8 +40,9 @@ public class Coin_TC extends TyrantTestCase {
     }
 
     public void testRemove_negative() {
-        Coin.removeMoney(person, -2);
-        assertEquals(weightOf("2 copper"), person.getInventoryWeight());
+        int initialWeight=person.getInventoryWeight();
+    	Coin.removeMoney(person, -2);
+        assertEquals(initialWeight+weightOf("2 copper"), person.getInventoryWeight());
         assertEquals(2, Coin.getMoney(person));
 
     }

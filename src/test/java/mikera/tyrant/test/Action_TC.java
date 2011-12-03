@@ -1,13 +1,18 @@
 package mikera.tyrant.test;
 
+import static org.junit.Assert.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.junit.Test;
+
 import mikera.tyrant.Action;
 
-public class Action_TC extends TyrantTestCase {
+public class Action_TC {
+	@Test
     public void testSerialization() throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(byteArrayOutputStream);

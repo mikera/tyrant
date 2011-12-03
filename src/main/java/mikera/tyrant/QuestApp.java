@@ -53,7 +53,7 @@ public class QuestApp extends Applet implements Runnable {
 
 	public static Image paneltexture;
 
-	public static Hashtable images = new Hashtable();
+	public static Hashtable<String,Image> images = new Hashtable<String,Image>();
 
 	public static Font mainfont = new Font("Monospaced", Font.PLAIN, 12);
 

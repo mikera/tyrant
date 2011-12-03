@@ -5,6 +5,10 @@
  */
 package mikera.tyrant.test;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import junit.framework.TestCase;
 import mikera.engine.Lib;
 import mikera.engine.Thing;
@@ -15,8 +19,9 @@ import mikera.engine.Thing;
  * To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
-public class Animal_TC extends TestCase {
+public class Animal_TC {
 
+	@Test
 	public void testButterfly() {
 		Thing t=Lib.create("butterfly");
 		
