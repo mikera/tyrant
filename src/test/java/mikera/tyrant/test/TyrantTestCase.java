@@ -3,6 +3,8 @@ package mikera.tyrant.test;
 import java.awt.Button;
 import java.awt.event.KeyEvent;
 
+import org.junit.BeforeClass;
+
 import junit.framework.TestCase;
 import mikera.engine.Lib;
 import mikera.engine.RPG;
@@ -68,6 +70,7 @@ public class TyrantTestCase extends TestCase {
         Game.instance().setHero(h);
     }
     
+    @BeforeClass
     protected void setUp() throws Exception {
         RPG.setRandSeed(0);
         setTestHero(Hero.createHero("bob", "human", "fighter"));
@@ -77,10 +80,6 @@ public class TyrantTestCase extends TestCase {
         person = Lib.create("human");
     }
 
-    protected void tearDown() throws Exception {
-
-    	// nothing to do
-    }
     
     
     

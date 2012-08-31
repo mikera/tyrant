@@ -9,6 +9,7 @@ import mikera.engine.Map;
 import mikera.engine.Point;
 import mikera.engine.RPG;
 import mikera.engine.Thing;
+import mikera.tyrant.util.TyrantException;
 import mikera.util.Maths;
 import mikera.util.Rand;
 
@@ -528,6 +529,8 @@ public class Dungeon {
 
 	public static void addWandering(Map m) {
 		Point p = m.findFreeSquare();
+		if (p==null) throw new TyrantException("No free squares available!");
+		
 		int x = p.x;
 		int y = p.y;
 		

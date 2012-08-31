@@ -67,13 +67,13 @@ public class Lib extends Object implements Serializable, Cloneable {
 
 
     // all library objects, indexed by Name
-	private HashMap lib = new HashMap();
-	private HashMap lowerCaseNames=new HashMap();
+	private HashMap<String, Object> lib = new HashMap<String, Object>();
+	private HashMap<String, String> lowerCaseNames=new HashMap<String, String>();
 	
-    private List all = new ArrayList();
-    private transient Map types;
-    private Map createdUniques=new HashMap();
-    private List uniques=new ArrayList();
+    private List<Thing> all = new ArrayList<Thing>();
+    private transient Map<String, Map> types;
+    private Map<String, Thing> createdUniques=new HashMap<String, Thing>();
+    private List<Thing> uniques=new ArrayList<Thing>();
     private static Lib instance;
     private int createCount=0;
     
@@ -89,18 +89,18 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public void clearTypes() {
-    	types = new HashMap();
+    	types = new HashMap<String, Map>();
     }
     
-    public HashMap getLib() {
+    public HashMap<String, Object> getLib() {
         return lib;
     }
     
-    public List getAll() {
+    public List<Thing> getAll() {
         return all;
     }
     
-    public Map getTypes() {
+    public Map<String, Map> getTypes() {
         return types;
     }
     
@@ -129,7 +129,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     
     
     public static Thing createIgnoreCase(String name) {
-    	name=(String)instance.lowerCaseNames.get(name.toLowerCase());
+    	name=instance.lowerCaseNames.get(name.toLowerCase());
     	if (name==null) return null;
     	return create(name,Game.level());
     }
@@ -184,7 +184,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     	BaseObject p=new BaseObject();
     	
     	for (int i=0; i<all.size(); i++) {
-    		Thing t=new Thing((BaseObject)all.get(i));
+    		Thing t=new Thing(all.get(i));
     		if (!isBaseClass(t)) {
     			t.flattenProperties();
     			Iterator it=t.getCollapsedMap().keySet().iterator();
@@ -318,8 +318,8 @@ public class Lib extends Object implements Serializable, Cloneable {
      */
     private void buildTypeArrays() {
     	clearTypes();
-    	for (Iterator it=all.iterator(); it.hasNext();) {
-    		Thing t=(Thing)it.next();
+    	for (Iterator<Thing> it=all.iterator(); it.hasNext();) {
+    		Thing t=it.next();
     		addThingToTypeArray(t);
     	}
     	
@@ -339,16 +339,16 @@ public class Lib extends Object implements Serializable, Cloneable {
             // skip adding if attribute is not set
             if (!thing.getFlag(ifAttribute)) continue;
             
-            Map levels = (Map)types.get(ifAttribute);
+            Map<Integer, List> levels = types.get(ifAttribute);
             if(levels == null) {
-                levels = new HashMap();
+                levels = new HashMap<Integer, List>();
                 types.put(ifAttribute, levels);
             }
             for (int level = min.intValue(); level < max; level++) {
                 Integer levelIndex = new Integer(level);
-                List stuff = (List) levels.get(levelIndex);
+                List<Thing> stuff = levels.get(levelIndex);
                 if (stuff == null) {
-                    stuff = new ArrayList();
+                    stuff = new ArrayList<Thing>();
                     levels.put(levelIndex, stuff);
                 }
                 stuff.add(thing);
@@ -384,9 +384,9 @@ public class Lib extends Object implements Serializable, Cloneable {
             level = 1;
         }
         if (types == null) {
-            types = new Hashtable();
+            types = new Hashtable<String, Map>();
         }
-        Map levels = (Map) types.get(flag);
+        Map levels = types.get(flag);
         if (levels == null) {
             levels = new Hashtable();
             types.put(flag, levels);
@@ -467,11 +467,11 @@ public class Lib extends Object implements Serializable, Cloneable {
         return lib.get(name);
     }
     
-    public static List getUniques() {
+    public static List<Thing> getUniques() {
         return instance().uniques;
     }
     
-    public static Map getCreatedUniques() {
+    public static Map<String, Thing> getCreatedUniques() {
         return instance().createdUniques;
     }
     
@@ -767,11 +767,11 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public static Thing createArtifact(int level) {
-        ArrayList al=new ArrayList();
-        List un=instance().uniques;
+        ArrayList<Thing> al=new ArrayList<Thing>();
+        List<Thing> un=instance().uniques;
         
         for (int i=0; i<un.size(); i++) {
-        	Thing t=(Thing)un.get(i);
+        	Thing t=un.get(i);
         	if ((!instance().createdUniques.containsKey(t.name()))&&t.getFlag("IsRandomArtifact")) {
         		if (t.getStat("LevelMin")<=level) {
         			al.add(t);
@@ -783,7 +783,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         	Game.warn("No artifact at level "+level);
         	return null;
         }
-        Thing art=(Thing)al.get(Rand.r(count));
+        Thing art=al.get(Rand.r(count));
         return getArtifact(art.name());
     }
     
@@ -832,8 +832,8 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public static Thing getArtifact(String s) {
-    	Map hm=getCreatedUniques();
-    	Thing artifact=(Thing)hm.get(s);
+    	Map<String, Thing> hm=getCreatedUniques();
+    	Thing artifact=hm.get(s);
    		if (artifact==null) {
    			artifact=createThing(Lib.get(s));
    		}
@@ -907,8 +907,8 @@ public class Lib extends Object implements Serializable, Cloneable {
     public Set getAllPropertyNames() {
     	HashSet hs=new HashSet();
     	
-    	for (Iterator it=all.iterator(); it.hasNext(); ) {
-    		BaseObject b=(BaseObject)it.next();
+    	for (Iterator<Thing> it=all.iterator(); it.hasNext(); ) {
+    		BaseObject b=it.next();
     		
     		Map m=b.getCollapsedMap();
     		

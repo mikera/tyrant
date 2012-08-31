@@ -28,11 +28,12 @@ public class Thing_TC extends TyrantTestCase {
     }
 
     public void testAdd_noStackFlag_duplicate() {
-        person.addThing(Lib.create("ginger root"));
+    	Thing rabbit=Lib.create("rabbit");
+    	rabbit.addThing(Lib.create("ginger root"));
         Thing ginger = Lib.create("ginger root");
         ginger.set("NoStack", true);
-        person.addThing(ginger);
-        assertEquals(1, person.invCount());
+        rabbit.addThing(ginger);
+        assertEquals(1, rabbit.invCount());
     }
 
     public void testAdd_noStackFlag() {

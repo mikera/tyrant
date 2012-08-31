@@ -19,6 +19,7 @@ import mikera.tyrant.Tile;
 import mikera.tyrant.WorldMap;
 import mikera.tyrant.test.MapHelper;
 import mikera.tyrant.util.Text;
+import mikera.tyrant.util.TyrantException;
 import mikera.util.Maths;
 import mikera.util.Rand;
 
@@ -1692,7 +1693,11 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 		// random creature generation
 		int gr=getStat("WanderingRate");
 		if (RPG.test(gr*time,1000000)) {
-			Dungeon.addWandering(this);
+			try {
+				Dungeon.addWandering(this);
+			} catch (TyrantException e) {
+				// probably a full map, so ignore
+			}
 		}
 	}
 
