@@ -1,6 +1,6 @@
 package mikera.tyrant;
 
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Thing;
 
 
 public interface IActionHandler {

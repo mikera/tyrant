@@ -4,8 +4,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.io.*;
 
-import mikera.engine.Thing;
 import mikera.tyrant.*;
+import mikera.tyrant.engine.Thing;
 
 
 /**

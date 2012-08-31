@@ -2,10 +2,11 @@
  * 
  */
 
-package mikera.engine;
+package mikera.tyrant.engine;
 
 import java.util.*;
 
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.AI;
 import mikera.tyrant.Being;
 import mikera.tyrant.Combat;
@@ -1569,4 +1570,8 @@ public final class Thing extends BaseObject implements
         if(inHand == null && otherHand == null) return "nothing in hand";
         return inHandMessage.toString().trim();
     }
+
+	public Thing getFlattened() {
+		return new Thing(BaseObject.getFlattened(this));
+	}
 }

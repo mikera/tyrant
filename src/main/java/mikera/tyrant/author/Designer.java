@@ -10,11 +10,7 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Point;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.Action;
 import mikera.tyrant.ActionMapping;
 import mikera.tyrant.Game;
@@ -31,6 +27,10 @@ import mikera.tyrant.MapPanel;
 import mikera.tyrant.QuestApp;
 import mikera.tyrant.TPanel;
 import mikera.tyrant.Tile;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Point;
+import mikera.tyrant.engine.Thing;
 
 public class Designer {
     public interface IMapUpdater {

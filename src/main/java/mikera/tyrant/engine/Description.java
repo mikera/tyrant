@@ -1,4 +1,4 @@
-package mikera.engine;
+package mikera.tyrant.engine;
 
 // interface for all object descriptions
 // Describer is the standard Description object

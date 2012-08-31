@@ -1,8 +1,8 @@
 package mikera.tyrant;
 
-import mikera.engine.RPG;
-import mikera.engine.Script;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Script;
+import mikera.tyrant.engine.Thing;
 
 // The personality base class
 

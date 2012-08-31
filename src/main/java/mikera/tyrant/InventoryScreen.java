@@ -14,7 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Thing;
 
 /**
  * Screen for displaying an list of items

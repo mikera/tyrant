@@ -30,11 +30,10 @@ import java.util.Map;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Thing;
 import mikera.tyrant.Game;
 import mikera.tyrant.QuestApp;
 import mikera.tyrant.TPanel;
+import mikera.tyrant.engine.Thing;
 
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.FormLayout;
@@ -50,7 +49,7 @@ public class ThingEditor implements Runnable {
         public void actionPerformed(ActionEvent e) {
             String newText = sourceTextArea.getText();
             if(newText.equals(mapText)) return;
-            mikera.engine.Map newMap = new MapMaker().create(newText, true);
+            mikera.tyrant.engine.Map newMap = new MapMaker().create(newText, true);
             if(newMap == null) {
                 sourceStatusBar.setVisible(true);
                 sourceStatusLabel.setText("There is an error creating the map");
@@ -118,7 +117,7 @@ public class ThingEditor implements Runnable {
 
     private void createThingTabbs() {
         if(thing == null) return;
-        BaseObject flat = BaseObject.getFlattened(thing);
+        Thing flat = thing.getFlattened();
         Map locals = flat.getLocal();
         String[] keys = (String[]) locals.keySet().toArray(new String[locals.keySet().size()]);
         if (keys.length == 0) return;

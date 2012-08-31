@@ -2,11 +2,11 @@ package mikera.tyrant;
 
 import java.util.*;
 
-import mikera.engine.Lib;
-import mikera.engine.Modifier;
-import mikera.engine.RPG;
-import mikera.engine.Script;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Modifier;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Script;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 import mikera.util.Rand;
 

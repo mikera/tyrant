@@ -4,7 +4,7 @@
 // - Definition of damage types
 // - Random number routines
 
-package mikera.engine;
+package mikera.tyrant.engine;
 
 import java.util.Random;
 

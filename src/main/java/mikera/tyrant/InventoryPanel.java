@@ -9,8 +9,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 
 /**

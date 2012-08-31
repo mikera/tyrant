@@ -2,7 +2,7 @@ package mikera.tyrant;
 
 import java.awt.*;
 
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Thing;
 
 public class ListItem extends Panel {
 	private static final long serialVersionUID = 3978147629882421811L;

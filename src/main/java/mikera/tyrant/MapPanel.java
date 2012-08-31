@@ -12,11 +12,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import mikera.engine.Map;
-import mikera.engine.Point;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
 import mikera.tyrant.author.Designer;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Point;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 
 // Panel descendant used to display a Map

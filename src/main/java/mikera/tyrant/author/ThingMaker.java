@@ -5,10 +5,10 @@ import java.io.StringReader;
 import java.util.Iterator;
 import java.util.TreeMap;
 
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Thing;
 import mikera.tyrant.Game;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 
 public class ThingMaker {

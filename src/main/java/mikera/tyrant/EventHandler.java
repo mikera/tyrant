@@ -6,7 +6,7 @@
  */
 package mikera.tyrant;
 
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Mike

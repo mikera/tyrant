@@ -6,7 +6,7 @@ package mikera.tyrant;
 
 import java.awt.*;
 
-import mikera.engine.RPG;
+import mikera.tyrant.engine.RPG;
 import mikera.tyrant.util.Text;
 import mikera.util.Maths;
 

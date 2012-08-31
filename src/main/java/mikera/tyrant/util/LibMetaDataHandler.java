@@ -1,17 +1,17 @@
 package mikera.tyrant.util;
 
 //import mikera.tyrant.Describer;
-import mikera.engine.Description;
-import mikera.engine.Lib;
-import mikera.engine.Modifier;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
 import mikera.tyrant.Chest;
 import mikera.tyrant.Poison;
 import mikera.tyrant.Potion;
 import mikera.tyrant.Effect;
 import mikera.tyrant.Scripts;
 import mikera.tyrant.Personality;
+import mikera.tyrant.engine.Description;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Modifier;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 
 import java.util.LinkedHashMap;
 import java.util.TreeMap;

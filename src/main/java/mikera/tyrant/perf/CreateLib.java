@@ -1,7 +1,7 @@
 package mikera.tyrant.perf;
 
-import mikera.engine.Lib;
-import mikera.engine.RPG;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.RPG;
 
 
 public class CreateLib implements IWork {

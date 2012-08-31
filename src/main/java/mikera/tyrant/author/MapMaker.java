@@ -12,10 +12,10 @@ import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Map;
 import mikera.tyrant.*;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 
 
@@ -162,7 +162,7 @@ public class MapMaker {
         	for (int x = 0; x < w; x++) {
         		String c=line.substring(x, x + 1);
         		String tileName=(String)legend.get(c);
-        		BaseObject tile=Lib.get(tileName);
+        		Thing tile=Lib.get(tileName);
         		if (tile==null) throw new Error("Legend ["+c+"] not recognised");
         		int tileValue=tile.getStat("TileValue");
         		map.setTile(x, y, tileValue);

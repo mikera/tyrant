@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import junit.framework.TestCase;
-import mikera.engine.Lib;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Mike

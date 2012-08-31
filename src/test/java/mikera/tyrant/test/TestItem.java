@@ -1,9 +1,9 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Thing;
 import mikera.tyrant.*;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org

@@ -1,11 +1,11 @@
 package mikera.tyrant.test;
 
 import junit.framework.TestCase;
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Thing;
 import mikera.tyrant.author.Designer;
 import mikera.tyrant.author.ThingMaker;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 public class TestThingMaker extends TestCase {
     private ThingMaker thingMaker;

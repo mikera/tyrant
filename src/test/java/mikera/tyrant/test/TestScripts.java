@@ -1,8 +1,8 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
 import mikera.tyrant.Food;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 public class TestScripts extends TyrantTestCase {
 

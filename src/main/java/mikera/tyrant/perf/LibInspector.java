@@ -7,9 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.BaseObject;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Count;
 import mikera.tyrant.util.PrintfFormat;
 

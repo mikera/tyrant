@@ -4,7 +4,7 @@
  * To change the template for this generated file go to
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
-package mikera.engine;
+package mikera.tyrant.engine;
 
 import java.io.Serializable;
 import java.util.ArrayList;

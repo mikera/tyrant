@@ -2,9 +2,9 @@ package mikera.tyrant;
 
 import java.awt.event.KeyEvent;
 
-import mikera.engine.Map;
-import mikera.engine.Point;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Point;
+import mikera.tyrant.engine.Thing;
 
 
 public class GameHandler {

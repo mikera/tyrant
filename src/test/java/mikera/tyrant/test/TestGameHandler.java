@@ -1,13 +1,13 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Thing;
 import mikera.tyrant.Action;
 import mikera.tyrant.Game;
 import mikera.tyrant.GameHandler;
 import mikera.tyrant.InputHandler;
 import mikera.tyrant.Portal;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 public class TestGameHandler extends TyrantTestCase {
     private GameHandler gameHandler;

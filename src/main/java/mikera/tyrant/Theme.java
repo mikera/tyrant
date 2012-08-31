@@ -16,7 +16,7 @@ package mikera.tyrant;
 
 import java.util.HashMap;
 
-import mikera.engine.BaseObject;
+import mikera.tyrant.engine.BaseObject;
 
 public class Theme extends BaseObject {
 	private static final long serialVersionUID = 3258129150488361268L;

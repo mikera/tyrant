@@ -6,9 +6,9 @@
  */
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 import mikera.util.Rand;
 

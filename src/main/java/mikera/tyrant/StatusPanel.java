@@ -6,10 +6,10 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import mikera.engine.Map;
-import mikera.engine.RPG;
-import mikera.engine.StringList;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.StringList;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 
 public class StatusPanel extends TPanel {

@@ -2,8 +2,9 @@
  * Created on 27-Jun-2004
  *
  */
-package mikera.engine;
+package mikera.tyrant.engine;
 
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.Event;
 import mikera.tyrant.EventHandler;
 

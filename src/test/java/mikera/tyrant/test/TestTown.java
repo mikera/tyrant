@@ -1,7 +1,7 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Map;
 import mikera.tyrant.Town;
+import mikera.tyrant.engine.Map;
 
 public class TestTown extends TyrantTestCase {
     public void testTownBuilding() throws Exception {

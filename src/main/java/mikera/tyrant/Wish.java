@@ -8,10 +8,10 @@ package mikera.tyrant;
 import java.util.Iterator;
 
 import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Rand;
 
 /**

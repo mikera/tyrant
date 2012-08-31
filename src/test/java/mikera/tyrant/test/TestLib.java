@@ -5,13 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Modifier;
-import mikera.engine.RPG;
-import mikera.engine.Script;
-import mikera.engine.Thing;
 import mikera.tyrant.*;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Modifier;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Script;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org
@@ -92,9 +91,9 @@ public class TestLib extends TyrantTestCase {
      *
      */
     public void testCreate() {
-    	Iterator it=all.iterator();
+    	Iterator<Thing> it=all.iterator();
     	while (it.hasNext()) {
-            BaseObject p = (BaseObject) it.next();
+            Thing p = it.next();
     		String name=(String)p.get("Name");
     		
     		Thing t=Lib.create((String)p.get("Name"));
@@ -115,9 +114,9 @@ public class TestLib extends TyrantTestCase {
      *
      */
     public void testItems() {
-    	Iterator it=all.iterator();
+    	Iterator<Thing> it=all.iterator();
     	while (it.hasNext()) {
-            BaseObject p = (BaseObject) it.next();	
+            Thing p = it.next();	
     		String name=(String)p.get("Name");
     		if (name.startsWith("base ")) continue;
     		
@@ -155,18 +154,18 @@ public class TestLib extends TyrantTestCase {
      *
      */
     public void testPropertyTypes() {
-    	Iterator it=all.iterator();
+    	Iterator<Thing> it=all.iterator();
     	HashMap types=new HashMap();
     	HashMap seen=new HashMap();
     	while (it.hasNext()) {
-            BaseObject p = (BaseObject) it.next();
+            Thing p = it.next();
     		String name=(String)p.get("Name");
     		
     		Thing t=Lib.create(name);
     		Map h = t.getCollapsedMap();
     		
-    		for (Iterator hi=h.keySet().iterator();hi.hasNext();) {
-    			String key=(String)hi.next();
+    		for (Iterator<String> hi=h.keySet().iterator();hi.hasNext();) {
+    			String key=hi.next();
     			
     			Object value=t.get(key);
     			
@@ -187,8 +186,8 @@ public class TestLib extends TyrantTestCase {
      * TEST for https://sourceforge.net/forum/message.php?msg_id=2916833
      */
     public void testArmour() throws Exception {
-        for (Iterator iter = all.iterator(); iter.hasNext();) {
-            BaseObject thingAsProperties = (BaseObject) iter.next();
+        for (Iterator<Thing> iter = all.iterator(); iter.hasNext();) {
+            Thing thingAsProperties = iter.next();
             String name = (String) thingAsProperties.get("Name");
             if (name.startsWith("base ")) continue;
             Thing thing = Lib.create(name);

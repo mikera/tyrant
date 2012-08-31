@@ -2,7 +2,7 @@
 
 package mikera.tyrant;
 
-import mikera.engine.RPG;
+import mikera.tyrant.engine.RPG;
 import mikera.tyrant.util.Text;
 
 public class Name  {

@@ -2,9 +2,9 @@ package mikera.tyrant.test;
 
 import java.util.StringTokenizer;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
 import mikera.tyrant.Coin;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org

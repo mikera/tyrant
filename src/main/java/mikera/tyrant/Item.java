@@ -5,11 +5,11 @@ package mikera.tyrant;
 import java.util.HashSet;
 import java.util.Set;
 
-import mikera.engine.Description;
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Description;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 
 /**

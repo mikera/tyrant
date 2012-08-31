@@ -1,10 +1,10 @@
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.RPG;
-import mikera.engine.Script;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Script;
+import mikera.tyrant.engine.Thing;
 
 public class Door {
 

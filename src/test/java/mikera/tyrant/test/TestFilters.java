@@ -1,12 +1,12 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
 import mikera.tyrant.IThingFilter;
 import mikera.tyrant.IsFilter;
 import mikera.tyrant.NameFilter;
 import mikera.tyrant.OrFilter;
 import mikera.tyrant.RogueLikeFilter;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 public class TestFilters extends TyrantTestCase {
     private Thing carrot;

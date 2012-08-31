@@ -1,8 +1,8 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
 import mikera.tyrant.*;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 public class TestSpell extends TyrantTestCase {
 	public void testCreate() {

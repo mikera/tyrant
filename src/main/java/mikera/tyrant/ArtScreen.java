@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 
 public class ArtScreen extends Screen {

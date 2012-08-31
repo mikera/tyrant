@@ -1,8 +1,8 @@
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.Modifier;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Modifier;
+import mikera.tyrant.engine.Thing;
 
 // attributes are added to inventory of mobile
 // grant special abilities, modifiers, duration effects etc.

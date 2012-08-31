@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Thing;
 import mikera.tyrant.Tile;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org

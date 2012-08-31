@@ -2,9 +2,9 @@ package mikera.tyrant.test;
 
 import java.util.HashMap;
 
-import mikera.engine.Map;
 import mikera.tyrant.*;
 import mikera.tyrant.author.MapMaker;
+import mikera.tyrant.engine.Map;
 import junit.framework.TestCase;
 
 

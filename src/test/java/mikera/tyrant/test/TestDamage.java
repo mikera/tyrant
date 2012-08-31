@@ -1,10 +1,10 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
 import mikera.tyrant.Damage;
 import mikera.tyrant.Game;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 
 public class TestDamage extends TyrantTestCase {
     public void testInventoryDamage() throws Exception {

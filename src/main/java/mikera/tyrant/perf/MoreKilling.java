@@ -1,15 +1,15 @@
 package mikera.tyrant.perf;
 
 import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
 import mikera.tyrant.Action;
 import mikera.tyrant.Game;
 import mikera.tyrant.GameScreen;
 import mikera.tyrant.Hero;
 import mikera.tyrant.QuestApp;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.test.MapHelper;
 import mikera.tyrant.test.NullHandler;
 import mikera.tyrant.test.TyrantTestCase;

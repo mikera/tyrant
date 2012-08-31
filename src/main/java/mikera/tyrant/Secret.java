@@ -3,9 +3,9 @@
 
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 public class Secret {
     

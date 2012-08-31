@@ -1,7 +1,7 @@
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 /**
  * Generator class for temples

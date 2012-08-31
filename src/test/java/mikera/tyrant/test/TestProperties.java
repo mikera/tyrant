@@ -1,7 +1,7 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 public class TestProperties extends TyrantTestCase {
     public void testPut() throws Exception {

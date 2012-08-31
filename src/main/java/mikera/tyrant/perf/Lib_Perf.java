@@ -1,6 +1,6 @@
 package mikera.tyrant.perf;
 
-import mikera.engine.Lib;
+import mikera.tyrant.engine.Lib;
 
 public class Lib_Perf extends Perf {
     public Lib_Perf() {

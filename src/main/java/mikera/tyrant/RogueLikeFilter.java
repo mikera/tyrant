@@ -3,7 +3,7 @@ package mikera.tyrant;
 import java.util.HashMap;
 import java.util.Map;
 
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Thing;
 
 
 public class RogueLikeFilter implements IThingFilter {

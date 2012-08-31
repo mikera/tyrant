@@ -1,6 +1,6 @@
 package mikera.tyrant.perf;
 
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Thing;
 
 
 public interface IThingsInspector {

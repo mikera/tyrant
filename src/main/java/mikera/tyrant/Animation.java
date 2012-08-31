@@ -8,8 +8,8 @@ package mikera.tyrant;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import mikera.engine.BaseObject;
-import mikera.engine.RPG;
+import mikera.tyrant.engine.BaseObject;
+import mikera.tyrant.engine.RPG;
 import mikera.util.Maths;
 
 /**

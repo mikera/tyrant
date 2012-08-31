@@ -3,8 +3,8 @@ package mikera.tyrant.perf;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
-import mikera.engine.Lib;
-import mikera.engine.RPG;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.RPG;
 
 
 public class SizeOfLib implements IWork {

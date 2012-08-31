@@ -1,9 +1,10 @@
-package mikera.engine;
+package mikera.tyrant.engine;
 
 import java.io.Serializable;
 import java.util.*;
 import java.util.Map;
 
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.AI;
 import mikera.tyrant.Animal;
 import mikera.tyrant.Artifact;
@@ -460,8 +461,8 @@ public class Lib extends Object implements Serializable, Cloneable {
         return baseObject.get(s);
     }
     
-    public static BaseObject get(String name) {
-        return (BaseObject) Lib.instance().lib.get(name);
+    public static Thing get(String name) {
+        return (Thing) Lib.instance().lib.get(name);
     }
     
     public Object getObject(String name) {

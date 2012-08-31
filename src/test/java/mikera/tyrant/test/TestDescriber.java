@@ -1,10 +1,10 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Describer;
-import mikera.engine.Description;
-import mikera.engine.Lib;
-import mikera.engine.Thing;
 import mikera.tyrant.*;
+import mikera.tyrant.engine.Describer;
+import mikera.tyrant.engine.Description;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org

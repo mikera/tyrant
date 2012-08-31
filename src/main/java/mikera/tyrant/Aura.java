@@ -1,8 +1,8 @@
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.Modifier;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Modifier;
+import mikera.tyrant.engine.Thing;
 
 public class Aura {
 	public static void init() {

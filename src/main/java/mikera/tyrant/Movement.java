@@ -9,11 +9,11 @@ package mikera.tyrant;
 import java.util.Iterator;
 import java.util.List;
 
-import mikera.engine.Describer;
-import mikera.engine.Map;
-import mikera.engine.Point;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Describer;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Point;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 import mikera.util.Rand;
 

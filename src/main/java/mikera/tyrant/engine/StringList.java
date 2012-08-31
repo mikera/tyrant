@@ -1,4 +1,4 @@
-package mikera.engine;
+package mikera.tyrant.engine;
 
 public class StringList {
 	private String[] strings = new String[3];

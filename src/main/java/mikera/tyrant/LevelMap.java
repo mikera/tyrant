@@ -7,9 +7,9 @@ package mikera.tyrant;
 
 import java.util.HashMap;
 
-import mikera.engine.Map;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 import mikera.util.Rand;
 

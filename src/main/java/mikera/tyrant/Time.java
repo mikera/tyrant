@@ -6,8 +6,8 @@
  */
 package mikera.tyrant;
 
-import mikera.engine.Map;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Thing;
 
 /**
  * @author Mike

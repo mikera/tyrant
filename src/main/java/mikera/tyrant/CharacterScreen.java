@@ -2,10 +2,10 @@ package mikera.tyrant;
 
 import java.awt.*;
 
-import mikera.engine.Describer;
-import mikera.engine.Description;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Describer;
+import mikera.tyrant.engine.Description;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 import mikera.util.Maths;
 

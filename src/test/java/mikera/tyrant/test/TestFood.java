@@ -1,11 +1,11 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
 import mikera.tyrant.Event;
 import mikera.tyrant.EventHandler;
 import mikera.tyrant.Food;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Count;
 
 

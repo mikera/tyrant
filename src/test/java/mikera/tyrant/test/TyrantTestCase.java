@@ -6,12 +6,12 @@ import java.awt.event.KeyEvent;
 import org.junit.BeforeClass;
 
 import junit.framework.TestCase;
-import mikera.engine.Lib;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
 import mikera.tyrant.Game;
 import mikera.tyrant.Hero;
 import mikera.tyrant.Interface;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 
 /**
  * The sole purpose of this is to consistently seed the random # generator.

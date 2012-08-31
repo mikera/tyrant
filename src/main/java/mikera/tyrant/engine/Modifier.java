@@ -1,8 +1,9 @@
 
-package mikera.engine;
+package mikera.tyrant.engine;
 
 import java.util.*;
 
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.Event;
 import mikera.tyrant.Scripts;
 

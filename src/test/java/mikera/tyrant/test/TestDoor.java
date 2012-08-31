@@ -1,8 +1,8 @@
 package mikera.tyrant.test;
 
-import mikera.engine.Lib;
-import mikera.engine.Thing;
 import mikera.tyrant.Event;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 public class TestDoor extends TyrantTestCase {
 

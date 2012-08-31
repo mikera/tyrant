@@ -10,13 +10,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Lib;
-import mikera.engine.Map;
-import mikera.engine.Point;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.author.MapMaker;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Map;
+import mikera.tyrant.engine.Point;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 import mikera.util.Rand;
 

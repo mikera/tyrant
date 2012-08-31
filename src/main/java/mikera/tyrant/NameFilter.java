@@ -1,8 +1,8 @@
 package mikera.tyrant;
 
-import mikera.engine.Describer;
-import mikera.engine.Description;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Describer;
+import mikera.tyrant.engine.Description;
+import mikera.tyrant.engine.Thing;
 
 
 public class NameFilter implements IThingFilter {

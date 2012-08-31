@@ -1,4 +1,4 @@
-package mikera.engine;
+package mikera.tyrant.engine;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.LinkedList;
 
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.AI;
 import mikera.tyrant.Being;
 import mikera.tyrant.Damage;

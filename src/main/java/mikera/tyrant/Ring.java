@@ -1,9 +1,9 @@
 package mikera.tyrant;
 
-import mikera.engine.Lib;
-import mikera.engine.Modifier;
-import mikera.engine.RPG;
-import mikera.engine.Thing;
+import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Modifier;
+import mikera.tyrant.engine.RPG;
+import mikera.tyrant.engine.Thing;
 import mikera.util.Rand;
 
 // A ring which can be worn by the hero on either the right or left hand

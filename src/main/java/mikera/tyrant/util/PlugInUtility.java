@@ -9,10 +9,10 @@ import java.util.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import mikera.engine.BaseObject;
-import mikera.engine.Lib;
 import mikera.tyrant.Game;
 import mikera.tyrant.Hero;
+import mikera.tyrant.engine.BaseObject;
+import mikera.tyrant.engine.Lib;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
