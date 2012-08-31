@@ -187,9 +187,9 @@ public class Lib extends Object implements Serializable, Cloneable {
     		Thing t=new Thing(all.get(i));
     		if (!isBaseClass(t)) {
     			t.flattenProperties();
-    			Iterator it=t.getCollapsedMap().keySet().iterator();
+    			Iterator<String> it=t.getCollapsedMap().keySet().iterator();
     			while(it.hasNext()) {
-    				String s=(String)it.next();
+    				String s=it.next();
     				if (s.startsWith("Is")&&t.getFlag(s)) {
     					p.set(s,p.getStat(s)+1);
     				}
@@ -288,7 +288,7 @@ public class Lib extends Object implements Serializable, Cloneable {
 
     private BaseObject getThingFromType(String type, int level) {
         // get list of possibilities at this level
-        List things = getTypeArray(type, level);
+        List<Thing> things = getTypeArray(type, level);
         // search surrounding levels if nothing found
         for (int i = 1; things.isEmpty() && i < 50;) {
             things = getTypeArray(type, level + i);
@@ -300,7 +300,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         }
         BaseObject aThing = null;
         for (int i = 0; i < 100; i++) {
-            aThing = (BaseObject)things.get(Rand.r(things.size()));
+            aThing = things.get(Rand.r(things.size()));
             Integer freq = (Integer)aThing.get("Frequency");
             if ((freq == null) || (Rand.r(100) < freq.intValue())) {
                 break;
@@ -379,21 +379,22 @@ public class Lib extends Object implements Serializable, Cloneable {
         return t;
     }
     
-    public List getTypeArray(String flag, int level) {
+    @SuppressWarnings("unchecked")
+	public List<Thing> getTypeArray(String flag, int level) {
         if (level < 1) {
             level = 1;
         }
         if (types == null) {
             types = new Hashtable<String, Map<Integer, List<Thing>>>();
         }
-        Map levels = types.get(flag);
+        Map<Integer,List<Thing>> levels = types.get(flag);
         if (levels == null) {
-            levels = new Hashtable();
+            levels = new HashMap<Integer, List<Thing>>();
             types.put(flag, levels);
         }
         Integer levelIndex = new Integer(level);
-        List itemsAtLevel = (List) levels.get(levelIndex);
-        if (itemsAtLevel == null) {
+        List<Thing> itemsAtLevel = levels.get(levelIndex);
+        if (itemsAtLevel == null) {    	
         	itemsAtLevel=Collections.EMPTY_LIST;
         }
         return itemsAtLevel;
@@ -594,8 +595,8 @@ public class Lib extends Object implements Serializable, Cloneable {
         t.set("Seed",Rand.r(1000000));
     }
     
-    private ArrayList tileList=new ArrayList();
-    public ArrayList getTiles() {
+    private ArrayList<Thing> tileList=new ArrayList<Thing>();
+    public ArrayList<Thing> getTiles() {
     	return tileList;
     }
     
@@ -904,15 +905,15 @@ public class Lib extends Object implements Serializable, Cloneable {
         }
     }
     
-    public Set getAllPropertyNames() {
-    	HashSet hs=new HashSet();
+    public Set<String> getAllPropertyNames() {
+    	HashSet<String> hs=new HashSet<String>();
     	
     	for (Iterator<Thing> it=all.iterator(); it.hasNext(); ) {
     		BaseObject b=it.next();
     		
-    		Map m=b.getCollapsedMap();
+    		Map<String,Object> m=b.getCollapsedMap();
     		
-    		for (Iterator i=m.keySet().iterator(); i.hasNext(); ) {
+    		for (Iterator<String> i=m.keySet().iterator(); i.hasNext(); ) {
     			hs.add(i.next());
     		}
     	}
