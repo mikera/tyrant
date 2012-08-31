@@ -44,15 +44,16 @@ public class BaseObject implements Cloneable, Serializable {
     /**
      * Counter for debugging
      */
-    public static HashMap getCounter=new HashMap();
+    public static HashMap<String,Count> getCounter=new HashMap<String,Count>();
 
     public BaseObject() {
         // no properties for default baseobject
     }
     
+	@SuppressWarnings("unchecked")
 	public BaseObject(HashMap<String,Object> propertiesToCopy, BaseObject parent) {
 		if (propertiesToCopy!=null) {
-			local=(HashMap)propertiesToCopy.clone();
+			local=(HashMap<String,Object>)propertiesToCopy.clone();
 		}
 		inherited=parent;
 	}
@@ -61,11 +62,12 @@ public class BaseObject implements Cloneable, Serializable {
      * Clone copies a BaseObject instance, maintaining
      * the same inherited properties
      */
-    public Object clone() {
+    @SuppressWarnings("unchecked")
+	public Object clone() {
         BaseObject o=new BaseObject();
         o.inherited=inherited;
         if (local!=null) {
-        	o.local=(HashMap)local.clone();
+        	o.local=(HashMap<String,Object>)local.clone();
         }
         
         return o;
@@ -79,16 +81,16 @@ public class BaseObject implements Cloneable, Serializable {
         this.inherited = parent;
     }
     
-    public BaseObject(Map data) {
-    	for (Iterator it=data.keySet().iterator(); it.hasNext();) {
-    		String key=(String)it.next();
+    public BaseObject(Map<String,Object> data) {
+    	for (Iterator<String> it=data.keySet().iterator(); it.hasNext();) {
+    		String key=it.next();
     		set(key,data.get(key));
     	}
     }
     
 	public void replaceWith(BaseObject t) {
 	    if (t.local != null) {
-            local = new HashMap(t.local);
+            local = new HashMap<String,Object>(t.local);
         } else {
             local = null;
         }
@@ -125,7 +127,7 @@ public class BaseObject implements Cloneable, Serializable {
      *            Key to flatten
      */
     private void flattenEntry(String key) {
-        if (local==null) local=new HashMap();
+        if (local==null) local=new HashMap<String,Object>();
         local.put(key, get(key));
     }
 
@@ -141,8 +143,8 @@ public class BaseObject implements Cloneable, Serializable {
         set(s, new Double(value));
     }
 
-    public void setProperties(java.util.Map map) {
-    	Iterator it=map.keySet().iterator();
+    public void setProperties(Map<String,Object> map) {
+    	Iterator<String> it=map.keySet().iterator();
     	while (it.hasNext()) {
     		String key=(String)it.next();
     		set(key,map.get(key));
@@ -385,17 +387,17 @@ public class BaseObject implements Cloneable, Serializable {
         Object otherName = that.get("Name");
         if (!name.equals(otherName)) return false;
         if (local != null) {
-            Iterator it = local.keySet().iterator();
+            Iterator<String> it = local.keySet().iterator();
             while (it.hasNext()) {
-                String k = (String) it.next();
+                String k = it.next();
                 if (k.equals("Number")) continue;
                 if (!get(k).equals(that.get(k))) return false;
             }
         }
         if (that.local != null) {
-            Iterator it = that.local.keySet().iterator();
+            Iterator<String> it = that.local.keySet().iterator();
             while (it.hasNext()) {
-                String k = (String) it.next();
+                String k = it.next();
                 if (k.equals("Number")) continue;
                 if (!that.get(k).equals(get(k))) return false;
             }
@@ -406,8 +408,8 @@ public class BaseObject implements Cloneable, Serializable {
     /**
      * Get a single Map of all property pairs
      */
-    public Map getCollapsedMap() {
-        Map map = null;
+    public Map<String,Object> getCollapsedMap() {
+        Map<String,Object> map = null;
 
         // recursively include baseStuff
         if (inherited != null) map = inherited.getCollapsedMap();
@@ -415,25 +417,25 @@ public class BaseObject implements Cloneable, Serializable {
         if (map == null) {
             if (local == null) {
                 // Create an empty HashMap
-                return new TreeMap();
+                return new HashMap<String,Object>();
             }
             // Just copy the existing Stuff
-            map = new TreeMap(local);
+            map = new HashMap<String,Object>(local);
         } else {
             // Copy the top level Stuff
             if (local == null) return map;
 
-            Iterator it = local.keySet().iterator();
+            Iterator<String> it = local.keySet().iterator();
             while (it.hasNext()) {
-                Object key = it.next();
+                String key = it.next();
                 map.put(key, local.get(key));
             }
         }
         return map;
     }
     
-    public HashMap getPropertyHashMap() {
-        HashMap map = null;
+    public HashMap<String,Object> getPropertyHashMap() {
+        HashMap<String,Object> map = null;
 
         // recursively include baseStuff
         if (inherited != null) map = inherited.getPropertyHashMap();
@@ -441,17 +443,17 @@ public class BaseObject implements Cloneable, Serializable {
         if (map == null) {
             if (local == null) {
                 // Create an empty HashMap
-                return new HashMap();
+                return new HashMap<String,Object>();
             }
             // Just copy the existing Stuff
-            map = new HashMap(local);
+            map = new HashMap<String,Object>(local);
         } else {
             // Copy the top level Stuff
             if (local == null) return map;
 
-            Iterator it = local.keySet().iterator();
+            Iterator<String> it = local.keySet().iterator();
             while (it.hasNext()) {
-                Object key = it.next();
+                String key = it.next();
                 map.put(key, local.get(key));
             }
         }
@@ -462,7 +464,7 @@ public class BaseObject implements Cloneable, Serializable {
         return inherited;
     }
 
-    public HashMap getLocal() {
+    public HashMap<String,Object> getLocal() {
         return local;
     }
 
@@ -473,11 +475,11 @@ public class BaseObject implements Cloneable, Serializable {
     }
 
     public String report() {
-        List al = new ArrayList();
+        List<String> al = new ArrayList<String>();
         String text = "";
         BaseObject p = getFlattenedStuff(this);
         if (p.local == null) return text;
-        Iterator i = p.local.keySet().iterator();
+        Iterator<String> i = p.local.keySet().iterator();
         while (i.hasNext()) {
             String k = (String) i.next();
             Object o = p.get(k);
@@ -495,11 +497,11 @@ public class BaseObject implements Cloneable, Serializable {
     }
     
     public String reportByValue() {
-        List al = new ArrayList();
+        List<String> al = new ArrayList<String>();
         String text = "";
         BaseObject p = getFlattenedStuff(this);
         if (p.local == null) return text;
-        Iterator i = p.local.keySet().iterator();
+        Iterator<String> i = p.local.keySet().iterator();
         while (i.hasNext()) {
             String k = (String) i.next();
             Object o = p.get(k);
@@ -547,7 +549,7 @@ public class BaseObject implements Cloneable, Serializable {
         if (source.local == null) return;
 
         // iterate through top-level Stuff
-        Iterator it = source.local.keySet().iterator();
+        Iterator<String> it = source.local.keySet().iterator();
         while (it.hasNext()) {
             String s = (String) it.next();
             dest.set(s, source.get(s));
@@ -572,14 +574,14 @@ public class BaseObject implements Cloneable, Serializable {
     }
     
     public String[] findAttributesStartingWith(String toFind) {
-        List found = new ArrayList();
+        List<String> found = new ArrayList<String>();
         findAttributesStartingWith(toFind, found);
         return (String[]) found.toArray(new String[found.size()]);
     }
     
-    public void findAttributesStartingWith(String toFind, List found) {
+    public void findAttributesStartingWith(String toFind, List<String> found) {
         if (local != null) {
-            for (Iterator iter = getLocal().keySet().iterator(); iter.hasNext();) {
+            for (Iterator<String> iter = getLocal().keySet().iterator(); iter.hasNext();) {
                 String attribute = (String) iter.next();
                 if (attribute.startsWith(toFind)) found.add(attribute);
             }

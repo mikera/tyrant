@@ -86,10 +86,10 @@ public final class Thing extends BaseObject implements
 	/**
 	 * Optional list of modifiers that are affecting this thing
 	 */
-	private HashMap modifiers=null;
+	private HashMap<String,List<Modifier>> modifiers=null;
 
 
-	//Z ordering constanrs
+	//Z ordering constants
 	public static final int Z_ELSEWHERE = -10;
 	public static final int Z_FLOOR = 0;
 	public static final int Z_ONFLOOR = 5;
@@ -106,7 +106,7 @@ public final class Thing extends BaseObject implements
 		super(baseObject);
 	}
 	
-	public Thing(HashMap propertiesToCopy, BaseObject parent) {
+	public Thing(HashMap<String,Object> propertiesToCopy, BaseObject parent) {
 		super(propertiesToCopy,parent);
 	}
 	
@@ -405,10 +405,8 @@ public final class Thing extends BaseObject implements
 	
 	public void sortItems() {
 		if (inv==null) return;
-		Arrays.sort(inv,new Comparator() {
-			public int compare(Object a, Object b) {
-				Thing ta=(Thing)a;
-				Thing tb=(Thing)b;
+		Arrays.sort(inv,new Comparator<Thing>() {
+			public int compare(Thing ta, Thing tb) {
 				
 				if (tb==null) return -1;
 				if (ta==null) return 1;
@@ -1227,7 +1225,7 @@ public final class Thing extends BaseObject implements
 	
 	// remove modifiers for a given stat, source and reason
 	private void removeModifiersWithSource(Thing source, String reason, String stat) {
-		ArrayList al=getStatModifiers(stat);
+		List<Modifier> al=getStatModifiers(stat);
 		if (al!=null) for (int i=al.size()-1; i>=0; i--) {
 			Modifier m=(Modifier)al.get(i);
 			if ((m.getSource()==source)&&(m.getReason().equals(reason))) {
@@ -1239,19 +1237,19 @@ public final class Thing extends BaseObject implements
 		}
 	}
 	
-	private void removeModifier(ArrayList al, int i) {
+	private void removeModifier(List<Modifier> al, int i) {
 		Modifier m=(Modifier)al.remove(i);
 		String st=m.getString("RemoveMessage");
 		if (st!=null) message(st);
 	}
 	
 	public void removeAllModifiers(String reason) {
-		HashMap hm=getModifierList();
+		HashMap<String,List<Modifier>> hm=getModifierList();
 		if (hm==null) return;
 		
-		Iterator it=hm.values().iterator();
+		Iterator<List<Modifier>> it=hm.values().iterator();
 		while (it.hasNext()) {
-			ArrayList al=(ArrayList)it.next();
+			ArrayList<Modifier> al=(ArrayList<Modifier>)it.next();
 			if (al!=null) for (int i=al.size()-1; i>=0; i--) {
 				Modifier m=(Modifier)al.get(i);
 				if (m.getReason().equals(reason)) {
@@ -1295,7 +1293,7 @@ public final class Thing extends BaseObject implements
 		return (getStat("HPS")<=0);
 	}	
 	
-	private HashMap getModifierList() {
+	private HashMap<String,List<Modifier>> getModifierList() {
 		return modifiers;
 	}
 	
@@ -1307,18 +1305,18 @@ public final class Thing extends BaseObject implements
 		return modifiers!=null;
 	}
 	
-	private ArrayList getStatModifiers(String s) {
-		HashMap hm=getModifierList();
+	private List<Modifier> getStatModifiers(String s) {
+		HashMap<String,List<Modifier>> hm=getModifierList();
 		if (hm==null) return null;
-		return (ArrayList)hm.get(s);
+		return (List<Modifier>)hm.get(s);
 	}
 	
-	private void setStatModifiers(String s, ArrayList al) {
-		HashMap hm=getModifierList();
+	private void setStatModifiers(String s, List<Modifier> al) {
+		HashMap<String,List<Modifier>> hm=getModifierList();
 		
 		if (hm==null) {
 			if (al==null) return;
-			hm=new HashMap();
+			hm=new HashMap<String,List<Modifier>>();
 			setModifierList(hm);
 		}
 		
@@ -1349,9 +1347,9 @@ public final class Thing extends BaseObject implements
 	 */
 	private void applyModifier(Modifier m) {
 		String s=m.getStat();
-		ArrayList al=getStatModifiers(s);
+		List<Modifier> al=getStatModifiers(s);
 		if (al==null) {
-			al=new ArrayList();
+			al=new ArrayList<Modifier>();
 			setStatModifiers(s,al);
 		}
 		al.add(m);
@@ -1361,7 +1359,7 @@ public final class Thing extends BaseObject implements
 	}
 	
 	public Object getModified(String s, int pos) {
-		ArrayList al=getStatModifiers(s);
+		List<Modifier> al=getStatModifiers(s);
 		if ((al!=null)&&(pos<al.size())) {
 			
 			// get the value from the next modifier
