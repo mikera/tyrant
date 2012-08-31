@@ -21,9 +21,9 @@ import mikera.tyrant.util.Text;
 
 public class MapMaker {
     private static int nextChar = 'a';
-    private java.util.Map tiles = new HashMap();
+    private java.util.Map<String, Character> tiles = new HashMap<String, Character>();
     public static String NL = System.getProperty("line.separator");
-    private java.util.Map legend = new HashMap();
+    private java.util.Map<String, String> legend = new HashMap<String, String>();
     private ThingMaker thingMaker = new ThingMaker();
     
     public String store(Map map) {
@@ -41,9 +41,9 @@ public class MapMaker {
         buffer.append(NL);
         buffer.append("---Legend---");
         buffer.append(NL);
-        SortedMap sorted = new TreeMap(legend);
-        for (Iterator iter = sorted.entrySet().iterator(); iter.hasNext();) {
-            java.util.Map.Entry entry = (java.util.Map.Entry) iter.next();
+        SortedMap<String, String> sorted = new TreeMap<String, String>(legend);
+        for (Iterator<java.util.Map.Entry<String, String>> iter = sorted.entrySet().iterator(); iter.hasNext();) {
+            java.util.Map.Entry<String, String> entry = iter.next();
             buffer.append(entry.getKey());
             buffer.append(" = ");
             buffer.append(entry.getValue());
@@ -57,9 +57,9 @@ public class MapMaker {
         buffer.append(NL);
         buffer.append("---Properties---");
         buffer.append(NL);
-        java.util.Map sorted = map.getCollapsedMap();
-        for (Iterator iter = sorted.entrySet().iterator(); iter.hasNext();) {
-            java.util.Map.Entry entry = (java.util.Map.Entry) iter.next();
+        java.util.Map<String,Object> sorted = map.getCollapsedMap();
+        for (Iterator<java.util.Map.Entry<String,Object>> iter = sorted.entrySet().iterator(); iter.hasNext();) {
+            java.util.Map.Entry<String,Object> entry = iter.next();
             buffer.append(entry.getKey());
             buffer.append(" = ");
             buffer.append(entry.getValue());
@@ -87,7 +87,7 @@ public class MapMaker {
 
     private Character charForTile(int tile) {
         String name = Tile.tileNameFor(tile);
-        Character tileChar = (Character) tiles.get(name);
+        Character tileChar = tiles.get(name);
         if(tileChar == null) {
             tileChar = new Character((char)nextChar++);
             tiles.put(name, tileChar);
@@ -96,7 +96,7 @@ public class MapMaker {
         return tileChar;
     }
 
-    public java.util.Map getLegend() {
+    public java.util.Map<String, String> getLegend() {
         return legend;
     }
 
@@ -155,13 +155,12 @@ public class MapMaker {
     	if (lines[h-1].length()<w) h--;
     	
     	Map map = new Map(w,h);
-        if(tileString == null) throw new Error("Null tiles");
 
         for (int y=0; y<h; y++) {
         	String line = lines[y];
         	for (int x = 0; x < w; x++) {
         		String c=line.substring(x, x + 1);
-        		String tileName=(String)legend.get(c);
+        		String tileName=legend.get(c);
         		Thing tile=Lib.get(tileName);
         		if (tile==null) throw new Error("Legend ["+c+"] not recognised");
         		int tileValue=tile.getStat("TileValue");
@@ -188,8 +187,8 @@ public class MapMaker {
         }
     }
     
-    private TreeMap createProperties(String propertyText) {
-    	TreeMap map=new TreeMap();
+    private TreeMap<String, Object> createProperties(String propertyText) {
+    	TreeMap<String, Object> map=new TreeMap<String, Object>();
     	
         if (propertyText == null || propertyText.length() == 0) return map;
         BufferedReader reader = new BufferedReader(new StringReader(propertyText));
@@ -226,11 +225,12 @@ public class MapMaker {
         if (fileDialog.getFile() == null) return null;
         filename = fileDialog.getDirectory() + fileDialog.getFile();
 
+        BufferedReader reader = null;
         try {
             FileInputStream f = new FileInputStream(filename);
             StringBuffer contents = new StringBuffer();
             String line = null;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(f));
+            reader = new BufferedReader(new InputStreamReader(f));
             while((line = reader.readLine()) != null) {
                 contents.append(line);
                 contents.append(MapMaker.NL);
@@ -242,6 +242,12 @@ public class MapMaker {
             e.printStackTrace();
             Game.message("Error while loading map, check console");
             return null;
+        } finally {
+        	try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
         }
     
     }

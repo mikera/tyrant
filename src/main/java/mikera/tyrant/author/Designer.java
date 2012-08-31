@@ -3,6 +3,7 @@ package mikera.tyrant.author;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -306,7 +307,7 @@ public class Designer {
     private LevelMapPanel levelMapPanel;
     private GameScreen gameScreen;
     
-    private static java.util.Map isThings;
+    private static java.util.Map<String, Thing> isThings;
     private static Image overlayImage;
     private static Image plusImage;
     
@@ -554,7 +555,7 @@ public class Designer {
     }
 
     private Menu createMenu(String menuName, String[] names, Action[] actions, boolean[] separatorsBetweenItems) {
-        final java.util.Map menuToAction = new HashMap();
+        final java.util.Map<String, Action> menuToAction = new HashMap<String, Action>();
         associateNamesAndActions(menuToAction, names, actions);
         Menu menu = new Menu(menuName);
         for (int i = 0; i < names.length; i++) {
@@ -568,7 +569,7 @@ public class Designer {
         }
         menu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Action action = (Action) menuToAction.get(e.getActionCommand());
+                Action action = menuToAction.get(e.getActionCommand());
                 if(action == null) return;
                 actionHandler.handleAction(null, action, false);
             }
@@ -576,7 +577,7 @@ public class Designer {
         return menu;
     }
 
-    private void associateNamesAndActions(java.util.Map map, String[] names, Action[] actions) {
+    private void associateNamesAndActions(java.util.Map<String,Action> map, String[] names, Action[] actions) {
         for (int i = 0; i < actions.length; i++) {
             map.put(names[i], actions[i]);
         }
@@ -635,19 +636,19 @@ public class Designer {
     }
 
     private Thing[] getThings() {
-        List all = Lib.instance().getAll();
-        List toShow = new ArrayList();
+        List<Thing> all = Lib.instance().getAll();
+        List<Thing> toShow = new ArrayList<Thing>();
         addIsThings(toShow);
-        for (Iterator iter = all.iterator(); iter.hasNext();) {
-            Thing thing = (Thing) iter.next();
+        for (Iterator<Thing> iter = all.iterator(); iter.hasNext();) {
+            Thing thing = iter.next();
             Item.fullIdentify(thing);
             if(thing.name().startsWith("base ")) continue;
             toShow.add(thing);
         }
-        return (Thing[]) toShow.toArray(new Thing[toShow.size()]);
+        return toShow.toArray(new Thing[toShow.size()]);
     }
 
-    private void addIsThings(List toShow) {
+    private void addIsThings(List<Thing> toShow) {
         toShow.add(getFlagged("IsFood"));
         toShow.add(getFlagged("IsBeast"));
         toShow.add(getFlagged("IsHerb"));
@@ -672,13 +673,13 @@ public class Designer {
 
     public static Thing getFlagged(String type) {
         if(isThings == null) createAllIs();
-        return (Thing) isThings.get(type);
+        return isThings.get(type);
     }
     
     private static void createAllIs() {
-        isThings = new HashMap();
-        for (Iterator iter = Lib.instance().getAllPropertyNames().iterator(); iter.hasNext();) {
-            String ifAttribute = (String) iter.next();
+        isThings = new HashMap<String, Thing>();
+        for (Iterator<String> iter = Lib.instance().getAllPropertyNames().iterator(); iter.hasNext();) {
+            String ifAttribute = iter.next();
             if (!ifAttribute.startsWith("Is")) continue;
             Thing parent = new Thing();
             Thing isThing = new Thing(parent);
@@ -708,9 +709,9 @@ public class Designer {
     private static void pushLocalUp(Thing isThing) {
         BaseObject parent = isThing.getInherited();
         if(parent == null) return;
-        for (Iterator iter = isThing.getLocal().entrySet().iterator(); iter.hasNext();) {
-            java.util.Map.Entry entry = (java.util.Map.Entry) iter.next();
-            String key = (String) entry.getKey();
+        for (Iterator<java.util.Map.Entry<String,Object>> iter = isThing.getLocal().entrySet().iterator(); iter.hasNext();) {
+            java.util.Map.Entry<String,Object> entry = iter.next();
+            String key = entry.getKey();
             Object value = entry.getValue();
             if(key.equals("Name")) continue;
             parent.set(key, value);
@@ -797,7 +798,7 @@ public class Designer {
         makeAllVisible();
     }
     
-    private void doFillWith(List queue, int tileToChange) {
+    private void doFillWith(List<Point> queue, int tileToChange) {
         if(currentMapAdder == addThing) {
             Game.message("Currently you can only fill with tiles.");
             return;
@@ -805,7 +806,7 @@ public class Designer {
         // check orthogonial directions only
         Point[] orthoginalTiles;
         while(!queue.isEmpty()) {
-            Point inQuestion = (Point) queue.remove(queue.size() - 1);
+            Point inQuestion = queue.remove(queue.size() - 1);
             orthoginalTiles = orthoginalTiles(inQuestion);
             for (int i = 0; i < orthoginalTiles.length; i++) {
                 Point point = orthoginalTiles[i];
@@ -820,7 +821,7 @@ public class Designer {
     
     private void doFill(Point mapPoint) {
         int tileToChange = map.getTile(mapPoint.x, mapPoint.y);
-        List queue = new ArrayList();
+        List<Point> queue = new ArrayList<Point>();
         queue.add(mapPoint);
         doFillWith(queue, tileToChange);
         makeAllVisible();
@@ -829,13 +830,13 @@ public class Designer {
     }
 
     private Point[] orthoginalTiles(Point mapPoint) {
-        List points = new ArrayList();
+        List<Point> points = new ArrayList<Point>();
         //NESW
         if(mapPoint.y > 0) points.add(new Point(mapPoint.x, mapPoint.y - 1));
         if(mapPoint.x < map.getWidth() - 1) points.add(new Point(mapPoint.x + 1, mapPoint.y));
         if(mapPoint.y < map.getHeight() - 1) points.add(new Point(mapPoint.x, mapPoint.y + 1));
         if(mapPoint.x > 0) points.add(new Point(mapPoint.x - 1, mapPoint.y));
-        return (Point[]) points.toArray(new Point[points.size()]);
+        return points.toArray(new Point[points.size()]);
     }
 
     private void doLine(Point mapPoint) {
@@ -981,14 +982,22 @@ public class Designer {
         if (fileDialog.getFile() == null) return;
         filename = fileDialog.getDirectory() + fileDialog.getFile();
 
+        FileOutputStream f=null;
         try {
-            FileOutputStream f = new FileOutputStream(filename);
+        	f=new FileOutputStream(filename);
             String mapAsText = new MapMaker().store(map);
             f.write(mapAsText.getBytes());
         } catch (Exception e) {
             e.printStackTrace();
             Game.message("Error while saving map, check console");
             return;
+        } finally {
+        	if (f!=null) try {
+				f.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
         }
         Game.message("Map saved - " + filename);
     }

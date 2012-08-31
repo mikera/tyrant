@@ -60,11 +60,11 @@ public class ThingMaker {
     }
 
     private void storeThingsLocal(StringBuffer buffer, Thing thing) {
-        java.util.Map local = thing.getLocal();
+        java.util.Map<String,Object> local = thing.getLocal();
         if(local == null || local.isEmpty()) return;
-        TreeMap sortedLocal = new TreeMap(local);
-        for (Iterator iter = sortedLocal.entrySet().iterator(); iter.hasNext();) {
-            java.util.Map.Entry entry = (java.util.Map.Entry) iter.next();
+        TreeMap<String, Object> sortedLocal = new TreeMap<String, Object>(local);
+        for (Iterator<java.util.Map.Entry<String,Object>> iter = sortedLocal.entrySet().iterator(); iter.hasNext();) {
+            java.util.Map.Entry<String,Object> entry = iter.next();
             Object key = entry.getKey();
             if(key.equals("Name")) continue;
             buffer.append(SPACES_3);

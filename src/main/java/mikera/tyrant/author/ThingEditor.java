@@ -15,6 +15,7 @@ import java.awt.MenuBar;
 import java.awt.Panel;
 import java.awt.SystemColor;
 import java.awt.TextArea;
+import java.awt.TextComponent;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,9 +74,9 @@ public class ThingEditor implements Runnable {
     private ActionListener textListener;
     private Container thingPanel;
     private Thing thing;
-    private Map importantAttributes;
-    private Map textFieldMapping = new HashMap();
-    private Map keyTypes = new HashMap();
+    private Map<String, Integer> importantAttributes;
+    private Map<TextComponent, String> textFieldMapping = new HashMap<TextComponent, String>();
+    private Map<String, String> keyTypes = new HashMap<String, String>();
     private String mapText;
     private TextArea sourceTextArea;
     private Panel sourceStatusBar;
@@ -118,8 +119,8 @@ public class ThingEditor implements Runnable {
     private void createThingTabbs() {
         if(thing == null) return;
         Thing flat = thing.getFlattened();
-        Map locals = flat.getLocal();
-        String[] keys = (String[]) locals.keySet().toArray(new String[locals.keySet().size()]);
+        Map<String,Object> locals = flat.getLocal();
+        String[] keys = locals.keySet().toArray(new String[locals.keySet().size()]);
         if (keys.length == 0) return;
         sortKeys(keys);
         int attriubutesPerPage = 25;
@@ -188,17 +189,11 @@ public class ThingEditor implements Runnable {
     }
 
     private void sortKeys(String[] keys) {
-        Arrays.sort(keys, new Comparator() {
-            public boolean equals(Object obj) {
-                return false;
-            }
-
-            public int compare(Object o1, Object o2) {
-                String s1 = (String)o1;
-                String s2 = (String)o2;
-                Map important = getImportantAttributes();
-                Integer sortOrder1 = (Integer) important.get(s1);
-                Integer sortOrder2 = (Integer) important.get(s2);
+        Arrays.sort(keys, new Comparator<String>() {
+             public int compare(String s1, String s2) {
+                Map<String, Integer> important = getImportantAttributes();
+                Integer sortOrder1 = important.get(s1);
+                Integer sortOrder2 = important.get(s2);
                 if(sortOrder1 == null && sortOrder2 == null) return s1.compareTo(s2);
                 if(sortOrder1 == null && sortOrder2 != null) return 1;
                 if(sortOrder1 != null && sortOrder2 == null) return -1;
@@ -207,9 +202,9 @@ public class ThingEditor implements Runnable {
         });
     }
 
-    protected Map getImportantAttributes() {
+    protected Map<String, Integer> getImportantAttributes() {
         if(importantAttributes == null) {
-            importantAttributes = new HashMap();
+            importantAttributes = new HashMap<String, Integer>();
             String[] names = {"Name", "Number", "Level", "Frequency", "HPS", "UName"};
             for (int i = 0; i < names.length; i++) {
                 importantAttributes.put(names[i], new Integer(i));
@@ -254,9 +249,9 @@ public class ThingEditor implements Runnable {
     }
 
     protected void doTextPerformed(ActionEvent e) {
-        String key = (String) textFieldMapping.get(e.getSource());
+        String key = textFieldMapping.get(e.getSource());
         String value = ((TextField)e.getSource()).getText();
-        String type = (String) keyTypes.get(key);
+        String type = keyTypes.get(key);
         Object thingValue = value;
         if (!type.equals("string")) {
             if (type.equals("int")) thingValue = Integer.valueOf(value);
@@ -294,7 +289,7 @@ public class ThingEditor implements Runnable {
         return frame;
     }
 
-    private void addAttributes2(Map locals, String[] keys, Container container, int start, int toAdd) {
+    private void addAttributes2(Map<String, Object> locals, String[] keys, Container container, int start, int toAdd) {
         FormLayout layout = new FormLayout("pref, 3dlu, fill:pref:grow(100)", "");
         DefaultFormBuilder builder = new DefaultFormBuilder(layout);
         builder.setDefaultDialogBorder();
