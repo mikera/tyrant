@@ -1149,7 +1149,7 @@ public final class Thing extends BaseObject implements
 				return false;
 		}
 
-		// TODO check logic
+		// TODO: do we really want to separate out a throwing item?
 		int num=t.getNumber();
 		if ((num>1)&&(wt!=RPG.WT_MISSILE)) {
 			// remove excess items
@@ -1227,7 +1227,7 @@ public final class Thing extends BaseObject implements
 	private void removeModifiersWithSource(Thing source, String reason, String stat) {
 		List<Modifier> al=getStatModifiers(stat);
 		if (al!=null) for (int i=al.size()-1; i>=0; i--) {
-			Modifier m=(Modifier)al.get(i);
+			Modifier m=al.get(i);
 			if ((m.getSource()==source)&&(m.getReason().equals(reason))) {
 				removeModifier(al,i);
 			}
@@ -1238,7 +1238,7 @@ public final class Thing extends BaseObject implements
 	}
 	
 	private void removeModifier(List<Modifier> al, int i) {
-		Modifier m=(Modifier)al.remove(i);
+		Modifier m=al.remove(i);
 		String st=m.getString("RemoveMessage");
 		if (st!=null) message(st);
 	}
@@ -1251,7 +1251,7 @@ public final class Thing extends BaseObject implements
 		while (it.hasNext()) {
 			ArrayList<Modifier> al=(ArrayList<Modifier>)it.next();
 			if (al!=null) for (int i=al.size()-1; i>=0; i--) {
-				Modifier m=(Modifier)al.get(i);
+				Modifier m=al.get(i);
 				if (m.getReason().equals(reason)) {
 					removeModifier(al,i);
 				}
@@ -1297,7 +1297,7 @@ public final class Thing extends BaseObject implements
 		return modifiers;
 	}
 	
-	private void setModifierList(HashMap hm) {
+	private void setModifierList(HashMap<String, List<Modifier>> hm) {
 		modifiers=hm;
 	}
 	
@@ -1308,7 +1308,7 @@ public final class Thing extends BaseObject implements
 	private List<Modifier> getStatModifiers(String s) {
 		HashMap<String,List<Modifier>> hm=getModifierList();
 		if (hm==null) return null;
-		return (List<Modifier>)hm.get(s);
+		return hm.get(s);
 	}
 	
 	private void setStatModifiers(String s, List<Modifier> al) {
@@ -1363,7 +1363,7 @@ public final class Thing extends BaseObject implements
 		if ((al!=null)&&(pos<al.size())) {
 			
 			// get the value from the next modifier
-			Modifier m=(Modifier)al.get(pos);
+			Modifier m=al.get(pos);
 			return m.calculate(this,s,pos+1);
 		}
 		// no modifiers left, so use properties
@@ -1388,19 +1388,19 @@ public final class Thing extends BaseObject implements
 		if (modifiers!=null) {
 			s=s+"\n";
 			s=s+"Modified Values:\n";
-			Iterator it=modifiers.keySet().iterator();
+			Iterator<String> it=modifiers.keySet().iterator();
 			while (it.hasNext()) {
-				String p=(String)it.next();
+				String p=it.next();
 				s=s+p+" = "+get(p)+"\n";
 			}
 		}
 		return s;
 	}
 
-    public List orthogonalExits(int directionX, int directionY) {
+    public List<Point> orthogonalExits(int directionX, int directionY) {
         Map map = getMap();
-        if (map == null) return Collections.EMPTY_LIST;
-        List exits = new ArrayList();
+        if (map == null) return Collections.emptyList();
+        List<Point> exits = new ArrayList<Point>();
         if (directionX == 1 || directionX == -1) {
             if (!map.isBlocked(x, y - 1) || isDoorVisible(x, y - 1)) exits.add(new Point(x, y - 1));
             if (!map.isBlocked(x, y + 1) || isDoorVisible(x, y + 1)) exits.add(new Point(x, y + 1));
@@ -1421,10 +1421,10 @@ public final class Thing extends BaseObject implements
         return false;
     }
 
-    public List moreExits(int directionX, int directionY) {
+	public List<Point> moreExits(int directionX, int directionY) {
         Map map = getMap();
-        if (map == null) return Collections.EMPTY_LIST;
-        List exits = orthogonalExits(directionX, directionY);
+        if (map == null) return Collections.emptyList();;
+        List<Point> exits = orthogonalExits(directionX, directionY);
         if (directionX == 1 || directionX == -1) {
              if(!map.isBlocked(x + directionX, y - 1)  || isDoorVisible(x + directionX, y - 1)) exits.add(new Point(x + directionX, y - 1));
              if(!map.isBlocked(x + directionX, y) || isDoorVisible(x + directionX, y)) exits.add(new Point(x + directionX, y));
@@ -1441,7 +1441,7 @@ public final class Thing extends BaseObject implements
         Map map = getMap();
         int[] xDelta = new int[]{-1, 0, 1, 1, 1, 0, -1, -1};
         int[] yDelta = new int[]{-1, -1, -1, 0, 1, 1, 1, 0};
-        List notVisited = new ArrayList();
+        List<Point> notVisited = new ArrayList<Point>();
         for (int i = 0; i < xDelta.length; i++) {
             if(map.isTileBlocked(x + xDelta[i], y + yDelta[i])) continue;
             int pathValue = map.getPath(x + xDelta[i], y + yDelta[i]);
@@ -1453,8 +1453,8 @@ public final class Thing extends BaseObject implements
         int signX = -2;
         int signY = -2;
         boolean xsMatch, ysMatch;
-        for (Iterator iter = notVisited.iterator(); iter.hasNext();) {
-            Point point = (Point) iter.next();
+        for (Iterator<Point> iter = notVisited.iterator(); iter.hasNext();) {
+            Point point = iter.next();
             if(signX == -2) {
                 signX = point.x;
             }
@@ -1475,11 +1475,11 @@ public final class Thing extends BaseObject implements
 //  E..G
 //  E..G
 //  DHHC 
-    private List allExits(boolean countAlreadyVisited) {
+ 	private List<Point> allExits(boolean countAlreadyVisited) {
         int[] xDelta = {};
         int[] yDelta = {};
         Map map = getMap();
-        if(map == null) return Collections.EMPTY_LIST;
+        if(map == null) return Collections.emptyList();;
         if (x == 0) {
             if (y == 0) {
                 // region A
@@ -1523,7 +1523,7 @@ public final class Thing extends BaseObject implements
             xDelta = new int[]{-1, 0, 1, 1, 1, 0, -1, -1};
             yDelta = new int[]{-1, -1, -1, 0, 1, 1, 1, 0};
         }
-        List freedoms = new ArrayList();
+        List<Point> freedoms = new ArrayList<Point>();
         for (int i = 0; i < xDelta.length; i++) {
             if (!map.isBlocked(x + xDelta[i], y + yDelta[i])) {
                 int newX = x + xDelta[i];

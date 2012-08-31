@@ -581,7 +581,13 @@ public class RPG {
 		return p;
 	}
 
-	public static Object[] subList(Object[] list, Class c) {
+	/**
+	 * Gets the subset of items in an array that are of a specific class
+	 * @param list
+	 * @param c
+	 * @return
+	 */
+	public static Object[] subList(Object[] list, Class<?> c) {
 		Object[] temp = new Object[list.length];
 		int tempcount = 0;
 		for (int i = 0; i < list.length; i++) {

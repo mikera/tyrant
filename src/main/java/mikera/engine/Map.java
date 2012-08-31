@@ -118,10 +118,10 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 	 *  set the theme for the map
 	 */
 	public void setTheme(Theme t) {
-		java.util.Map h = t.getCollapsedMap();
-		Iterator it=h.keySet().iterator();
+		java.util.Map<String,Object> h = t.getCollapsedMap();
+		Iterator<String> it=h.keySet().iterator();
 		while (it.hasNext()) {
-			String key=(String)it.next();
+			String key=it.next();
 			if (!key.equals("Name")) {
 				set(key,h.get(key));
 			}
@@ -737,13 +737,15 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 			px = RPG.rspread(x1, x2 - w + 1);
 			py = RPG.rspread(y1, y2 - h + 1);
 
-			for (int lx = px; lx < px + w; lx++)
-				for (int ly = py; ly < py + h; ly++) {
-					if (!isClear(lx, ly))
-						continue;
-				}
-			return new Point(px, py);
+			if (isClear(px, py)) return new Point(px, py);
 		}
+		
+		for (int lx = px; lx < px + w; lx++) {
+			for (int ly = py; ly < py + h; ly++) {
+				if (isClear(lx, ly)) return new Point(px, py);
+			}
+		}
+
 		return null;
 	}
 
@@ -803,12 +805,12 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 	  Of course these points have to be in order of 
 	  closeness , so I might still change my mind
 	  TODO implement me  */
-	public List findStuff( Thing b , int filter){
+	public List<Point> findStuff( Thing b , int filter){
 		if (b.place != this) return null;
 		int sx = b.x;
 		int sy = b.y;
 		int viewRange=Being.calcViewRange(b);
-		List l = new LinkedList();
+		List<Point> l = new LinkedList<Point>();
 		
 		for (int i = 1; i <= viewRange ; i++) {
 			int x1=sx-i;
@@ -833,7 +835,7 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 	   b = being ( for LOS purposes )
 	   filter = what to look for
 	   LinkedList = list of interesting points */
-	public List findStuffPoint( int i , Thing b, int filter ,  List l ){
+	public List<Point> findStuffPoint( int i , Thing b, int filter ,  List<Point> l ){
 		Thing mob;
 		Thing thing;
 		mob = getMobileChecked(i);
@@ -1706,8 +1708,8 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 		return getObjects(tx, ty, tx,ty, "IsPortal");
 	}
 	
-	public ArrayList getAllPortals() {
-		ArrayList al=new ArrayList();
+	public ArrayList<Thing> getAllPortals() {
+		ArrayList<Thing> al=new ArrayList<Thing>();
 		Thing[] ps=getObjects(0,0,width-1,height-1,"IsPortal");
 		for (int i=0; i<ps.length; i++) {
 			al.add(ps[i]);
