@@ -1,9 +1,13 @@
 package mikera.tyrant.util;
 
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Vector;
+
+import mikera.tyrant.util.PrintfFormat.ConversionSpecification;
 
 public class PrintfFormat {
     //
@@ -451,7 +455,7 @@ public class PrintfFormat {
         if (unCS != null) {
             sFmt = new ConversionSpecification();
             sFmt.setLiteral(unCS);
-            vFmt.addElement(sFmt);
+            vFmt.add(sFmt);
         }
         while (cPos != -1 && cPos < fmtArg.length()) {
             for (ePos = cPos + 1; ePos < fmtArg.length(); ePos++) {
@@ -473,12 +477,12 @@ public class PrintfFormat {
             }
             ePos = Math.min(ePos + 1, fmtArg.length());
             sFmt = new ConversionSpecification(fmtArg.substring(cPos, ePos));
-            vFmt.addElement(sFmt);
+            vFmt.add(sFmt);
             unCS = this.nonControl(fmtArg, ePos);
             if (unCS != null) {
                 sFmt = new ConversionSpecification();
                 sFmt.setLiteral(unCS);
-                vFmt.addElement(sFmt);
+                vFmt.add(sFmt);
             }
         }
     }
@@ -511,13 +515,13 @@ public class PrintfFormat {
      * @return The formatted String.
      */
     public String sprintf(Object[] o) {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         int i = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = (ConversionSpecification) e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -564,12 +568,12 @@ public class PrintfFormat {
      * @return the formatted String.
      */
     public String sprintf() {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = (ConversionSpecification) e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -587,12 +591,12 @@ public class PrintfFormat {
      *                if the conversion character is f, e, E, g, G, s, or S.
      */
     public String sprintf(int x) throws IllegalArgumentException {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -612,12 +616,12 @@ public class PrintfFormat {
      *                if the conversion character is f, e, E, g, G, s, or S.
      */
     public String sprintf(long x) throws IllegalArgumentException {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -638,12 +642,12 @@ public class PrintfFormat {
      *                o.
      */
     public String sprintf(double x) throws IllegalArgumentException {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -663,12 +667,12 @@ public class PrintfFormat {
      *                if the conversion character is neither s nor S.
      */
     public String sprintf(String x) throws IllegalArgumentException {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -692,12 +696,12 @@ public class PrintfFormat {
      *                formatting an unwrapped value.
      */
     public String sprintf(Object x) throws IllegalArgumentException {
-        Enumeration e = vFmt.elements();
+        Iterator<ConversionSpecification> e = vFmt.iterator();
         ConversionSpecification cs = null;
         char c = 0;
         StringBuffer sb = new StringBuffer();
-        while (e.hasMoreElements()) {
-            cs = (ConversionSpecification) e.nextElement();
+        while (e.hasNext()) {
+            cs = (ConversionSpecification) e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -753,7 +757,7 @@ public class PrintfFormat {
      * character. The optional L does not imply conversion to a long long
      * double.
      */
-    private class ConversionSpecification {
+    public class ConversionSpecification {
         /**
          * Constructor. Used to prepare an instance to hold a literal, not a
          * control string.
@@ -2964,7 +2968,7 @@ public class PrintfFormat {
     }
 
     /** Vector of control strings and format literals. */
-    private Vector vFmt = new Vector();
+    private ArrayList<ConversionSpecification> vFmt = new ArrayList<ConversionSpecification>();
     /** Character position. Used by the constructor. */
     private int cPos = 0;
     /** Character position. Used by the constructor. */

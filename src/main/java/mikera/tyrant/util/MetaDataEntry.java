@@ -1,5 +1,6 @@
 package mikera.tyrant.util;
 
+import java.util.List;
 import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,7 +24,7 @@ public class MetaDataEntry {
     public static final int OPTIONAL_PROPERTY = 7;
     
     private Object value;
-    private ArrayList validValues;
+    private ArrayList<Object> validValues;
     private int valueCondition;
     private int propertyCondition;
     
@@ -37,7 +38,7 @@ public class MetaDataEntry {
             for(int i=0; i<vv.length; i++)
                 validValues.add(vv[i]);
             if(!(vv instanceof MetaData[]))
-                Collections.sort(validValues);
+                Collections.sort((List<? extends Comparable>)validValues);
         }
         value = o;
         valueCondition = v;
