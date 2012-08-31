@@ -27,8 +27,8 @@ public class Gods {
 	public static final String GATHAARL="Gathaarl";
 	
 	public static Thing get(String s) {
-		HashMap h=getGods();
-		Thing t=(s==null)?null:(Thing)h.get(s);
+		HashMap<String, Thing> h=getGods();
+		Thing t=(s==null)?null:h.get(s);
 		if (t==null) Game.warn("God ["+s+"] does not exist!");
 		return t;
 	}
@@ -41,10 +41,11 @@ public class Gods {
 		return being.getString("Religion");
 	}
 	
-	public static HashMap getGods() {
-		HashMap h=(HashMap)Lib.instance().getObject("Gods");
+	public static HashMap<String, Thing> getGods() {
+		@SuppressWarnings("unchecked")
+		HashMap<String, Thing> h=(HashMap<String, Thing>)Lib.instance().getObject("Gods");
 		if (h==null) {
-			h=new HashMap();
+			h=new HashMap<String, Thing>();
             Lib.instance().set("Gods", h);
 //			Game.hero.set("Gods",h);
 		}
@@ -57,10 +58,10 @@ public class Gods {
 	 * @param h
 	 * @return
 	 */
-	public static ArrayList getPossibleGods(Thing h) {
-		ArrayList al=new ArrayList();
+	public static ArrayList<String> getPossibleGods(Thing h) {
+		ArrayList<String> al=new ArrayList<String>();
 		
-		Iterator it=getGods().keySet().iterator();
+		Iterator<String> it=getGods().keySet().iterator();
 		while(it.hasNext()) {
 			String s=(String)it.next();
 			if (acceptsFollower(s,h)) al.add(s);

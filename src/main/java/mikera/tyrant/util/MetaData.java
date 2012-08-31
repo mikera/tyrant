@@ -1,5 +1,6 @@
 package mikera.tyrant.util;
 
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.Set;
 import java.util.Iterator;
@@ -11,10 +12,10 @@ import java.util.Iterator;
 
 public class MetaData {
     
-    private TreeMap metaDataEntries; // key = property name, value = MetaDataEntry
+    private TreeMap<String, MetaDataEntry> metaDataEntries; // key = property name, value = MetaDataEntry
     
     protected MetaData() {
-        metaDataEntries = new TreeMap();
+        metaDataEntries = new TreeMap<String, MetaDataEntry>();
     }
     
     protected MetaData(MetaData parent) {
@@ -31,7 +32,7 @@ public class MetaData {
         add(propertyName, new MetaDataEntry(value, validValues, valueCondition, propertyCondition));
     }
     
-    protected TreeMap getAll() {
+    protected TreeMap<String, MetaDataEntry> getAll() {
         return metaDataEntries;
     }
     
@@ -41,20 +42,20 @@ public class MetaData {
     
     protected int numberOfMandatoryProperties() {
         int number = 0;
-        Iterator it = metaDataEntries.keySet().iterator();
+        Iterator<String> it = metaDataEntries.keySet().iterator();
         while(it.hasNext()) {
-            MetaDataEntry tmd = (MetaDataEntry)metaDataEntries.get(it.next());
+            MetaDataEntry tmd = metaDataEntries.get(it.next());
             if(tmd.isMandatory())
                 number++;
         }
         return number;
     }
     
-    protected boolean describes(TreeMap properties, boolean isMetaData) {
+    protected boolean describes(Map<String, Object> properties, boolean isMetaData) {
         int mandatoryPropertiesChecked = 0;
-        Set propertyNames = properties.keySet();
+        Set<String> propertyNames = (Set<String>) properties.keySet();
         if(metaDataEntries.keySet().containsAll(propertyNames)) {
-            Iterator it = propertyNames.iterator();
+            Iterator<String> it = propertyNames.iterator();
             while(it.hasNext()) {
                 String propertyName = (String)it.next();
                 if(isMetaData)

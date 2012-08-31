@@ -74,30 +74,32 @@ public class LibMetaDataHandler {
     private static final String SNAKE = "snake";
     private static final String CRITTER = "critter";
     private static final String PERSON = "person";
-    private static TreeMap DESCRIPTIONS = null;
+    private static TreeMap<String, String> DESCRIPTIONS = null;
     
-    protected static void createLibraryItems(LinkedHashMap plugInData) {
+    protected static void createLibraryItems(LinkedHashMap<String, ?> plugInData) {
         System.out.println("Inserting "+plugInData.size()+" items into the library");
-        Iterator it = plugInData.keySet().iterator();
+        Iterator<String> it = plugInData.keySet().iterator();
         while(it.hasNext()) {
-            String timeStampAndMetaDataName = (String)it.next();
-            TreeMap itemData = (TreeMap)plugInData.get(timeStampAndMetaDataName);
+            String timeStampAndMetaDataName = it.next();
+            @SuppressWarnings("unchecked")
+			TreeMap<String, ?> itemData = (TreeMap<String, ?>)plugInData.get(timeStampAndMetaDataName);
             String metaDataName = timeStampAndMetaDataName.substring(timeStampAndMetaDataName.indexOf("$")+1);
             MetaData metaData = LibMetaData.instance().get(metaDataName);
             createLibraryItem(itemData, metaData);
         }
     }
     
-    private static void createLibraryItem(TreeMap itemData, MetaData metaData) {
+    @SuppressWarnings("unchecked")
+	private static void createLibraryItem(TreeMap<String, ?> itemData, MetaData metaData) {
         String itemName = (String)itemData.remove("Name");
         Thing t = new Thing();
         t.set("Name", itemName);
         boolean inserted = false;
         System.out.println(" Inserting "+itemName);
-        Iterator it = itemData.keySet().iterator();
+        Iterator<String> it = (Iterator<String>) itemData.keySet().iterator();
         while(it.hasNext()) {
             inserted = false;
-            String property = (String)it.next();
+            String property = it.next();
             Object o = itemData.get(property);
             MetaDataEntry mde = metaData.get(property);
             Object value = mde.getValue();
@@ -107,7 +109,7 @@ public class LibMetaDataHandler {
                 o = new Double((String)o);
             if(o instanceof TreeMap) {
                 System.out.println("DEBUG: found meta data: "+property+": "+o);
-                t.set(property, createLibraryItemFromMetaData(property, (TreeMap)o));
+                t.set(property, createLibraryItemFromMetaData(property, (TreeMap<String, ?>) o));
                 inserted = true;
             }
             // TO DO: maybe there's a better way to create the library items
@@ -130,7 +132,7 @@ public class LibMetaDataHandler {
         Lib.add(t);
     }
     
-    private static Object createLibraryItemFromMetaData(String property, TreeMap itemData) {
+    private static Object createLibraryItemFromMetaData(String property, TreeMap<String,?> itemData) {
         // TO DO: maybe there's a better way to create the library items
         //        (in a single method or so)
     	// TO DO: update to latest Tyrant version
@@ -854,9 +856,9 @@ public class LibMetaDataHandler {
         return lmd;
     }
     
-    protected static TreeMap createPropertyDescriptions() {
+    protected static TreeMap<String, String> createPropertyDescriptions() {
     	if(DESCRIPTIONS==null) {
-        TreeMap descriptions = new TreeMap();
+        TreeMap<String, String> descriptions = new TreeMap<String, String>();
         descriptions.put("SK", "Skill");
         descriptions.put("ST", "Strength");
         descriptions.put("AG", "Agility");

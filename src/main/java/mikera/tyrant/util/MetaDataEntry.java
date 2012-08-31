@@ -33,7 +33,7 @@ public class MetaDataEntry {
         if((valueCondition==CERTAIN_VALUES) && (vv.length<=1))
             throw new IllegalArgumentException("The CERTAIN_VALUES condition needs more than one valid value. "+vv.length+" value(s) were found");
         if(vv!=null) {
-            validValues = new ArrayList();
+            validValues = new ArrayList<Object>();
             for(int i=0; i<vv.length; i++)
                 validValues.add(vv[i]);
             if(!(vv instanceof MetaData[]))

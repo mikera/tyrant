@@ -12,11 +12,11 @@ import mikera.tyrant.engine.Thing;
  * @author Chris Grindstaff chris@gstaff.org
  */
 public class TestGame extends TyrantTestCase {
-    private ArrayList theMessages;
+    private ArrayList<String> theMessages;
 
     protected void setUp() throws Exception {
         super.setUp();
-        theMessages = new ArrayList();
+        theMessages = new ArrayList<String>();
         NullHandler.installNullMessageHandler(theMessages);
     }
 

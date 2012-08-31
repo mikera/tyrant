@@ -42,7 +42,8 @@ public class Missile {
     	return range;
     }
     
-    public static void throwAt(Thing ms, Thing thrower, Map m, int tx, int ty) {
+    @SuppressWarnings("unused")
+	public static void throwAt(Thing ms, Thing thrower, Map m, int tx, int ty) {
         Thing t = getTarget(m,tx,ty);
         
         thrower.incStat("APS", -throwCost(thrower));
@@ -52,6 +53,7 @@ public class Missile {
         wsk = (wsk * (3 + thrower.getStat(Skill.THROWING))) / 3;
         
         // range
+        // TODO: ensure range is actually used
         int range = throwRange(ms);
         
         int rsk = (ms.getStat("RSKMul") * wsk) / 100 + ms.getStat("RSKBonus");

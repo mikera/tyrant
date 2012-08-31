@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,9 +29,11 @@ public class PlugInUtility {
 	private final static String XML_BEGIN = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
 	private final static String XML_LIBRARY_STYLESHEET = "<?xml-stylesheet type=\"text/xsl\" href=\"tyrantLibraryItems.xsl\" ?>";
 	private final static String XML_SPECIFICATION_STYLESHEET = "<?xml-stylesheet type=\"text/xsl\" href=\"tyrantLibrarySpecification.xsl\" ?>";
-	private final static String XML_OPEN_LIBRARY = "<TyrantLibrary ProgramVersion=\""+ Game.VERSION + "\">";
+	private final static String XML_OPEN_LIBRARY = "<TyrantLibrary ProgramVersion=\""
+			+ Game.VERSION + "\">";
 	private final static String XML_CLOSE_LIBRARY = "</TyrantLibrary>";
-	private final static String XML_OPEN_SPECIFICATION = "<TyrantLibrarySpecification ProgramVersion=\""+ Game.VERSION + "\">";
+	private final static String XML_OPEN_SPECIFICATION = "<TyrantLibrarySpecification ProgramVersion=\""
+			+ Game.VERSION + "\">";
 	private final static String XML_CLOSE_SPECIFICATION = "</TyrantLibrarySpecification>";
 	private final static String XML_OPEN_ITEM = "<Item>";
 	private final static String XML_CLOSE_ITEM = "</Item>";
@@ -56,8 +59,9 @@ public class PlugInUtility {
 	private final static String XML_CLOSE_PROPERTY_SPECIFICATION = "</PropertySpecification>";
 	private final static String XML_OPEN_ITEM_SPECIFICATION = "<ItemSpecification>";
 	private final static String XML_CLOSE_ITEM_SPECIFICATION = "</ItemSpecification>";
-	private final static TreeMap<String,MetaData> LIBMETADATA = LibMetaData.instance().getAll();
-		
+	private final static TreeMap<String, MetaData> LIBMETADATA = LibMetaData
+			.instance().getAll();
+
 	public static void writeLibrary(String fileName, boolean withStylesheet) {
 		prepareWriteAction(new File(fileName), withStylesheet, false);
 	}
@@ -80,30 +84,36 @@ public class PlugInUtility {
 				files = new File[1];
 				files[0] = file;
 			}
-			LinkedHashMap itemAndMetaData = new LinkedHashMap();
-			ArrayList items = new ArrayList();
-		for (int i = 0; i < files.length; i++) {
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			dbf.setIgnoringComments(true);
-			dbf.setIgnoringElementContentWhitespace(true);
-			Document doc = dbf.newDocumentBuilder().parse(new FileInputStream(files[i]));
-			NodeList plugIn = doc.getElementsByTagName("TyrantPlugIn");
-			if (plugIn.getLength() == 0)
-				System.out.println(files[i]+" doesn't contain any items");
-			else {
-				NodeList itemList = doc.getElementsByTagName("Item");
-				System.out.println(files[i]+" contains "+itemList.getLength() + " items");
-				items.addAll(readItems(itemList));
-				System.out.println(items.size()+" items were successful loaded from "+file.getName());
-				itemAndMetaData.putAll(checkItemData(items));
-				items.clear();
-				LibMetaDataHandler.createLibraryItems(itemAndMetaData);
+			LinkedHashMap<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<String, Map<String,Object>>();
+			ArrayList<Map<String, Serializable>> items = new ArrayList<Map<String, Serializable>>();
+			for (int i = 0; i < files.length; i++) {
+				DocumentBuilderFactory dbf = DocumentBuilderFactory
+						.newInstance();
+				dbf.setIgnoringComments(true);
+				dbf.setIgnoringElementContentWhitespace(true);
+				Document doc = dbf.newDocumentBuilder().parse(
+						new FileInputStream(files[i]));
+				NodeList plugIn = doc.getElementsByTagName("TyrantPlugIn");
+				if (plugIn.getLength() == 0)
+					System.out.println(files[i] + " doesn't contain any items");
+				else {
+					NodeList itemList = doc.getElementsByTagName("Item");
+					System.out.println(files[i] + " contains "
+							+ itemList.getLength() + " items");
+					items.addAll(readItems(itemList));
+					System.out.println(items.size()
+							+ " items were successful loaded from "
+							+ file.getName());
+					itemAndMetaData.putAll(checkItemData(items));
+					items.clear();
+					LibMetaDataHandler.createLibraryItems(itemAndMetaData);
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Error while reading from"+file.toString()+":");
+			System.out.println("Error while reading from" + file.toString()
+					+ ":");
 			System.out.println(e.getMessage());
-		}		
+		}
 	}
 
 	private static ArrayList readItems(NodeList itemList) {
@@ -131,9 +141,12 @@ public class PlugInUtility {
 		return properties;
 	}
 
-	private static TreeMap readProperties(Node propertyData, boolean isMetaData) {
-		TreeMap properties = new TreeMap(), metaData = new TreeMap();
-		String name = null, value = null, nodeName = propertyData.getNodeName();
+	private static Map readProperties(Node propertyData, boolean isMetaData) {
+		Map<String, Object> properties = new TreeMap(); 
+		Map<String, Map> metaData = new TreeMap();
+		String name = null;
+		String value = null;
+		String nodeName = propertyData.getNodeName();
 		if ((propertyData.getNodeType() == Node.ELEMENT_NODE)
 				&& (nodeName != null) && (nodeName.length() > 0)
 				&& (nodeName.indexOf("#") == -1)) {
@@ -145,7 +158,8 @@ public class PlugInUtility {
 					prefix = "   ";
 				else
 					prefix = "  ";
-				System.out.println(prefix + "Property \"" + name + "\" successful loaded");
+				System.out.println(prefix + "Property \"" + name
+						+ "\" successful loaded");
 				properties.put(name, value);
 			} else {
 				System.out.println("  Loading meta data");
@@ -204,7 +218,8 @@ public class PlugInUtility {
 			else
 				processLibrary(writer, withStylesheet);
 		} catch (Exception e) {
-			System.out.println("Error while writing to" + file.toString() + ":");
+			System.out
+					.println("Error while writing to" + file.toString() + ":");
 			System.out.println(e.getMessage());
 		} finally {
 			if (writer != null)
@@ -212,24 +227,27 @@ public class PlugInUtility {
 		}
 	}
 
-	private static void processLibrary(PrintWriter writer, boolean withStylesheet) {
-		//get the library items and write the first XML line
+	private static void processLibrary(PrintWriter writer,
+			boolean withStylesheet) {
+		// get the library items and write the first XML line
 		Hero.createHero("dummy", "human", "sorceror");
 		Lib lib = Lib.instance();
 		List libItems = lib.getAll();
-		MetaData metaData=null;
-		
+		MetaData metaData = null;
+
 		writer.println(XML_BEGIN);
 		if (withStylesheet)
 			writer.println(XML_LIBRARY_STYLESHEET);
 		writer.println(XML_OPEN_LIBRARY);
 		// loop through all item
 		for (int i = 0; i < libItems.size(); i++) {
-			TreeMap props = new TreeMap(((BaseObject) libItems.get(i)).getCollapsedMap());
+			TreeMap props = new TreeMap(
+					((BaseObject) libItems.get(i)).getCollapsedMap());
 
 			// write the output and start with the item name
 			writer.println(getSpaces(1) + XML_OPEN_ITEM);
-			writer.println(getSpaces(2) + XML_OPEN_NAME + props.remove("Name") + XML_CLOSE_NAME);
+			writer.println(getSpaces(2) + XML_OPEN_NAME + props.remove("Name")
+					+ XML_CLOSE_NAME);
 			// now the other properties
 			Iterator it = props.keySet().iterator();
 			while (it.hasNext()) {
@@ -237,29 +255,37 @@ public class PlugInUtility {
 				Object entry = props.get(key);
 				// we only display the important part of class name and cut the
 				// rest off
-				if ((entry != null) && (entry.toString().indexOf("@") > 0)){
-					metaData = LibMetaDataHandler.createMetaDataFromObject(entry);
-					if(metaData==null)
-						entry = entry.toString().substring(0, entry.toString().lastIndexOf("@"));
+				if ((entry != null) && (entry.toString().indexOf("@") > 0)) {
+					metaData = LibMetaDataHandler
+							.createMetaDataFromObject(entry);
+					if (metaData == null)
+						entry = entry.toString().substring(0,
+								entry.toString().lastIndexOf("@"));
 				}
-				if(metaData != null) {
+				if (metaData != null) {
 					TreeMap meta = metaData.getAll();
 					Iterator jt = meta.keySet().iterator();
-					// to do: sometimes getValue() returns numbers which are unvalid XML tags
-					//        don't know what's wrong with it, maybe due to recent Tyrant API changes  
-					writer.println("<"+getValue(entry)+">");
+					// to do: sometimes getValue() returns numbers which are
+					// unvalid XML tags
+					// don't know what's wrong with it, maybe due to recent
+					// Tyrant API changes
+					writer.println("<" + getValue(entry) + ">");
 					writer.println("<MetaData>");
-					while(jt.hasNext()) {
-						String property = (String)jt.next();
-						MetaDataEntry mde = (MetaDataEntry)meta.get(property);
-						writer.println("<"+property+">"+mde.getValue()+"</"+property+">");
+					while (jt.hasNext()) {
+						String property = (String) jt.next();
+						MetaDataEntry mde = (MetaDataEntry) meta.get(property);
+						writer.println("<" + property + ">" + mde.getValue()
+								+ "</" + property + ">");
 					}
 					writer.println("</MetaData>");
-					// to do: sometimes getValue() returns numbers which are unvalid XML tags
-					//        don't know what's wrong with it, maybe due to recent Tyrant API changes					
-					writer.println("</"+getValue(entry)+">");
+					// to do: sometimes getValue() returns numbers which are
+					// unvalid XML tags
+					// don't know what's wrong with it, maybe due to recent
+					// Tyrant API changes
+					writer.println("</" + getValue(entry) + ">");
 				} else
-				   writer.println(getSpaces(2) + "<" + key + ">" + entry + "</" + key + ">");
+					writer.println(getSpaces(2) + "<" + key + ">" + entry
+							+ "</" + key + ">");
 			}
 			writer.println(getSpaces(1) + XML_CLOSE_ITEM);
 		}
@@ -355,7 +381,8 @@ public class PlugInUtility {
 				while (it.hasNext()) {
 					String propName = (String) it.next();
 					processMetaDataEntry(writer, isItemSpecification,
-							(level + 2), propName, (MetaDataEntry) tmd.get(propName), descriptions);
+							(level + 2), propName,
+							(MetaDataEntry) tmd.get(propName), descriptions);
 				}
 				if (isItemSpecification)
 					writer.println(getSpaces(level + 1) + XML_CLOSE_METADATA);
@@ -376,8 +403,8 @@ public class PlugInUtility {
 					while (j.hasNext()) {
 						String name = (String) j.next();
 						processMetaDataEntry(writer, isItemSpecification,
-								(level + 3), name, (MetaDataEntry) tmd
-										.get(name), descriptions);
+								(level + 3), name,
+								(MetaDataEntry) tmd.get(name), descriptions);
 					}
 					writer.println(getSpaces(level + 2) + XML_CLOSE_METADATA);
 				} else
@@ -390,16 +417,16 @@ public class PlugInUtility {
 	}
 
 	private static String getValue(Object o) {
-		String s = o.getClass().getName(), t=null;
+		String s = o.getClass().getName(), t = null;
 		if (s.indexOf("mikera.tyrant") >= 0) {
 			if (s.indexOf("@") >= 0) {
-				t= s.substring(s.lastIndexOf("."), s.indexOf("@"));}
-			else
-				t= s.substring(s.lastIndexOf(".") + 1);
+				t = s.substring(s.lastIndexOf("."), s.indexOf("@"));
+			} else
+				t = s.substring(s.lastIndexOf(".") + 1);
 		}
-		if((t!=null)&&(t.indexOf(";")>=0))
-			t=t.substring(0, t.length()-1);
-		if(t!=null)
+		if ((t != null) && (t.indexOf(";") >= 0))
+			t = t.substring(0, t.length() - 1);
+		if (t != null)
 			return t;
 		return o.toString();
 	}

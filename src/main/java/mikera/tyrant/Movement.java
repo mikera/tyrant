@@ -36,10 +36,8 @@ public class Movement {
         }
         map.visitPath(thing.x, thing.y);
         boolean moving = false;
-        if (map==null) {
-        	System.out.println("no map in Movement.tryMove ["+thing.getName(Game.hero())+"]");
-        	return false;
-        }
+       
+        
         int dx = thing.getStatIfAbsent("RunDirectionX", Integer.MIN_VALUE);
         int dy = thing.getStatIfAbsent("RunDirectionY", Integer.MIN_VALUE);
         if(dx == Integer.MIN_VALUE) {
@@ -406,11 +404,12 @@ public class Movement {
         if(runCount == 1)return false;
         if(thing.areSeveralDirectionsNotVisited()) return false;
         if(thing.inARoom()) return false;
+        
         //try to run around corners
-        List freedoms = thing.moreExits(dx, dy);
+        List<Point> freedoms = thing.moreExits(dx, dy);
         if(freedoms.isEmpty()) return false;
-        for (Iterator iter = freedoms.iterator(); iter.hasNext();) {
-            Point placeToMove = (Point) iter.next();
+        for (Iterator<Point> iter = freedoms.iterator(); iter.hasNext();) {
+            Point placeToMove = iter.next();
             if(map.getPath(placeToMove.x, placeToMove.y) == 1) continue;
             if(interruptsRunning(thing, map, placeToMove.x, placeToMove.y)) continue;
             int oldX = thing.x;

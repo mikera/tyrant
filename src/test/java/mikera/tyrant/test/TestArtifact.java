@@ -1,6 +1,5 @@
 package mikera.tyrant.test;
 
-import mikera.tyrant.*;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Thing;
 

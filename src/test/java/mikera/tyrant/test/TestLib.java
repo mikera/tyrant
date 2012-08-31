@@ -17,7 +17,7 @@ import mikera.tyrant.engine.Thing;
  */
 public class TestLib extends TyrantTestCase {
     
-    private List all=null;
+    private List<Thing> all=null;
 
     public void testEmpty() {
         Lib lib = new Lib();
@@ -155,14 +155,14 @@ public class TestLib extends TyrantTestCase {
      */
     public void testPropertyTypes() {
     	Iterator<Thing> it=all.iterator();
-    	HashMap types=new HashMap();
-    	HashMap seen=new HashMap();
+    	HashMap<String, String> types=new HashMap<String, String>();
+    	HashMap<String, String> seen=new HashMap<String, String>();
     	while (it.hasNext()) {
             Thing p = it.next();
     		String name=(String)p.get("Name");
     		
     		Thing t=Lib.create(name);
-    		Map h = t.getCollapsedMap();
+    		Map<String,Object> h = t.getCollapsedMap();
     		
     		for (Iterator<String> hi=h.keySet().iterator();hi.hasNext();) {
     			String key=hi.next();

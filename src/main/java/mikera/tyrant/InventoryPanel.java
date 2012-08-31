@@ -309,7 +309,7 @@ public class InventoryPanel extends Screen implements ItemSelectable {
                 lastFilter = "";
                 return;
             }
-            List filtered = new ArrayList();
+            List<Thing> filtered = new ArrayList<Thing>();
             for (int i = 0; i < allThings.length; i++) {
                 Thing thing = allThings[i];
                 if(filter.accept(thing, query)) filtered.add(thing);

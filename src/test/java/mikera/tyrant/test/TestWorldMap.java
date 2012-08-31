@@ -7,10 +7,11 @@ package mikera.tyrant.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 
-import mikera.tyrant.*;
+import mikera.tyrant.Event;
+import mikera.tyrant.Game;
+import mikera.tyrant.Portal;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Thing;
@@ -25,11 +26,11 @@ import mikera.tyrant.engine.Thing;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class TestWorldMap extends TyrantTestCase {
-	private HashMap hm;
+	private HashMap<String, Map> hm;
 	private int mapCount;
 	
 	public void testWorld() {
-		hm=new HashMap();
+		hm=new HashMap<String, Map>();
 		mapCount=0;
 		
 		// create things to add to maps
@@ -121,12 +122,9 @@ public class TestWorldMap extends TyrantTestCase {
 		mapThingTest(m);
 		mapTimeTest(m);
 		
-		ArrayList al=m.getAllPortals();
+		ArrayList<Thing> al=m.getAllPortals();
 		
-		// portal destinations
-		HashSet dests=new HashSet();
-		
-		for (Iterator it=al.iterator(); it.hasNext();) {
+		for (Iterator<Thing> it=al.iterator(); it.hasNext();) {
 			Thing p=(Thing)it.next();
 			
 			Map newMap;
@@ -136,10 +134,6 @@ public class TestWorldMap extends TyrantTestCase {
 			} catch (Throwable t) {
 				throw new Error("Error creating map for ["+p.name()+"] on ["+m.name()+"]" ,t);
 			}		
-			
-			// test that no two portals has same target
-			//assertTrue("Two portals ["+p.name()+"] on ["+m.name()+ "] point to same target map ["+newMap.name()+"]!",!dests.contains(newMap));
-			//dests.add(newMap);
 			
 			assertTrue("Portal ["+p.name()+"] has null getTargetMap()",newMap!=null);
 			mapTest(newMap);

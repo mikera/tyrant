@@ -8,7 +8,6 @@ package mikera.tyrant;
 import java.util.HashMap;
 
 import mikera.tyrant.engine.Map;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 import mikera.util.Rand;
@@ -24,7 +23,7 @@ public class LevelMap implements java.io.Serializable {
 	private int[] pixels=null;
 	private int[] currentMemory=null;
 	private Map lastMap=null;
-	private HashMap mapMemory=new HashMap();
+	private HashMap<Map, int[]> mapMemory=new HashMap<Map, int[]>();
 	
 	public static LevelMap instance() {
 		LevelMap l=(LevelMap)Game.instance().get("MapMemory");
@@ -35,12 +34,12 @@ public class LevelMap implements java.io.Serializable {
 		return l;
 	}
 	
-	private HashMap getMapMemory() {
+	private HashMap<Map, int[]> getMapMemory() {
 		return mapMemory;
 	}
 	
 	private int[] getMapMemory(Map m) {
-		HashMap h=getMapMemory();
+		HashMap<Map, int[]> h=getMapMemory();
 		int[] memory=(int[])h.get(m);
 		if ((memory==null)&&(m==lastMap)) {
 			memory=currentMemory;

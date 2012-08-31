@@ -27,13 +27,13 @@ public class NullHandler implements IMessageHandler {
         return null;
     }
 
-    public static List installNullMessageHandler() {
-    	List messages=new ArrayList();
+    public static List<String> installNullMessageHandler() {
+    	List<String> messages=new ArrayList<String>();
         installNullMessageHandler(messages);
         return messages;
     }
 
-    public static void installNullMessageHandler(List messages) {
+    public static void installNullMessageHandler(List<String> messages) {
         NullHandler aMessageHandler = new NullHandler();
         aMessageHandler.messages = messages;
         Game.messagepanel = aMessageHandler;

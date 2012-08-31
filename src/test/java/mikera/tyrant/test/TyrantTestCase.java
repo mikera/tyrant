@@ -2,6 +2,7 @@ package mikera.tyrant.test;
 
 import java.awt.Button;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import org.junit.BeforeClass;
 
@@ -46,7 +47,7 @@ public class TyrantTestCase extends TestCase {
     }
 
     protected Thing person;
-    protected java.util.List messages;
+    protected List<String> messages;
     protected static Thing hero;
     protected Button button = new Button();
 
@@ -58,7 +59,7 @@ public class TyrantTestCase extends TestCase {
     protected String lastMessage() {
     	int messageCount=messages.size();
     	if (messageCount==0) return null;
-    	return ((String)messages.get(messageCount-1)).trim();
+    	return messages.get(messageCount-1).trim();
     }
     
     public static Thing getTestHero() {

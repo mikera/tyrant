@@ -1,5 +1,6 @@
 package mikera.tyrant.util;
 
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,13 +39,13 @@ public class LibMetaData {
 		return metaData.get(thingName);
 	}
 
-	protected String describes(TreeMap item) {
+	protected String describes(Map<String, Object> item) {
 		ArrayList<String> metaDataNames = new ArrayList<String>();
 		Iterator<String> it = metaData.keySet().iterator();
 		while (it.hasNext()) {
 			String libItemName = it.next();
 			MetaData libItem = metaData.get(libItemName);
-			if (libItem.describes(item, false))
+			if (libItem.describes((Map<String, Object>) item, false))
 				metaDataNames.add(libItemName);
 		}
 		if (metaDataNames.size() == 0)

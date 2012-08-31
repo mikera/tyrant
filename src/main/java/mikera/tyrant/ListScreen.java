@@ -59,9 +59,9 @@ public class ListScreen extends Screen {
 		// questapp.setKeyHandler(keyhandler);
 	}
 
-	private static String[] getStringArray(Collection c) {
+	private static String[] getStringArray(Collection<String> c) {
 		String[] ss=new String[c.size()];
-		Iterator it=c.iterator();
+		Iterator<String> it=c.iterator();
 		int i=0;
 		while (it.hasNext()) {
 			ss[i++]=(String)it.next();
@@ -69,7 +69,7 @@ public class ListScreen extends Screen {
 		return ss;
 	}
 	
-	public ListScreen(String s, Collection c) {
+	public ListScreen(String s, Collection<String> c) {
 		this(s,getStringArray(c));
 	}
 	

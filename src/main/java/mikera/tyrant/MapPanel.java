@@ -15,7 +15,6 @@ import java.util.Iterator;
 import mikera.tyrant.author.Designer;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Point;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
 
@@ -79,7 +78,9 @@ public class MapPanel extends Panel implements Runnable {
 	private boolean slant=false;
 	
 	// size of viewable area
+	@SuppressWarnings("all")
 	protected int width = (TILEWIDTH==32)?15:25;
+	@SuppressWarnings("all")
 	protected int height = (TILEWIDTH==32)?15:25;
 
 	// zoom factor
@@ -462,11 +463,11 @@ public class MapPanel extends Panel implements Runnable {
 		}
 	}
 	
-	private ArrayList animationElements=new ArrayList();
+	private ArrayList<Animation> animationElements=new ArrayList<Animation>();
 	
 	public void drawAnimationFrame(Graphics g) {
 		synchronized(animationElements) {
-			Iterator it=animationElements.iterator();
+			Iterator<Animation> it=animationElements.iterator();
 			while(it.hasNext()) {
 				Animation ae=(Animation)it.next();
 				ae.draw(this, g);

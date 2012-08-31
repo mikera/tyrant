@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import mikera.tyrant.Tile;
 import mikera.tyrant.engine.Lib;
@@ -17,8 +18,8 @@ public class MapHelper {
     private static java.util.Map<String, List<String>> symbolToNameMap;
     private static java.util.Map<String, String> attributeMap = new HashMap<String, String>();
     private static java.util.Map<String, List<String>> tileMap;
-    private static java.util.Map symbolForName;
-    private static java.util.Map charByTile;
+    private static java.util.Map<String, String> symbolForName;
+    private static java.util.Map<String, Object> charByTile;
     private java.util.Map<Character, Thing> seenMarkers = new HashMap<Character, Thing>();
     
     public Map createMap(String mapString, boolean useMarkers) {
@@ -70,7 +71,7 @@ public class MapHelper {
     }
 
     private String createTile(char aChar) {
-        List things = getTileMap().get("" + aChar);
+        List<String> things = getTileMap().get("" + aChar);
         if(things == null) {
             return null;
         }
@@ -80,7 +81,7 @@ public class MapHelper {
     private Thing createThing(char aChar) {
     	if (aChar=='@') return TyrantTestCase.getTestHero();
         String name = "" + aChar;
-        List things = getSymbolToName().get(name);
+        List<String> things = getSymbolToName().get(name);
         if (things == null) {
             throw new Error("Unsure how to handle [" + name + "] in MapHelper");
         }
@@ -90,7 +91,7 @@ public class MapHelper {
     private static java.util.Map<String, List<String>> getSymbolToName() {
         if(symbolToNameMap == null) {
             symbolToNameMap = new HashMap<String, List<String>>();
-            symbolForName = new HashMap();
+            symbolForName = new HashMap<String, String>();
             
             addMapping(symbolToNameMap, "@", "you");
             addMapping(symbolToNameMap, "=", "plain ring");
@@ -120,10 +121,10 @@ public class MapHelper {
             addMapping(symbolToNameMap, "m", "message point, guard point");
             addMapping(symbolToNameMap, "/", "stick");
             
-            for (Iterator iter = symbolToNameMap.entrySet().iterator(); iter.hasNext();) {
-                java.util.Map.Entry entry = (java.util.Map.Entry) iter.next();
-                List names = (List) entry.getValue();
-                for (Iterator iterator = names.iterator(); iterator.hasNext();) {
+            for (Iterator<Entry<String, List<String>>> iter = symbolToNameMap.entrySet().iterator(); iter.hasNext();) {
+                Entry<String, List<String>> entry = iter.next();
+                List<String> names = entry.getValue();
+                for (Iterator<String> iterator = names.iterator(); iterator.hasNext();) {
                     String name = (String) iterator.next();
                     symbolForName.put(name, entry.getKey());
                 }
@@ -155,7 +156,7 @@ public class MapHelper {
     private static java.util.Map<String, List<String>> getTileMap() {
         if(tileMap == null) {
         	tileMap = new HashMap<String, List<String>>();
-            charByTile = new HashMap();
+            charByTile = new HashMap<String, Object>();
             addMapping(tileMap, "-", "wall");
             addMapping(tileMap, "#", "wall");
             addMapping(tileMap, " ", "nothing");
@@ -164,11 +165,11 @@ public class MapHelper {
             addMapping(tileMap, "~", "river, swamps, sea");
             addMapping(tileMap, "&", "mountains, hills");
             
-            for (Iterator iter = tileMap.entrySet().iterator(); iter.hasNext();) {
-                java.util.Map.Entry entry = (java.util.Map.Entry) iter.next();
-                List names = (List) entry.getValue();
-                for (Iterator iterator = names.iterator(); iterator.hasNext();) {
-                    String name = (String) iterator.next();
+            for (Iterator<java.util.Map.Entry<String,List<String>>> iter = tileMap.entrySet().iterator(); iter.hasNext();) {
+                java.util.Map.Entry<String,List<String>> entry = iter.next();
+                List<String> names = entry.getValue();
+                for (Iterator<String> iterator = names.iterator(); iterator.hasNext();) {
+                    String name = iterator.next();
                     charByTile.put(name, entry.getKey());
                 }
             }

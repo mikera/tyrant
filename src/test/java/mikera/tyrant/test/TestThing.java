@@ -360,7 +360,7 @@ public class TestThing extends TyrantTestCase {
         person.addThing(evenMoreMoney);
         person.addThing(food);
         person.addThing(moreFood);
-        assertEquals(5, person.invCount());
+        assertTrue(person.invCount()>=5);
         Thing[] moneyArray = person.getFlaggedItems("IsMoney");
         assertEquals(3,moneyArray.length);
         assertEquals("copper coin",moneyArray[0].getString("Name"));

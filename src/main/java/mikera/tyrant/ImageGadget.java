@@ -56,7 +56,7 @@ public class ImageGadget extends Canvas {
     protected String resourceName;
     protected ActionListener actionListener;
     protected boolean loadLater;
-    protected static Map images = new HashMap();
+    protected static Map<String, Image> images = new HashMap<String, Image>();
     protected boolean loadFailed;
     private String text;
 
@@ -85,7 +85,7 @@ public class ImageGadget extends Canvas {
         setActionListener(AWTEventMulticaster.add(listener, actionListener));
     }
 
-    public static Map getImages() {
+    public static Map<String, Image> getImages() {
         return images;
     }
 
@@ -149,7 +149,6 @@ public class ImageGadget extends Canvas {
         int arraySize = 1024;
         byte[] imageArray = new byte[arraySize];
         int readCode;
-        if (imageInputStream == null) return;
         try {
             while ((readCode = imageInputStream.read(imageArray, 0, arraySize)) > -1) {
                 imageBytes.write(imageArray, 0, readCode);
@@ -234,7 +233,7 @@ public class ImageGadget extends Canvas {
         this.noImage = noImage;
     }
     
-    public static void setImages(java.util.Hashtable newImages) {
+    public static void setImages(HashMap<String, Image> newImages) {
         images = newImages;
     }
 

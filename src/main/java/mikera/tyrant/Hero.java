@@ -108,7 +108,7 @@ public class Hero {
 		h.set("Score",0);
 		
 		// religion
-		ArrayList gods=Gods.getPossibleGods(h);
+		ArrayList<String> gods=Gods.getPossibleGods(h);
 		int gl=gods.size();
 		if (gl>0) {
 			h.set("Religion",gods.get(Rand.r(gl)));
@@ -701,9 +701,9 @@ public class Hero {
 	}
 	
 	public static String reportKillData() {
-		HashMap hm=getKillHashMap();
+		HashMap<String, Integer> hm=getKillHashMap();
 		
-		ArrayList al=new ArrayList(hm.keySet());
+		ArrayList<String> al=new ArrayList<String>(hm.keySet());
 		
 		Collections.sort(al);
 		
@@ -714,8 +714,8 @@ public class Hero {
 		
 		boolean uniques=true;
 		
-		for (Iterator it=al.iterator(); it.hasNext();) {
-			String name=(String)it.next();
+		for (Iterator<String> it=al.iterator(); it.hasNext();) {
+			String name=it.next();
 			
 			// display line after uniques
 			if (uniques&&(!Character.isUpperCase(name.charAt(0)))) {
@@ -732,25 +732,26 @@ public class Hero {
 	}
 	
 	public static int getKillCount(Thing t) {
-		HashMap hm=getKillHashMap();
+		HashMap<String,Integer> hm=getKillHashMap();
 		Integer i=(Integer)hm.get(t.name());
 		
 		if (i==null) return 0;
 		return i.intValue();
 	}
 	
-	private static HashMap getKillHashMap() {
+	private static HashMap<String, Integer> getKillHashMap() {
 		Thing h=Game.hero();
-		HashMap hm=(HashMap)h.get("Kills");
+		@SuppressWarnings("unchecked")
+		HashMap<String, Integer> hm=(HashMap<String, Integer>)h.get("Kills");
 		if (hm==null) {
-			hm=new HashMap();
+			hm=new HashMap<String, Integer>();
 			h.set("Kills",hm);
 		}
 		return hm;
 	}
 	
 	public static int incKillCount(Thing t) {
-		HashMap hm=getKillHashMap();
+		HashMap<String, Integer> hm=getKillHashMap();
 		String name=t.name();
 		Integer i=(Integer)hm.get(name);
 		if (i==null) {
@@ -816,7 +817,7 @@ public class Hero {
 	public static String[] heroProfessionDescriptions(String race) {
 		String [] profs=heroProfessions(race);
 		
-		java.util.HashMap pds=new java.util.HashMap();
+		HashMap<String, String> pds=new HashMap<String, String>();
 		
 		pds.put("fighter","Fighters are trained in all aspects of combat. Whether they work in the service of a powerful lord or travel alone as adventurers, they are formidable in battle and can expect to earn a good living from their valuable skills in turbulent times such as these. Fighters often join brotherhoods and guilds where they form bonds of loyalty and friendship.");
 		pds.put("wizard","By the mastery of arcane forces, wizards are able to summon supernatural powers to their aid by casting spells. The secrets of their craft are closely guarded, and only a few wizards are ever able to master the most powerful spells. Many aspire to the ultimate honour of joining the Council of The Archmagi, and the ultimate prize of immortality.");

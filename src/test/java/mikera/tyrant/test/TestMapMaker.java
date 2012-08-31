@@ -90,8 +90,8 @@ public class TestMapMaker extends TestCase {
         assertEquals(25, mapMaker.getLegend().size());
     }
 
-    private void assertMapEquals(String toMap, java.util.Map map) {
-        java.util.Map expected = new HashMap();
+    private void assertMapEquals(String toMap, java.util.Map<String,String> map) {
+        HashMap<String, String> expected = new HashMap<String, String>();
         String[] splits = toMap.split("=");
         for (int i = 0; i < splits.length; i+=2) {
             String string = splits[i];

@@ -69,7 +69,8 @@ public class TestModifier extends TyrantTestCase {
         assertEquals(1000, rabbit.getStat("SK"));
     }
 	
-    public void testScripted() {
+    @SuppressWarnings("serial")
+	public void testScripted() {
         berry.add("CarriedModifiers", Modifier.scripted("ST", new Script() {
 			public boolean handle(Thing t, Event e) {
 				Thing b=e.getThing("Source");
