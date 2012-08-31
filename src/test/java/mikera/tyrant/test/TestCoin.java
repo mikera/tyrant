@@ -55,7 +55,6 @@ public class TestCoin extends TyrantTestCase {
 
     public void testAdd_negative() {
     	Thing rabbit=Lib.create("rabbit");
-    	Inventory.
         Coin.addMoney(rabbit, 10);
         Coin.addMoney(rabbit, -10);
         assertEquals(0, rabbit.getInventoryWeight());
