@@ -30,15 +30,13 @@ public final class Modifier extends BaseObject {
 		super(m);
 	}
 	
-	public static final Comparator sorter=new ModifierSorter();
+	public static final Comparator<Modifier> sorter=new ModifierSorter();
 	
 	/**
 	 * Implements sort in modifier priority order
 	 */ 
-	private static class ModifierSorter implements Comparator {
-		public int compare(Object a, Object b) {
-			Modifier ma=(Modifier)a;
-			Modifier mb=(Modifier)b;
+	private static class ModifierSorter implements Comparator<Modifier> {
+		public int compare(Modifier ma, Modifier mb) {
 			return mb.getPriority()-ma.getPriority();
 		}
 	}
