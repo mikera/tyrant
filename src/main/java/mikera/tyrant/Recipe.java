@@ -5,10 +5,10 @@
  */
 package mikera.tyrant;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import mikera.tyrant.engine.Lib;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Script;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
@@ -125,7 +125,7 @@ public class Recipe {
 	/**
 	 * ArrayList for registered items requiring recipes
 	 */
-	private static ArrayList recs=new ArrayList();
+	private static ArrayList<Thing> recs=new ArrayList<Thing>();
 	
 	/**
 	 * Register a recipe for creation. This will be created later in the init procedure
@@ -225,7 +225,7 @@ public class Recipe {
 		int n=recs.size();
 		
 		for (int i=0; i<n; i++) {
-			Thing tt=(Thing)recs.get(i);
+			Thing tt=recs.get(i);
 			
 			String order=tt.getString("RecipeOrder");
 			String ingredients=tt.getString("RecipeIngredients");
@@ -265,8 +265,8 @@ public class Recipe {
 	
 	public static boolean apply(Thing h, String s) {
 		Thing[] ts=h.getFlaggedContents("IsRecipe");
-		ArrayList al=new ArrayList();
-		HashMap hm=new HashMap();
+		ArrayList<String> al=new ArrayList<String>();
+		HashMap<String, Thing> hm=new HashMap<String, Thing>();
 		for (int i=0; i<ts.length; i++) {
 			Thing r=ts[i];
 			if (!r.getString("RecipeOrder").equals(s)) continue;
@@ -283,7 +283,7 @@ public class Recipe {
 		String rec=(String)ls.getObject();
 		QuestApp.getInstance().switchScreen(gs);
 		if (rec!=null) {
-			Thing r=(Thing)hm.get(rec);
+			Thing r=hm.get(rec);
 			String ingredients=r.getString("Ingredients");
 			int ic=checkIngredients(h,ingredients);
 			if (ic<=0) {

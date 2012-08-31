@@ -5,13 +5,11 @@
  */
 package mikera.tyrant.test;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import junit.framework.TestCase;
+import static org.junit.Assert.assertNull;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Thing;
+
+import org.junit.Test;
 
 /**
  * @author Mike

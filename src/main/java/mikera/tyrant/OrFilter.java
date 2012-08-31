@@ -8,7 +8,7 @@ import mikera.tyrant.engine.Thing;
 
 
 public class OrFilter implements IThingFilter {
-    private List filters = new LinkedList();
+    private List<IThingFilter> filters = new LinkedList<IThingFilter>();
     
     public OrFilter(IThingFilter filterA, IThingFilter filterB) {
         addFilter(filterA);
@@ -25,8 +25,8 @@ public class OrFilter implements IThingFilter {
     }
     
     public boolean accept(Thing thing, String query) {
-        for (Iterator iter = filters.iterator(); iter.hasNext();) {
-            IThingFilter filter = (IThingFilter) iter.next();
+        for (Iterator<IThingFilter> iter = filters.iterator(); iter.hasNext();) {
+            IThingFilter filter = iter.next();
             if(filter.accept(thing, query)) return true;
         }
         return false;

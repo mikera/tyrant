@@ -597,6 +597,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     private ArrayList<Thing> tileList=new ArrayList<Thing>();
+    
     public ArrayList<Thing> getTiles() {
     	return tileList;
     }

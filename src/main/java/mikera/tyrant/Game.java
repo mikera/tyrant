@@ -98,19 +98,19 @@ public final class Game extends BaseObject implements Serializable {
 	/**
 	 * List of recent messages
 	 */
-	private ArrayList messageList=new ArrayList();
+	private ArrayList<String> messageList=new ArrayList<>();
 	private boolean debug = false;
 	// toggle for visual effects
 	public static boolean visuals = false;
 	
-    public ArrayList getMessageList() {
+    public ArrayList<String> getMessageList() {
         return messageList;
     }
     
 	public String messageList() {
 		StringBuffer sb=new StringBuffer();
 		for (int i=0; i<messageList.size(); i++) {
-			sb.append("\n"+(String)messageList.get(i));
+			sb.append("\n"+messageList.get(i));
 		}
 		return sb.toString();
 	}
@@ -123,7 +123,7 @@ public final class Game extends BaseObject implements Serializable {
 		if (instance().messageStack.isEmpty()) {
 			instance().displayMessage(s);
 		} else {
-			ArrayList al=(ArrayList)(instance().messageStack.peek());
+			ArrayList<String> al=(instance().messageStack.peek());
 			al.add(s);
 		}
 	}
@@ -137,7 +137,7 @@ public final class Game extends BaseObject implements Serializable {
         if (instance().messageStack.isEmpty()) {
             instance().displayMessage(sToAdd);
         } else {
-            ArrayList al=(ArrayList)(instance().messageStack.peek());
+            ArrayList<String> al=(instance().messageStack.peek());
             al.add(sToAdd);
         }
     }
@@ -149,9 +149,9 @@ public final class Game extends BaseObject implements Serializable {
 	 * 
 	 * @param al ArrayList containing String objects for each message
 	 */
-	public static void message(ArrayList al) {
-		for (int i=0; i<al.size(); i++) {
-			message((String)al.get(i));
+	public static void message(List<String> al) {
+		for (String s: al) {
+			message(s);
 		}		
 	}
 	
@@ -159,19 +159,19 @@ public final class Game extends BaseObject implements Serializable {
 	 * Holds messages in a stack so that they can be displayed later
 	 */
 	public void pushMessages() {
-		messageStack.push(new ArrayList());
+		messageStack.push(new ArrayList<String>());
 	}
 	
 	/*
 	 * Pulls a stored set of messages off the stack
 	 */
-	public ArrayList popMessages() {
-		ArrayList top=(ArrayList)messageStack.pop();
+	public ArrayList<String> popMessages() {
+		ArrayList<String> top=messageStack.pop();
 		return top;
 	}
 	
 	public void clearMessageList() {
-		messageStack=new Stack();
+		messageStack=new Stack<ArrayList<String>>();
 	}
 	
 	public static char showData(String s) {
@@ -207,7 +207,7 @@ public final class Game extends BaseObject implements Serializable {
 	 * the same technique, but omit the final line).
 	 * 
 	 */
-	private Stack messageStack=new Stack();
+	private Stack<ArrayList<String>> messageStack=new Stack<ArrayList<String>>();
     private boolean lineOfSightDisabled;
     private boolean isDesigner = false;
 	
@@ -226,7 +226,7 @@ public final class Game extends BaseObject implements Serializable {
 			}
 			int number=1;
 			if (messageList.size()>0) {
-				String last=(String)messageList.get(messageList.size()-1);
+				String last=messageList.get(messageList.size()-1);
 				if (last.startsWith(s)&&last.endsWith(")")&&(last.indexOf("(x")>0)) {
 					int st=last.indexOf("(x")+2;
 					String n=last.substring(st,last.length()-1);
@@ -411,29 +411,31 @@ public final class Game extends BaseObject implements Serializable {
      * 
      * @return
      */
-    public HashMap getMapStore() {
-    	HashMap h=(HashMap)Game.instance().get("MapStore");
+    public HashMap<String,Map> getMapStore() {
+    	@SuppressWarnings("unchecked")
+		HashMap<String,Map> h=(HashMap<String,Map>)Game.instance().get("MapStore");
     	if (h==null) {
-    		h=new HashMap();
+    		h=new HashMap<String,Map>();
     		Game.instance().set("MapStore",h);
     	}
     	return h;
     }
     
-    private HashMap getMapObjectStore() {
-    	HashMap h=(HashMap)Game.instance().get("MapObjectStore");
+    private HashMap<String, ArrayList<Thing>> getMapObjectStore() {
+    	@SuppressWarnings("unchecked")
+		HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
     	if (h==null) {
-    		h=new HashMap();
+    		h=new HashMap<String, ArrayList<Thing>>();
     		Game.instance().set("MapObjectStore",h);
     	}
     	return h;
     }
     
-    private ArrayList getMapObjectList(String mapName) {
-    	HashMap h=getMapObjectStore();
-    	ArrayList al=(ArrayList)h.get(mapName);
+    private ArrayList<Thing> getMapObjectList(String mapName) {
+    	HashMap<String, ArrayList<Thing>> h=getMapObjectStore();
+    	ArrayList<Thing> al=h.get(mapName);
     	if (al==null) {
-    		al=new ArrayList();
+    		al=new ArrayList<Thing>();
     		h.put(mapName,al);
     	}
     	return al;
@@ -458,7 +460,7 @@ public final class Game extends BaseObject implements Serializable {
     	
     	Map map = (Map)getMapStore().get(mapName);
     	if (map==null) {
-    		ArrayList al=getMapObjectList(mapName);
+    		ArrayList<Thing> al=getMapObjectList(mapName);
     		al.add(t);
     	} else {
     		addMapObject(t,map);
@@ -474,9 +476,9 @@ public final class Game extends BaseObject implements Serializable {
     }
     
     public void addMapObjects(Map map) {
-    	ArrayList obs=getMapObjectList(map.getString("HashName"));
-    	for (Iterator it=obs.iterator(); it.hasNext(); ) {
-    		Thing t=(Thing)it.next();
+    	ArrayList<Thing> obs=getMapObjectList(map.getString("HashName"));
+    	for (Iterator<Thing> it=obs.iterator(); it.hasNext(); ) {
+    		Thing t=it.next();
     		addMapObject(t,map);
     	}
     	obs.clear();
@@ -488,18 +490,18 @@ public final class Game extends BaseObject implements Serializable {
 	}
 	
 	public void compressAllData() {
-		HashMap hs=new HashMap();
+		HashMap<Object, Object> hs=new HashMap<Object, Object>();
 		
-		HashMap store=getMapStore();
-		Set keySet=getMapStore().keySet();
+		HashMap<String,Map> store=getMapStore();
+		Set<String> keySet=getMapStore().keySet();
 		
-		for (Iterator it=keySet.iterator(); it.hasNext();) {
+		for (Iterator<String> it=keySet.iterator(); it.hasNext();) {
 			Map m=(Map)store.get(it.next());
 			compressMapData(hs,m);
 		}
 	}
 	
-	private void compressMapData(HashMap hs, Map m) {
+	private void compressMapData(HashMap<Object, Object> hs, Map m) {
 		Thing[] ts=m.getThings();
 		for (int i=0; i<ts.length; i++) {
 			ts[i].compressData(hs);
@@ -678,17 +680,17 @@ public final class Game extends BaseObject implements Serializable {
 		return ret;
 	}
 	
-	public static String selectString(String message, ArrayList strings) {
+	public static String selectString(String message, ArrayList<String> strings) {
 		return selectString(message,strings,strings);
 	}
 	
-	public static String selectString(String message, ArrayList strings, ArrayList results) {
-		String[] ss=new String[strings.size()];
+	public static String selectString(String message, List<String> sks, List<String> sksr) {
+		String[] ss=new String[sks.size()];
 		for (int i=0; i<ss.length; i++) {
-			ss[i]=(String)strings.get(i);
+			ss[i]=(String)sks.get(i);
 		}
-		int i=strings.indexOf(selectString(message,ss));
-		return (i>=0) ? (String)results.get(i) : null;
+		int i=sks.indexOf(selectString(message,ss));
+		return (i>=0) ? (String)sksr.get(i) : null;
 	}
 
 	/**

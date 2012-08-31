@@ -159,11 +159,11 @@ public class Potion  {
     }
     
     private static void initSpellPotions() {
-		ArrayList all=Spell.getSpellNames();
+		ArrayList<String> all=Spell.getSpellNames();
 		
-		Iterator it=all.iterator();
+		Iterator<String> it=all.iterator();
 		while (it.hasNext()) {
-			String name=(String)it.next();
+			String name=it.next();
 			Thing s=Spell.create(name);
 			
 			if (s.getStat("SpellTarget")!=Spell.TARGET_SELF) {
@@ -533,7 +533,7 @@ public class Potion  {
 
             public boolean handle(Thing t, Event e) {
         		Thing user=e.getThing("Target");
-        		ArrayList skills=Skill.getList(user);
+        		ArrayList<String> skills=Skill.getList(user);
          		
         		String s=null;
         		

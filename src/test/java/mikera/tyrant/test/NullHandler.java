@@ -10,7 +10,7 @@ import mikera.tyrant.TPanel;
 
 
 public class NullHandler implements IMessageHandler {
-    public List messages;
+    public List<String> messages;
     public void clear() {
         messages.clear();
     }

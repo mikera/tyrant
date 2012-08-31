@@ -141,7 +141,7 @@ public class Hero {
 
 
 	// add a Quest to the hero
-	public static void addQuest(Quest q) {
+	public static void addQuest(Thing q) {
 		Quest.getQuests().add(q);
 	}
 

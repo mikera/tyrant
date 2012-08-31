@@ -23,7 +23,6 @@ import java.util.Hashtable;
 
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Rand;
 

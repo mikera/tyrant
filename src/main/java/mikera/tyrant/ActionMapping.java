@@ -6,10 +6,10 @@ import java.util.Map;
 
 
 public class ActionMapping {
-    private Map mappings = new HashMap();
+    private Map<Object, Action> mappings = new HashMap<Object, Action>();
     
     public Action convertKeyToAction(char key) {
-        Action action = (Action) mappings.get(new Character(key));
+        Action action = mappings.get(new Character(key));
         return action == null ? Action.UNKNOWN : action;
     }
     
@@ -118,14 +118,14 @@ public class ActionMapping {
     public Action actionFor(KeyEvent keyEvent) {
         char keyChar = keyEvent.getKeyChar();
         if(keyChar == KeyEvent.CHAR_UNDEFINED) {
-            return (Action) mappings.get("KeyEvent" + keyEvent.getKeyCode());
+            return mappings.get("KeyEvent" + keyEvent.getKeyCode());
         }
         //Make sure we can control-something events
         if( keyEvent.isControlDown() ){
           //Not sure the puritain JDK will like this
           //Sun should sue those Eclipse guys
-          return (Action) mappings.get("Control" + keyEvent.getKeyCode() );
+          return mappings.get("Control" + keyEvent.getKeyCode() );
         }
-        return (Action) mappings.get(new Character(keyChar));
+        return mappings.get(new Character(keyChar));
     }
 }

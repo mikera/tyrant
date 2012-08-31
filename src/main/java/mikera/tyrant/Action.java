@@ -68,7 +68,7 @@ public class Action implements Serializable {
     private String name;
     private int id;
     
-    private static Map allById;
+    private static Map<Integer, Action> allById;
     
     public Action(String name) {
         this(name, nextId++);
@@ -80,9 +80,9 @@ public class Action implements Serializable {
         getAllById().put(new Integer(id), this);
     }
     
-    private Map getAllById() {
+    private Map<Integer, Action> getAllById() {
         if(allById == null)
-            allById = new HashMap();
+            allById = new HashMap<Integer, Action>();
         return allById;
     }
 

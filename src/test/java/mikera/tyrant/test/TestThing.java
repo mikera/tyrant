@@ -282,7 +282,7 @@ public class TestThing extends TyrantTestCase {
         
         String[] attributes = thing.findAttributesStartingWith("Is");
         assertEquals(2, attributes.length);
-        List listOfAttributes = Arrays.asList(attributes);
+        List<String> listOfAttributes = Arrays.asList(attributes);
         assertTrue(listOfAttributes.contains("IsPerson"));
         assertTrue(listOfAttributes.contains("IsProgrammer"));
     }

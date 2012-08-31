@@ -93,8 +93,8 @@ public class Tile {
 	public static int[] mapColours=null;
 	
 	public static Thing[] tiles;
-    private static java.util.Map tileByName;
-    private static java.util.Map nameById;
+    private static java.util.Map<String, Integer> tileByName;
+    private static java.util.Map<Integer, String> nameById;
 	
 	public static int getMoveCost(int t) {
 		return movecost[t];
@@ -108,7 +108,7 @@ public class Tile {
 	public static int fromName(String tileName) {
         if(nameById == null)
             createMaps();
-        Integer tile = (Integer) tileByName.get(tileName);
+        Integer tile = tileByName.get(tileName);
         if(tile != null) return tile.intValue();
 		throw new Error("Tile named ["+tileName+"] does not exist");
 	}
@@ -116,14 +116,14 @@ public class Tile {
 	public static String tileNameFor(int tile) {
         if(tileByName == null)
             createMaps();
-        String name = (String) nameById.get(new Integer(tile));
+        String name = nameById.get(new Integer(tile));
         if(name != null) return name;
 		throw new Error("Tile of type ["+ tile +"] does not exist");
 	}
 
     private static void createMaps() {
-        tileByName = new HashMap();
-        nameById = new HashMap();
+        tileByName = new HashMap<String, Integer>();
+        nameById = new HashMap<Integer, String>();
         for (int i=0; i<names.length; i++) {
             tileByName.put(names[i], new Integer(i));
             nameById.put(new Integer(i), names[i]);
@@ -219,7 +219,7 @@ public class Tile {
 	}
 	
 	private static void buildTileArrays() {
-		ArrayList al=Lib.instance().getTiles();
+		ArrayList<Thing> al=Lib.instance().getTiles();
 		int n=al.size();
 		
 		// initialise arrays to correct length
@@ -431,7 +431,7 @@ public class Tile {
 	private static void addTile(int tile, Thing t) {
 		t.set("TileValue",tile);
 		tile=tile&65535;
-		ArrayList al=Lib.instance().getTiles();
+		ArrayList<Thing> al=Lib.instance().getTiles();
 		while (al.size()<=tile) al.add(null);
 		if (al.get(tile)!=null) throw new Error("Tile arraylist already filled at position "+tile);
 		al.set(tile,t);

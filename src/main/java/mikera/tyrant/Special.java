@@ -223,6 +223,7 @@ public class Special {
 		Lib.add(t);
 	}
 	
+	@SuppressWarnings("serial")
 	private static void initAIMarkers() {
 		Thing t;
 		
@@ -257,6 +258,7 @@ public class Special {
 	}
 	
 	
+	@SuppressWarnings("serial")
 	private static void initBuilderPoints() {
 		Thing t;
 		

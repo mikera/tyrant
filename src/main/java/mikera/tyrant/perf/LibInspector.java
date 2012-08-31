@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.engine.Lib;
@@ -16,7 +17,7 @@ import mikera.tyrant.util.PrintfFormat;
 
 public class LibInspector {
     class DepthOfAttribute implements IThingsInspector {
-        private List rows = new ArrayList();
+        private List<String> rows = new ArrayList<String>();
         private String attribute;
 
         public void inspect(Thing thing) {
@@ -32,10 +33,10 @@ public class LibInspector {
 
         public void printResults() {
             System.out.println("distance from me | name | total depth > for " + attribute);
-            for (Iterator iter = rows.iterator(); iter.hasNext();) {
-                String name = (String) iter.next();
-                String depthOfAttribute = (String) iter.next();
-                String totalDepth = (String) iter.next();
+            for (Iterator<String> iter = rows.iterator(); iter.hasNext();) {
+                String name = iter.next();
+                String depthOfAttribute = iter.next();
+                String totalDepth = iter.next();
                 System.out.println(depthOfAttribute + " | " + name + " | " + totalDepth);
             }
         }
@@ -47,9 +48,9 @@ public class LibInspector {
 
     class AttributesForAllThings implements IThingsInspector {
         public void inspect(Thing thing) {
-            for(Iterator iterator = thing.getCollapsedMap().keySet().iterator(); iterator.hasNext();) {
-                String attribute = (String)iterator.next();
-                Count count = (Count) attributes.get(attribute);
+            for(Iterator<String> iterator = thing.getCollapsedMap().keySet().iterator(); iterator.hasNext();) {
+                String attribute = iterator.next();
+                Count count = attributes.get(attribute);
                 if(count == null) {
                     count = new Count();
                     attributes.put(attribute, count);
@@ -59,8 +60,8 @@ public class LibInspector {
         }
 
         public void printResults() {
-            for (Iterator iter = attributes.entrySet().iterator(); iter.hasNext();) {
-                Map.Entry entry = (Map.Entry) iter.next();
+            for (Iterator<Entry<String, Count>> iter = attributes.entrySet().iterator(); iter.hasNext();) {
+                Map.Entry<String, Count> entry = iter.next();
                 System.out.println(numberFormat.sprintf(entry.getValue()) + " " + entry.getKey());
             }
         }
@@ -72,8 +73,8 @@ public class LibInspector {
 
     private PrintfFormat nameFormat = new PrintfFormat("%-20s");
     protected PrintfFormat numberFormat = new PrintfFormat("%5s");
-    private Map totalNumberOfAttributes = new HashMap();
-    protected Map attributes = new HashMap();
+    private Map<Object, Integer> totalNumberOfAttributes = new HashMap<Object, Integer>();
+    protected Map<String, Count> attributes = new HashMap<String, Count>();
     
     public static void main(String[] args) {
         new LibInspector().go(args);
@@ -81,15 +82,11 @@ public class LibInspector {
 
     protected void go(String[] args) {
         Lib library = Lib.instance();
-//        IThingsInspector inspector = new AttributesForAllThings();
         IThingsInspector inspector = new DepthOfAttribute();
         inspector.setup(args);
-        for (Iterator iter = library.getAll().iterator(); iter.hasNext();) {
-//            List row = new ArrayList();
-            Thing thing = (Thing) iter.next();
+        for (Iterator<Thing> iter = library.getAll().iterator(); iter.hasNext();) {
+            Thing thing = iter.next();
             inspector.inspect(thing);
-//            outputRow(collectLocalAttributesAndAncestory(thing, row, 0) + "  ", row);
-//            outputRow("" + total(thing) + "  ", collectPercents(row, thing, total(thing)));
         }
         inspector.printResults();
     }
@@ -105,7 +102,7 @@ public class LibInspector {
         return depthOf(thing.getInherited(), depth + 1);
     }
 
-    protected List collectPercents(List row, BaseObject thing, int totalNumberOfAttributes) {
+    protected List<String> collectPercents(List<String> row, BaseObject thing, int totalNumberOfAttributes) {
         boolean topOfStack = row.isEmpty();
         if(thing == null) {
             if(!row.isEmpty() && row.get(row.size() - 1).equals(" > ")) row.remove(row.size() - 1);
@@ -121,7 +118,7 @@ public class LibInspector {
     }
 
     protected int total(BaseObject thing) {
-        Integer total = (Integer) totalNumberOfAttributes.get(thing.get("Name"));
+        Integer total = totalNumberOfAttributes.get(thing.get("Name"));
         if(total == null) {
             total = new Integer(thing.size());
             totalNumberOfAttributes.put(thing.get("Name"), total);
@@ -129,17 +126,7 @@ public class LibInspector {
         return total.intValue();
     }
 
-    protected void outputRow(String leader, List row) {
-        if(leader != null)
-            System.out.print(leader);
-        for (Iterator iter = row.iterator(); iter.hasNext();) {
-            Object object = iter.next();
-            System.out.print(object);
-        }
-        System.out.println();
-    }
-
-    protected int collectLocalAttributesAndAncestory(BaseObject thing, List row, int depth) {
+    protected int collectLocalAttributesAndAncestory(BaseObject thing, List<Object> row, int depth) {
         if(thing == null) {
             if(!row.isEmpty() && row.get(row.size() - 1).equals(" > ")) row.remove(row.size() - 1);
             return depth;
@@ -147,8 +134,7 @@ public class LibInspector {
         if(depth == 0) {
             row.add(nameFormat.sprintf(thing.get("Name")));
             row.add(" [");
-            List localAttributes = new ArrayList(thing.getLocal().keySet());
-//            addEachAttribute(row, localAttributes);
+            List<String> localAttributes = new ArrayList<String>(thing.getLocal().keySet());
             row.add("" + localAttributes.size());
             row.add("]");
         } else {
@@ -158,10 +144,10 @@ public class LibInspector {
         return collectLocalAttributesAndAncestory(thing.getInherited(), row, depth + 1);
     }
 
-    protected void addEachAttribute(List row, List localAttributes) {
+    protected void addEachAttribute(List<String> row, List<String> localAttributes) {
         Collections.sort(localAttributes);
-        for (Iterator iter = localAttributes.iterator(); iter.hasNext();) {
-            String attribute = (String) iter.next();
+        for (Iterator<String> iter = localAttributes.iterator(); iter.hasNext();) {
+            String attribute = iter.next();
             row.add(attribute);
             row.add(", ");
         }

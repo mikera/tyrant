@@ -265,7 +265,7 @@ public class Trap {
     }
     
     public static void initSpellTraps() {
-        ArrayList spells=Spell.getSpellNames();
+        ArrayList<String> spells=Spell.getSpellNames();
     	
         for(int i=0; i<spells.size(); i++) {
         	Thing s=Spell.create((String)spells.get(i));

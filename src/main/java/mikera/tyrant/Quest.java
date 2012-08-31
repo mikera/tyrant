@@ -9,7 +9,6 @@ import java.util.*;
 
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Script;
 import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
@@ -17,13 +16,14 @@ import mikera.util.Maths;
 
 public class Quest {
 
-	// get all quests currenty active
-	public static ArrayList getQuests() {
+	// get all quests currently active
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Thing> getQuests() {
 		if (Game.hero()==null) return null;
 		
-		ArrayList qs=(ArrayList)Game.hero().get("Quests");
+		ArrayList<Thing> qs=(ArrayList<Thing>)Game.hero().get("Quests");
 		if (qs==null) {
-			qs=new ArrayList();
+			qs=new ArrayList<Thing>();
 			Game.hero().set("Quests",qs);
 		}
 		
@@ -49,18 +49,19 @@ public class Quest {
 			}
 			sb.append("\n");
 			
-			ArrayList qs=getSubQuests(q);
-			for (Iterator it=qs.iterator(); it.hasNext() ;) {
-				Thing sq=(Thing)it.next();
+			ArrayList<Thing> qs=getSubQuests(q);
+			for (Iterator<Thing> it=qs.iterator(); it.hasNext() ;) {
+				Thing sq=it.next();
 				getQuestText(sb,prefix+" - ",sq);
 			}
 		}
 	}
 	
 	public static void addQuest(Thing h, Thing q) {
-		ArrayList qs=(ArrayList)h.get("Quests");
+		@SuppressWarnings("unchecked")
+		ArrayList<Thing> qs=(ArrayList<Thing>)h.get("Quests");
 		if (qs==null) {
-			qs= new ArrayList();
+			qs= new ArrayList<Thing>();
 			h.set("Quests",qs);
 		}
 		q.set("Hero",h);
@@ -76,10 +77,10 @@ public class Quest {
 	}
 	
 	private static boolean notify(Event e) {
-		ArrayList qs=getQuests();
+		ArrayList<Thing> qs=getQuests();
 		
-		if (qs!=null) for (Iterator it=qs.iterator(); it.hasNext();) {
-			Thing q=(Thing)it.next();
+		if (qs!=null) for (Iterator<Thing> it=qs.iterator(); it.hasNext();) {
+			Thing q=it.next();
 			
 			if (q.getFlag("IsActive")) {
 				q.handle(e);
@@ -88,16 +89,18 @@ public class Quest {
 		return false;
 	}
 	
-	private static ArrayList getSubQuests(Thing q) {
-		ArrayList qs=(ArrayList)q.get("Quests");
-		if (qs==null) qs= new ArrayList();
+	@SuppressWarnings("unchecked")
+	private static ArrayList<Thing> getSubQuests(Thing q) {
+		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
+		if (qs==null) qs= new ArrayList<Thing>();
 		return qs;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void addSubQuest(Thing q, Thing sq) {
-		ArrayList qs=(ArrayList)q.get("Quests");
+		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
 		if (qs==null) {
-			qs= new ArrayList();
+			qs= new ArrayList<Thing>();
 			q.set("Quests",qs);
 		}
 		sq.set("Parent",q);
@@ -186,6 +189,7 @@ public class Quest {
 		return t;
 	}
 	
+	@SuppressWarnings("serial")
 	public static void init() {
 		// initialise base quest templates where needed
 		
@@ -313,12 +317,12 @@ public class Quest {
 		q=Lib.extend("sequence quest","base quest");
 		Script subQuestScript=new Script() {
 			public boolean handle(Thing q, Event e) {
-				ArrayList sqs=getSubQuests(q);
+				ArrayList<Thing> sqs=getSubQuests(q);
 				
 				boolean complete=true;
 				boolean failed=true;
-				for (Iterator it=sqs.iterator(); it.hasNext();) {
-					Thing sq=(Thing)it.next();
+				for (Iterator<Thing> it=sqs.iterator(); it.hasNext();) {
+					Thing sq=it.next();
 					
 					if (sq.getFlag("IsFailed")) {
 						failed=true;

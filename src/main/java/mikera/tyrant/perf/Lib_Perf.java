@@ -23,7 +23,7 @@ public class Lib_Perf extends Perf {
         oneLineSummary(shortName(work.getClass()), work.getMessage(), workFinished);
     }
 
-    private String shortName(Class aClass) {
+    private String shortName(Class<? extends IWork> aClass) {
         String name = aClass.getName();
         int lastDot = name.lastIndexOf('.');
         return name.substring(lastDot + 1);
@@ -39,10 +39,10 @@ public class Lib_Perf extends Perf {
         try {
             return (IWork) Class.forName(className).newInstance();
         } catch(ClassNotFoundException cnfe) {
-            Class theClass = KillAllBaddies.class;
+            Class<KillAllBaddies> theClass = KillAllBaddies.class;
             System.out.println("Class " + className + " not found, using " + theClass.getName() + " instead.");
             try {
-                return (IWork) theClass.newInstance();
+                return theClass.newInstance();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }

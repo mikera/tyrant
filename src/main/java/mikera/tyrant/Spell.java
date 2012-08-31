@@ -46,7 +46,7 @@ public class Spell {
 	/*
 	 * List of all spell names
 	 */
-	private static ArrayList spellNames;
+	private static ArrayList<String> spellNames;
 	
 	private static final String[] orders={
 			Skill.TRUEMAGIC, 
@@ -799,8 +799,8 @@ public class Spell {
 	
 	public static void updateIngredients() {
 		
-		for (Iterator it=spellNames.iterator(); it.hasNext();) {
-			updateIngredients(Lib.getLibraryInstance((String)it.next()));
+		for (String s : spellNames) {
+			updateIngredients(Lib.getLibraryInstance(s));
 		}
 	}
 	
@@ -1114,8 +1114,9 @@ public class Spell {
 		addDefensiveSpell(t);		
 	}
 	
-	public static ArrayList getSpellNames() {
-		return (ArrayList)spellNames.clone();
+	@SuppressWarnings("unchecked")
+	public static ArrayList<String> getSpellNames() {
+		return (ArrayList<String>)spellNames.clone();
 	}
 	
 	private static void initCurseSpells() {
@@ -1599,19 +1600,17 @@ public class Spell {
 
 	public static String spellReport() {
 		StringBuffer ss=new StringBuffer();
-		ArrayList spells=new ArrayList();
+		ArrayList<Thing> spells=new ArrayList<Thing>();
 		
 		for (int i=0; i<spellNames.size(); i++) {
-			String name=(String)spellNames.get(i);
+			String name=spellNames.get(i);
 			Thing s=Lib.create(name);
 			spells.add(s);
 		}
 			
 		// sort spells
-		Collections.sort(spells,new Comparator() {
-			public int compare(Object aa, Object bb) {
-				Thing a=(Thing)aa;
-				Thing b=(Thing)bb;
+		Collections.sort(spells,new Comparator<Thing>() {
+			public int compare(Thing a, Thing b) {
 				int ord=a.getString("Order").compareTo(b.getString("Order"));
 				if (ord!=0) return ord;
 				
@@ -1623,7 +1622,7 @@ public class Spell {
 		});
 		
 		for (int i=0; i<spells.size(); i++) {
-			Thing s=(Thing)spells.get(i);
+			Thing s=spells.get(i);
 			String name=s.name();
 			ss.append(Text.rightPad(name+": ",25));
 			ss.append(Text.rightPad(s.getString("Order"),20));
@@ -1639,7 +1638,7 @@ public class Spell {
 
 
 	public static void init() {
-		spellNames=new ArrayList();
+		spellNames=new ArrayList<String>();
 		
 		Thing t;
 		

@@ -92,9 +92,9 @@ public class DetailedListScreen extends Screen {
 		// questapp.setKeyHandler(keyhandler);
 	}
 
-	private static String[] getStringArray(Collection c) {
+	private static String[] getStringArray(Collection<String> c) {
 		String[] ss=new String[c.size()];
-		Iterator it=c.iterator();
+		Iterator<String> it=c.iterator();
 		int i=0;
 		while (it.hasNext()) {
 			ss[i++]=(String)it.next();
@@ -102,7 +102,7 @@ public class DetailedListScreen extends Screen {
 		return ss;
 	}
 	
-	public DetailedListScreen(String s, Collection c1 , Collection c2) {
+	public DetailedListScreen(String s, Collection<String> c1 , Collection<String> c2) {
 		this(s,getStringArray(c1),getStringArray(c2));
 	}
 	

@@ -15,6 +15,7 @@ import mikera.tyrant.engine.Thing;
  */
 public class PortalStone {
   
+	@SuppressWarnings("serial")
 	private static class PortalStoneAction extends Script {
 		public boolean handle(Thing t, Event e) {
 		  Thing user=e.getThing("User");

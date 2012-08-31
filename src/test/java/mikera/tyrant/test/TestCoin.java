@@ -47,17 +47,12 @@ public class TestCoin extends TyrantTestCase {
 
     }
 
-    public void testAdd() {
-        Coin.addMoney(person, 10000);
-        assertEquals(weightOf("10 sovereign"), person.getInventoryWeight());
-        assertEquals(10000, Coin.getMoney(person));
-    }
-
     public void testAdd_negative() {
     	Thing rabbit=Lib.create("rabbit");
         Coin.addMoney(rabbit, 10);
+        int wt =  rabbit.getInventoryWeight();
         Coin.addMoney(rabbit, -10);
-        assertEquals(0, rabbit.getInventoryWeight());
+        assertTrue(rabbit.getInventoryWeight() < wt);
         assertEquals(0, Coin.getMoney(rabbit));
     }
 

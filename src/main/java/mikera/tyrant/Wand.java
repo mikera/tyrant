@@ -7,11 +7,10 @@
 
 package mikera.tyrant;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Script;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
@@ -111,8 +110,6 @@ public class Wand  {
         int spellLvl = spell.getStat("Level");
         //System.out.println(spellLvl);
         
-        if (spell==null) throw new Error("Can't create wand spell: "+spellName);
-        
         t.set("Image",images[type]);
         if (spellLvl > 9) {
         	// add adj if the spell is high enough level
@@ -147,7 +144,7 @@ public class Wand  {
     }
     
     private static void initRandomWands() {
-        ArrayList spells=Spell.getSpellNames();
+        ArrayList<String> spells=Spell.getSpellNames();
     	
         for(int i=0; i<spells.size(); i++) {
         	Thing s=Spell.create((String)spells.get(i));

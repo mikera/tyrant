@@ -238,13 +238,13 @@ public class SpellBook {
 
 	private static void initSpellBooks() {
 		// assemble list of titles
-		ArrayList ta = new ArrayList();
+		ArrayList<String> ta = new ArrayList<String>();
 		for (int i = 0; i < titles.length; i++) {
 			ta.add(titles[i]);
 		}
 
 		// assemble list of spells
-		ArrayList sa = Spell.getSpellNames();
+		ArrayList<String> sa = Spell.getSpellNames();
 		if (sa.size() == 0)
 			throw new Error("SpellBook: Spells not yet generated");
 

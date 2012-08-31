@@ -56,7 +56,7 @@ public class PlugInUtility {
 	private final static String XML_CLOSE_PROPERTY_SPECIFICATION = "</PropertySpecification>";
 	private final static String XML_OPEN_ITEM_SPECIFICATION = "<ItemSpecification>";
 	private final static String XML_CLOSE_ITEM_SPECIFICATION = "</ItemSpecification>";
-	private final static TreeMap LIBMETADATA = LibMetaData.instance().getAll();
+	private final static TreeMap<String,MetaData> LIBMETADATA = LibMetaData.instance().getAll();
 		
 	public static void writeLibrary(String fileName, boolean withStylesheet) {
 		prepareWriteAction(new File(fileName), withStylesheet, false);

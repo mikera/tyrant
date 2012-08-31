@@ -50,7 +50,7 @@ public class BaseObject implements Cloneable, Serializable {
     }
     
 	@SuppressWarnings("unchecked")
-	public BaseObject(HashMap<String,Object> propertiesToCopy, BaseObject parent) {
+	public BaseObject(HashMap<String,?> propertiesToCopy, BaseObject parent) {
 		if (propertiesToCopy!=null) {
 			local=(HashMap<String,Object>)propertiesToCopy.clone();
 		}

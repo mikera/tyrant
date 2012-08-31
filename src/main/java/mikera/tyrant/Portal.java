@@ -21,7 +21,6 @@ import java.util.HashMap;
 import mikera.tyrant.author.MapMaker;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Script;
 import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
@@ -30,6 +29,7 @@ import mikera.util.Rand;
 
 public class Portal  {
     
+	@SuppressWarnings("serial")
 	private static class PortalAction extends Script {
 		public boolean handle(Thing t, Event e) {
 			Map m=t.getMap();
@@ -200,7 +200,7 @@ public class Portal  {
 		int version=0;
 		if (p.getFlag("NewMap")) {
 			version=1;
-			HashMap hm=Game.instance().getMapStore();
+			HashMap<String, Map> hm=Game.instance().getMapStore();
 			while (hm.containsKey(getHashName(complexName,dlevel,version))) {
 				version++;
 			}
@@ -256,7 +256,7 @@ public class Portal  {
     	
         String hashName=getHashName(complexName,dlevel,version);
 		
-        HashMap maps=Game.instance().getMapStore();
+        HashMap<String, Map> maps=Game.instance().getMapStore();
         
         Map map=(Map)maps.get(hashName);
         if (map==null) {

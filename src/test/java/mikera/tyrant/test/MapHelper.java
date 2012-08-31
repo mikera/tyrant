@@ -14,12 +14,12 @@ import mikera.tyrant.engine.Thing;
  * @author Chris Grindstaff chris@gstaff.org
  */
 public class MapHelper {
-    private static java.util.Map symbolToNameMap;
-    private static java.util.Map attributeMap = new HashMap();
-    private static java.util.Map tileMap;
+    private static java.util.Map<String, List<String>> symbolToNameMap;
+    private static java.util.Map<String, String> attributeMap = new HashMap<String, String>();
+    private static java.util.Map<String, List<String>> tileMap;
     private static java.util.Map symbolForName;
     private static java.util.Map charByTile;
-    private java.util.Map seenMarkers = new HashMap();
+    private java.util.Map<Character, Thing> seenMarkers = new HashMap<Character, Thing>();
     
     public Map createMap(String mapString, boolean useMarkers) {
         int firstNewline = mapString.indexOf('\n');
@@ -54,7 +54,7 @@ public class MapHelper {
     private Thing createMarker(char c) {
         if(!Character.isLetter(c)) return null;
         Character markerName = new Character(c);
-        Thing seen = (Thing) seenMarkers.get(markerName);
+        Thing seen = seenMarkers.get(markerName);
         if(seen != null) return seen;
         Thing marker = (Thing) Lib.get("marker");
         if(marker == null) {
@@ -70,7 +70,7 @@ public class MapHelper {
     }
 
     private String createTile(char aChar) {
-        List things = (List) getTileMap().get("" + aChar);
+        List things = getTileMap().get("" + aChar);
         if(things == null) {
             return null;
         }
@@ -80,16 +80,16 @@ public class MapHelper {
     private Thing createThing(char aChar) {
     	if (aChar=='@') return TyrantTestCase.getTestHero();
         String name = "" + aChar;
-        List things = (List) getSymbolToName().get(name);
+        List things = getSymbolToName().get(name);
         if (things == null) {
             throw new Error("Unsure how to handle [" + name + "] in MapHelper");
         }
         return Lib.create((String) things.get(0));
     }
 
-    private static java.util.Map getSymbolToName() {
+    private static java.util.Map<String, List<String>> getSymbolToName() {
         if(symbolToNameMap == null) {
-            symbolToNameMap = new HashMap();
+            symbolToNameMap = new HashMap<String, List<String>>();
             symbolForName = new HashMap();
             
             addMapping(symbolToNameMap, "@", "you");
@@ -132,7 +132,7 @@ public class MapHelper {
         return symbolToNameMap;
     }
     
-    private static void addMapping(java.util.Map mapping, String symbol, String names) {
+    private static void addMapping(java.util.Map<String, List<String>> tileMap2, String symbol, String names) {
         if(names.startsWith("+")) {
             int firstPareen = names.indexOf('(');
             String attribute = names.substring(1, firstPareen);
@@ -143,18 +143,18 @@ public class MapHelper {
         String[] splits = names.split(",");
         for (int i = 0; i < splits.length; i++) {
             String item = splits[i].trim();
-            List items = (List) mapping.get(symbol);
+            List<String> items = tileMap2.get(symbol);
             if(items == null) {
-                items = new ArrayList();
-                mapping.put(symbol, items);
+                items = new ArrayList<String>();
+                tileMap2.put(symbol, items);
             }
             items.add(item);
         }
     }
 
-    private static java.util.Map getTileMap() {
+    private static java.util.Map<String, List<String>> getTileMap() {
         if(tileMap == null) {
-        	tileMap = new HashMap();
+        	tileMap = new HashMap<String, List<String>>();
             charByTile = new HashMap();
             addMapping(tileMap, "-", "wall");
             addMapping(tileMap, "#", "wall");
@@ -224,7 +224,7 @@ public class MapHelper {
         int tile = map.getTile(x, y);
         return Tile.getASCII(tile);
     }
-    public java.util.Map getSeenMarkers() {
+    public java.util.Map<Character, Thing> getSeenMarkers() {
         return seenMarkers;
     }
 }

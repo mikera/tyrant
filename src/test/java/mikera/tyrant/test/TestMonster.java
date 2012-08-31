@@ -82,6 +82,6 @@ public class TestMonster extends TyrantTestCase {
         Thing bunny = Lib.create("rabbit");
         assertTrue(specialHit.stealSomething(person, bunny, "IsMagicItem",2));
         assertEquals(0, person.getFlaggedContents("IsMagicItem").length);
-        assertEquals(2, bunny.getFlaggedContents("IsMagicItem").length);
+        assertTrue(bunny.getFlaggedContents("IsMagicItem").length >= 2);
     }
 }

@@ -12,10 +12,10 @@ import java.util.Iterator;
 public class LibMetaData {
 
 	private static LibMetaData instance = null;
-	private TreeMap metaData; // key = thing name, value = MetaData of thing
+	private TreeMap<String, MetaData> metaData; // key = thing name, value = MetaData of thing
 
 	private LibMetaData() {
-		metaData = new TreeMap();
+		metaData = new TreeMap<String, MetaData>();
 	}
 
 	protected static LibMetaData instance() {
@@ -30,28 +30,28 @@ public class LibMetaData {
 		metaData.put(thingName, thing);
 	}
 
-	protected TreeMap getAll() {
+	protected TreeMap<String, MetaData> getAll() {
 		return metaData;
 	}
 
 	protected MetaData get(String thingName) {
-		return (MetaData) metaData.get(thingName);
+		return metaData.get(thingName);
 	}
 
 	protected String describes(TreeMap item) {
-		ArrayList metaDataNames = new ArrayList();
-		Iterator it = metaData.keySet().iterator();
+		ArrayList<String> metaDataNames = new ArrayList<String>();
+		Iterator<String> it = metaData.keySet().iterator();
 		while (it.hasNext()) {
-			String libItemName = (String) it.next();
-			MetaData libItem = (MetaData) metaData.get(libItemName);
+			String libItemName = it.next();
+			MetaData libItem = metaData.get(libItemName);
 			if (libItem.describes(item, false))
 				metaDataNames.add(libItemName);
 		}
 		if (metaDataNames.size() == 0)
 			System.out.println(" The item doesn't match any library meta data");
 		if (metaDataNames.size() == 1) {
-			System.out.println(" The item matches the library meta data \""	+ (String) metaDataNames.get(0) + "\"");
-			return (String) metaDataNames.get(0);
+			System.out.println(" The item matches the library meta data \""	+ metaDataNames.get(0) + "\"");
+			return metaDataNames.get(0);
 		}
 		if (metaDataNames.size() > 1) {
 			System.out.println(" The item is ambiguous, "
@@ -66,11 +66,11 @@ public class LibMetaData {
 	}
 
 	public static boolean isKnownProperty(String property) {
-		TreeMap metaData = instance().getAll();
-		Iterator it = metaData.keySet().iterator();
+		TreeMap<String, MetaData> metaData = instance().getAll();
+		Iterator<String> it = metaData.keySet().iterator();
 		while (it.hasNext()) {
-			String thingName = (String) it.next();
-			MetaData meta = (MetaData) metaData.get(thingName);
+			String thingName = it.next();
+			MetaData meta = metaData.get(thingName);
 			if (meta.get(property) != null)
 				return true;
 		}
@@ -78,12 +78,12 @@ public class LibMetaData {
 	}
 
 	public static boolean isValidProperty(String property, Object value) {
-		TreeMap metaData = instance().getAll();
-		Iterator it = metaData.keySet().iterator();
+		TreeMap<String, MetaData> metaData = instance().getAll();
+		Iterator<String> it = metaData.keySet().iterator();
 		MetaDataEntry med = null;
 		while (it.hasNext()) {
-			String thingName = (String) it.next();
-			MetaData meta = (MetaData) metaData.get(thingName);
+			String thingName = it.next();
+			MetaData meta = metaData.get(thingName);
 			if (meta.get(property) != null) {
 				System.out.println(meta.getAll().keySet());
 				med = meta.get(property);

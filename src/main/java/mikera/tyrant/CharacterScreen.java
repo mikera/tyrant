@@ -298,8 +298,8 @@ if (Game.isDebug()) {
 				
 		
 		g.drawString("Your skills:",450,20);
-		java.util.ArrayList al      = Skill.getList(h);
-		java.util.ArrayList al_core = Skill.getUnmarkedList(h);
+		java.util.ArrayList<String> al      = Skill.getList(h);
+		java.util.ArrayList<String> al_core = Skill.getUnmarkedList(h);
 		
 		int skillLines=0;
 		for (int i=0 ; i<al.size(); i++) {

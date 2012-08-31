@@ -6,6 +6,8 @@
  */
 package mikera.tyrant;
 
+import java.util.List;
+
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.RPG;
@@ -246,7 +248,7 @@ public class Combat {
 		Game.instance().pushMessages();
 		attackWith(b,t,kickWeapon);
 		
-		java.util.ArrayList al=Game.instance().popMessages();
+		List<String> al=Game.instance().popMessages();
 		if (t.isDead()) {
 			String verbed=(t.getFlag("IsLiving"))?"killed":"destroyed";
 			b.message(t.getTheName()+" is "+verbed+" by your kick");

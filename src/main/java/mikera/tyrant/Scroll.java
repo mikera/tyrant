@@ -10,11 +10,10 @@
 
 package mikera.tyrant;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Script;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Maths;
@@ -227,12 +226,12 @@ public class Scroll  {
         }
         
         private static void addSpecialScroll(Thing t) {
-            ArrayList ta=new ArrayList();
+            ArrayList<String> ta=new ArrayList<String>();
             for (int i=0;i<specialtitles.length;i++) {
                 ta.add(specialtitles[i]);
             }        	
         	
-            String title=(String)ta.remove(Rand.r(ta.size()));
+            String title=ta.remove(Rand.r(ta.size()));
             t.set("UName","weird scroll titled \""+title+"\"");
             t.set("UNamePlural","weird scrolls titled \""+title+"\"");
             addScroll(t);
@@ -240,13 +239,13 @@ public class Scroll  {
         
         public static void initSpellScrolls() {
             // assemble list of titles
-            ArrayList ta=new ArrayList();
+            ArrayList<String> ta=new ArrayList<String>();
             for (int i=0;i<titles.length;i++) {
                 ta.add(titles[i]);
             }
             
             // assemble list of spells
-            ArrayList sa=Spell.getSpellNames();
+            ArrayList<String> sa=Spell.getSpellNames();
             
             int ns=sa.size();
             
@@ -259,7 +258,7 @@ public class Scroll  {
                 
                 Thing spell=Spell.create(spellName);
                 
-                String title=(String)ta.remove(Rand.r(ta.size()));
+                String title=ta.remove(Rand.r(ta.size()));
                 Thing t=Lib.extend("xxx scroll","base scroll");
                 t.set("Name","scroll of "+spellName);
                 t.set("Image",280+Rand.r(4));

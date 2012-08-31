@@ -17,6 +17,7 @@ import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Point;
 import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
+import mikera.tyrant.util.Count;
 import mikera.tyrant.util.Text;
 import mikera.util.Rand;
 
@@ -30,10 +31,10 @@ public class GameScreen extends Screen {
 	public Map map;
 
     private InventoryScreen inventoryScreen;
-    private List actionHandlers;
+    private List<IActionHandler> actionHandlers;
     
     public void addActionHandler(IActionHandler actionHandler) {
-        if(actionHandlers == null) actionHandlers = new LinkedList();
+        if(actionHandlers == null) actionHandlers = new LinkedList<IActionHandler>();
         actionHandlers.add(actionHandler);
     }
     
@@ -160,8 +161,8 @@ public class GameScreen extends Screen {
         Game.message("");
 		
         if(actionHandlers != null) {
-            for (Iterator iter = actionHandlers.iterator(); iter.hasNext();) {
-                IActionHandler actionHandler = (IActionHandler) iter.next();
+            for (Iterator<IActionHandler> iter = actionHandlers.iterator(); iter.hasNext();) {
+                IActionHandler actionHandler = iter.next();
                 if(actionHandler.handleAction(thing, action, isShiftDown)) return;
             }
         }
@@ -299,7 +300,7 @@ public class GameScreen extends Screen {
 		//get interesting stuff to see
 		//Note that the hero is incidentally also seen
 		//So there should be no worries of an empty list
-		List stuff = map.findStuff( Game.hero() , Map.FILTER_ITEM + Map.FILTER_MONSTER );
+		List<Point> stuff = map.findStuff( Game.hero() , Map.FILTER_ITEM + Map.FILTER_MONSTER );
 		int stuffIndex = 0;
 		
 		// repaint the status panel
@@ -673,8 +674,8 @@ public class GameScreen extends Screen {
         }
         
         if (ch == 'y') {
-        	java.util.HashMap gc=BaseObject.getCounter;
-        	Thing rt=new Thing(new BaseObject(gc));
+        	java.util.HashMap<String, Count> gc=BaseObject.getCounter;
+        	Thing rt=new Thing(new BaseObject(gc,null));
         	Game.showData(rt.reportByValue());
         }
 	}
@@ -686,12 +687,12 @@ public class GameScreen extends Screen {
 	private String lastSkill=null;
 	
 	public void doApplySkill(Thing h) {
-		ArrayList al=Skill.getList(h);
+		ArrayList<String> al=Skill.getList(h);
 		if (lastSkill!=null) {
 			al.remove(lastSkill);
 			al.add(0,lastSkill);
 		}
-		String[] sks = (String[]) al.toArray(new String[al.size()]);
+		String[] sks = al.toArray(new String[al.size()]);
 		String a = Game.selectString("Your skills",sks);
 		
 		if (a != null) {
@@ -1296,7 +1297,7 @@ public class GameScreen extends Screen {
 
 	private void doShowQuests() {
 		// TODO: fix this
-		ArrayList quests = Quest.getQuests();
+		ArrayList<Thing> quests = Quest.getQuests();
 		String s = "Your quests:\n\n";
 		for (int i = 0; i < quests.size(); i++) {
 			s += Quest.getQuestText((Thing)quests.get(i)) + "\n";

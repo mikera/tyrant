@@ -95,7 +95,7 @@ public class Scripts {
 				
 				Game.instance().pushMessages();
 				dam=Damage.inflict(target,dam,dt);
-				java.util.ArrayList al=Game.instance().popMessages();
+				java.util.ArrayList<String> al=Game.instance().popMessages();
 				if ((dam>0)&&(desc!=null)) {
 					Game.message(target.getTheName()+" "+target.is()+" "+desc);
 				}
@@ -519,6 +519,7 @@ public class Scripts {
 		};
 	}
 	
+	@SuppressWarnings("serial")
 	public static Script returnTrue(Script s) {
 		Script ns= new Script() {
 

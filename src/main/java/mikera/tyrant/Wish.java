@@ -7,7 +7,6 @@ package mikera.tyrant;
 
 import java.util.Iterator;
 
-import mikera.engine.BaseObject;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.RPG;
@@ -269,8 +268,8 @@ public class Wish {
 		if (s.equals("all")) {
 			Game.message("Everything in the library added to your inventory");
 			Thing hero = Game.hero();
-            for (Iterator iter = Lib.instance().getAll().iterator(); iter.hasNext();) {
-                BaseObject thingAsProperties = (BaseObject) iter.next();
+            for (Iterator<Thing> iter = Lib.instance().getAll().iterator(); iter.hasNext();) {
+                Thing thingAsProperties = iter.next();
                 String name = (String) thingAsProperties.get("Name");
                 if (name.startsWith("base ")) continue;
                 if(thingAsProperties.get("IsItem") == null) continue;

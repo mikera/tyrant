@@ -17,7 +17,8 @@ public class Weapon {
 	private static final double WEAPON_DAMAGE_MULTIPLIER=1.0;
 	
     // use to hit target
-    public static int attack(Thing w, Thing wielder, Thing target) {
+    @SuppressWarnings("unused")
+	public static int attack(Thing w, Thing wielder, Thing target) {
         int attack = calcASK(w, wielder, target);
         int defence = calcDSK(target);
         
@@ -146,7 +147,7 @@ public class Weapon {
         	rs="but fail"+(wielder.isHero()?"":"s") +" to do any damage";
         }
         
-        ArrayList al=Game.instance().popMessages();
+        ArrayList<String> al=Game.instance().popMessages();
         
         Thing h=Game.hero();
         boolean isvisible = wielder.isVisible(h)||target.isVisible(h);

@@ -1,7 +1,6 @@
 package mikera.tyrant;
 
 import mikera.tyrant.engine.Lib;
-import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
 import mikera.util.Rand;
 

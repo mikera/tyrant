@@ -30,14 +30,14 @@ public class Theme extends BaseObject {
 		set("Name",s);
 	}
 
-	private static HashMap themes=null;
+	private static HashMap<String, Theme> themes=null;
 	
 	private static void addTheme(Theme t) {
 		themes.put(t.getString("Name"),t);
 	}
 	
 	private static void init() {
-		themes=new HashMap();
+		themes=new HashMap<String, Theme>();
 		
 		Theme t=new Theme();
 		t.set("Name","base theme");
@@ -161,7 +161,7 @@ public class Theme extends BaseObject {
 			init();
 		}
 		
-		Theme t=(Theme)(themes.get(s));
+		Theme t=(themes.get(s));
 		
 		if (t==null) throw new Error("Theme ["+s+"] not found!");
 		

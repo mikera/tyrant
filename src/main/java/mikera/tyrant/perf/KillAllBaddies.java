@@ -26,10 +26,10 @@ public class KillAllBaddies implements IWork {
     
     public void run() {
         boolean originalGetSet = BaseObject.GET_SET_DEBUG;
-        int ticks = -1;
+//        int ticks = -1;
         try {
             while (monstersAreLeft(map)) {
-                ticks++;
+//                ticks++;
 //                    if(ticks % 10 == 0) {
 //                        System.err.println(map);
 //                    }
