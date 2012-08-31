@@ -1,6 +1,7 @@
 package mikera.tyrant.util;
 
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +29,8 @@ public class MetaDataEntry {
     private int valueCondition;
     private int propertyCondition;
     
-    protected MetaDataEntry(Object o, Object[] vv, int v, int p) throws IllegalArgumentException {
+    @SuppressWarnings("unchecked")
+	protected MetaDataEntry(Object o, Object[] vv, int v, int p) throws IllegalArgumentException {
         if((valueCondition==INTERVAL) && (vv.length!=2))
             throw new IllegalArgumentException("The INTERVAL condition needs two valid values: [minimum ; maximum]. "+vv.length+" values were found");
         if((valueCondition==CERTAIN_VALUES) && (vv.length<=1))
@@ -65,12 +67,13 @@ public class MetaDataEntry {
         }
     }
     
-    protected ArrayList getValidValues() {
+    protected ArrayList<Object> getValidValues() {
         return validValues;
     }
     
-    protected boolean describes(Object o) {
-        Iterator it;
+    @SuppressWarnings("unchecked")
+	protected boolean describes(Object o) {
+        Iterator<?> it;
         boolean condition = false;
         try {
             if((value instanceof Integer) && (!(o instanceof Integer)))
@@ -78,7 +81,7 @@ public class MetaDataEntry {
             if((value instanceof Double) && (!(o instanceof Double)))
                 o = new Double((String)o);
             if(value instanceof MetaData)
-                o = (TreeMap)o;
+                o = (Map)o;
             System.out.println("    "+o+" matches the value type "+value.getClass().getName());
         } catch(Exception e) {e.printStackTrace();
             System.out.println("    "+o+" is a "+o.getClass()+" and doesn't match the value type "+value.getClass()+": "+e.getMessage());
@@ -87,7 +90,7 @@ public class MetaDataEntry {
         switch(valueCondition) {
             case FIX_VALUE:
                 if(o instanceof TreeMap)
-                    condition = ((MetaData)value).describes((TreeMap)o, true);
+                    condition = ((MetaData)value).describes((Map<String, Object>)o, true);
                 condition =  value.equals(o);
                 break;
             case ANY_VALUE:
@@ -113,8 +116,8 @@ public class MetaDataEntry {
                     condition = (((Double)it.next()).compareTo((Double)o)>=0) && (((Double)it.next()).compareTo((Double)o)<=0);
                 break;
             case CERTAIN_VALUES:
-                if(o instanceof TreeMap) {
-                    TreeMap properties = (TreeMap)o;
+                if(o instanceof Map) {
+                    Map properties = (Map)o;
                     it = validValues.iterator();
                     while(it.hasNext()) {
                         if(((MetaData)it.next()).describes(properties, true))

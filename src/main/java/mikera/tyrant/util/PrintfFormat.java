@@ -2,12 +2,8 @@ package mikera.tyrant.util;
 
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Locale;
-import java.util.Vector;
-
-import mikera.tyrant.util.PrintfFormat.ConversionSpecification;
 
 public class PrintfFormat {
     //

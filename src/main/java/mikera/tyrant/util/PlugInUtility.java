@@ -293,17 +293,18 @@ public class PlugInUtility {
 	}
 
 	private static void processLibMetaData(PrintWriter writer) {
-		TreeMap metaData = new TreeMap(), properties;
-		TreeMap descriptions = LibMetaDataHandler.createPropertyDescriptions();
+		Map<String, Object> metaData = new HashMap<String, Object>();
+		Map<String,?>  properties;
+		Map<String,String> descriptions = LibMetaDataHandler.createPropertyDescriptions();
 		// look for different properties and store them in the TreeMap metaData
-		Iterator it = LIBMETADATA.keySet().iterator();
+		Iterator<String> it = LIBMETADATA.keySet().iterator();
 		while (it.hasNext()) {
-			String thingName = (String) it.next();
-			MetaData md = (MetaData) LIBMETADATA.get(thingName);
+			String thingName = it.next();
+			MetaData md = LIBMETADATA.get(thingName);
 			properties = md.getAll();
-			Iterator j = properties.keySet().iterator();
+			Iterator<String> j = properties.keySet().iterator();
 			while (j.hasNext()) {
-				String propName = (String) j.next();
+				String propName = j.next();
 				if (!metaData.containsKey(propName))
 					metaData.put(propName, properties.get(propName));
 			}
@@ -316,7 +317,7 @@ public class PlugInUtility {
 		writer.println(getSpaces(1) + XML_OPEN_PROPERTY_SPECIFICATION);
 		it = metaData.keySet().iterator();
 		while (it.hasNext()) {
-			String name = (String) it.next();
+			String name = it.next();
 			processMetaDataEntry(writer, false, 2, name,
 					(MetaDataEntry) metaData.get(name), descriptions);
 		}
@@ -331,9 +332,9 @@ public class PlugInUtility {
 			writer.println(getSpaces(2) + XML_OPEN_ITEM);
 			writer.println(getSpaces(3) + XML_OPEN_NAME + thingName
 					+ XML_CLOSE_NAME);
-			Iterator j = properties.keySet().iterator();
+			Iterator<String> j = properties.keySet().iterator();
 			while (j.hasNext()) {
-				String propName = (String) j.next();
+				String propName = j.next();
 				processMetaDataEntry(writer, true, 4, propName,
 						((MetaDataEntry) properties.get(propName)),
 						descriptions);
@@ -346,9 +347,9 @@ public class PlugInUtility {
 
 	private static void processMetaDataEntry(PrintWriter writer,
 			boolean isItemSpecification, int level, String propertyName,
-			MetaDataEntry mde, TreeMap descriptions) {
+			MetaDataEntry mde, Map<String, String> descriptions) {
 		Object value = mde.getValue();
-		ArrayList validValues = mde.getValidValues();
+		ArrayList<?> validValues = mde.getValidValues();
 
 		writer.println(getSpaces(level) + XML_OPEN_PROPERTY);
 		writer.println(getSpaces(level) + XML_OPEN_NAME + propertyName
@@ -371,18 +372,18 @@ public class PlugInUtility {
 		// properties can be described by meta data, if so process the meta
 		// data's properties
 		if (value instanceof MetaData) {
-			TreeMap tmd = ((MetaData) value).getAll();
+			Map<String,MetaDataEntry> tmd = ((MetaData) value).getAll();
 			// if a property has to have certain values the meta data is stored
 			// there
 			if (tmd.keySet().size() > 0) {
 				if (isItemSpecification)
 					writer.println(getSpaces(level + 1) + XML_OPEN_METADATA);
-				Iterator it = tmd.keySet().iterator();
+				Iterator<String> it = tmd.keySet().iterator();
 				while (it.hasNext()) {
-					String propName = (String) it.next();
+					String propName = it.next();
 					processMetaDataEntry(writer, isItemSpecification,
 							(level + 2), propName,
-							(MetaDataEntry) tmd.get(propName), descriptions);
+							tmd.get(propName), descriptions);
 				}
 				if (isItemSpecification)
 					writer.println(getSpaces(level + 1) + XML_CLOSE_METADATA);
@@ -390,7 +391,7 @@ public class PlugInUtility {
 		}
 
 		if (validValues != null) {
-			Iterator it = validValues.iterator();
+			Iterator<?> it = validValues.iterator();
 			writer.println(getSpaces(level + 1) + XML_OPEN_VALID_VALUES);
 			while (it.hasNext()) {
 				Object o = it.next();
@@ -398,13 +399,13 @@ public class PlugInUtility {
 				// data's properties
 				if (o instanceof MetaData) {
 					writer.println(getSpaces(level + 2) + XML_OPEN_METADATA);
-					TreeMap tmd = ((MetaData) o).getAll();
-					Iterator j = tmd.keySet().iterator();
+					Map<String,MetaDataEntry> tmd = ((MetaData) o).getAll();
+					Iterator<String> j = tmd.keySet().iterator();
 					while (j.hasNext()) {
-						String name = (String) j.next();
+						String name = j.next();
 						processMetaDataEntry(writer, isItemSpecification,
 								(level + 3), name,
-								(MetaDataEntry) tmd.get(name), descriptions);
+								tmd.get(name), descriptions);
 					}
 					writer.println(getSpaces(level + 2) + XML_CLOSE_METADATA);
 				} else
