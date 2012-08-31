@@ -71,7 +71,7 @@ public class Lib extends Object implements Serializable, Cloneable {
 	private HashMap<String, String> lowerCaseNames=new HashMap<String, String>();
 	
     private List<Thing> all = new ArrayList<Thing>();
-    private transient Map<String, Map> types;
+    private transient Map<String, Map<Integer, List<Thing>>> types;
     private Map<String, Thing> createdUniques=new HashMap<String, Thing>();
     private List<Thing> uniques=new ArrayList<Thing>();
     private static Lib instance;
@@ -89,7 +89,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public void clearTypes() {
-    	types = new HashMap<String, Map>();
+    	types = new HashMap<String, Map<Integer, List<Thing>>>();
     }
     
     public HashMap<String, Object> getLib() {
@@ -100,7 +100,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         return all;
     }
     
-    public Map<String, Map> getTypes() {
+    public Map<String, Map<Integer, List<Thing>>> getTypes() {
         return types;
     }
     
@@ -339,9 +339,9 @@ public class Lib extends Object implements Serializable, Cloneable {
             // skip adding if attribute is not set
             if (!thing.getFlag(ifAttribute)) continue;
             
-            Map<Integer, List> levels = types.get(ifAttribute);
+            Map<Integer, List<Thing>> levels = types.get(ifAttribute);
             if(levels == null) {
-                levels = new HashMap<Integer, List>();
+                levels = new HashMap<Integer, List<Thing>>();
                 types.put(ifAttribute, levels);
             }
             for (int level = min.intValue(); level < max; level++) {
@@ -384,7 +384,7 @@ public class Lib extends Object implements Serializable, Cloneable {
             level = 1;
         }
         if (types == null) {
-            types = new Hashtable<String, Map>();
+            types = new Hashtable<String, Map<Integer, List<Thing>>>();
         }
         Map levels = types.get(flag);
         if (levels == null) {
