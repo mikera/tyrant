@@ -7,7 +7,7 @@ import mikera.engine.Thing;
 import mikera.tyrant.author.Designer;
 import mikera.tyrant.author.ThingMaker;
 
-public class ThingMaker_TC extends TestCase {
+public class TestThingMaker extends TestCase {
     private ThingMaker thingMaker;
     private StringBuffer actual;
 

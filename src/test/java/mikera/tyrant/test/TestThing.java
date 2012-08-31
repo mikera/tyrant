@@ -14,7 +14,7 @@ import mikera.tyrant.*;
 /**
  * @author Chris Grindstaff chris@gstaff.org
  */
-public class Thing_TC extends TyrantTestCase {
+public class TestThing extends TyrantTestCase {
 
     public void testName() {
         assertEquals("rabbit", Lib.create("rabbit").getFullName(null));
@@ -27,6 +27,7 @@ public class Thing_TC extends TyrantTestCase {
         assertEquals(person, carrot.place);
     }
 
+    // TODO seems odd surely there should be no stacking?
     public void testAdd_noStackFlag_duplicate() {
     	Thing rabbit=Lib.create("rabbit");
     	rabbit.addThing(Lib.create("ginger root"));

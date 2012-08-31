@@ -34,20 +34,23 @@ public class BaseObject implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 6165762084693059838L;
     // properties
-    private HashMap local;
+    private HashMap<String,Object> local;
     private BaseObject inherited;
     public static boolean GET_SET_DEBUG = false;
     public static boolean GET_OUTPUT_DEBUG = false;    
     public static boolean SET_OUTPUT_DEBUG = false; 
     public static final boolean OPTIMIZE = true; 
     
+    /**
+     * Counter for debugging
+     */
     public static HashMap getCounter=new HashMap();
 
     public BaseObject() {
         // no properties for default baseobject
     }
     
-	public BaseObject(HashMap propertiesToCopy, BaseObject parent) {
+	public BaseObject(HashMap<String,Object> propertiesToCopy, BaseObject parent) {
 		if (propertiesToCopy!=null) {
 			local=(HashMap)propertiesToCopy.clone();
 		}
@@ -203,20 +206,24 @@ public class BaseObject implements Cloneable, Serializable {
 	            if ((parentValue != null) && parentValue.equals(value)) return false;
         	}
         }
-        if (local == null) local = new HashMap();
+        if (local == null) local = new HashMap<String,Object>();
         local.put(key, value);
         return true;
     }
 	
-	public void compressData(HashMap hs) {
+    /**
+     * Performs compression by removing duplicates
+     * @param hs
+     */
+	public void compressData(HashMap<Object,Object> hs) {
 		if (local!=null) {
-			Iterator it=local.keySet().iterator();
+			Iterator<String> it=local.keySet().iterator();
 			while (it.hasNext()) {
-				Object k=it.next();
+				String k=it.next();
 				Object o=local.get(k);
 				if (o==null) continue;
 				
-				Object ho=hs.get(o);
+				Object ho=hs.get(k);
 				if (ho==null) {
 					hs.put(o,o);
 				} else {

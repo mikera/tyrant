@@ -3,7 +3,7 @@ package mikera.tyrant.test;
 import mikera.engine.Map;
 import mikera.tyrant.Town;
 
-public class Town_TC extends TyrantTestCase {
+public class TestTown extends TyrantTestCase {
     public void testTownBuilding() throws Exception {
         String mapString = 
             "----------------" + "\n" +

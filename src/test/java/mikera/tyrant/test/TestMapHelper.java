@@ -3,6 +3,7 @@ package mikera.tyrant.test;
 import mikera.engine.Lib;
 import mikera.engine.Map;
 import mikera.engine.Thing;
+import mikera.tyrant.Door;
 import mikera.tyrant.Tile;
 import mikera.tyrant.Tutorial;
 
@@ -61,6 +62,7 @@ public class TestMapHelper extends TyrantTestCase {
         Map map = new MapHelper().createMap(mapString);
         Thing door = map.getThings(2, 2)[0];
         assertEquals("door", door.name());
+        Door.setOpen(door, false);
         assertTrue(door.isBlocking());
     }
     

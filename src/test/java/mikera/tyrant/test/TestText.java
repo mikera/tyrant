@@ -2,7 +2,7 @@ package mikera.tyrant.test;
 
 import mikera.tyrant.util.Text;
 
-public class Text_TC extends TyrantTestCase {
+public class TestText extends TyrantTestCase {
 
     public void testCamelizeString() {
         assertEquals("DeanOfAdmissions",Text.camelizeString("dean of admissions"));

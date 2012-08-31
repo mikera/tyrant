@@ -520,6 +520,10 @@ public final class Thing extends BaseObject implements
         return getFlag("IsRunMode");
     }
     
+    /**
+     * Returns true if the thing phyically blocks a map space
+     * @return
+     */
 	public boolean isBlocking() {
 		return getFlag("IsBlocking");
 	}

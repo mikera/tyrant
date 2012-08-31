@@ -169,7 +169,7 @@ public class Door {
 		return key.name();
 	}
  
-	protected static void setOpen(Thing door, boolean open) {
+	public static void setOpen(Thing door, boolean open) {
 		Event e=new Event(open?"Open":"Close");
 		if (door.handle(e)) {
 			// Game.warn("Event break from Door.setOpen(...)");

@@ -54,10 +54,12 @@ public class TestCoin extends TyrantTestCase {
     }
 
     public void testAdd_negative() {
-        Coin.addMoney(person, 10);
-        Coin.addMoney(person, -10);
-        assertEquals(0, person.getInventoryWeight());
-        assertEquals(0, Coin.getMoney(person));
+    	Thing rabbit=Lib.create("rabbit");
+    	Inventory.
+        Coin.addMoney(rabbit, 10);
+        Coin.addMoney(rabbit, -10);
+        assertEquals(0, rabbit.getInventoryWeight());
+        assertEquals(0, Coin.getMoney(rabbit));
     }
 
     private int weightOf(String toParse) {
