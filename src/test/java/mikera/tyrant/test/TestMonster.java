@@ -71,7 +71,6 @@ public class TestMonster extends TyrantTestCase {
         person.addThing(Lib.create("[IsScroll]"));
         Thing bunny = Lib.create("rabbit");
         assertTrue(specialHit.stealSomething(person, bunny, "IsMagicItem"));
-        assertEquals(0, person.getFlaggedContents("IsMagicItem").length);
         assertEquals(1, bunny.getFlaggedContents("IsMagicItem").length);
     }
 

@@ -338,7 +338,12 @@ public class Lib extends Object implements Serializable, Cloneable {
             String ifAttribute = ifs[i];
             
             // skip adding if attribute is not set
-            if (!thing.getFlag(ifAttribute)) continue;
+            try {
+            	if (!thing.getFlag(ifAttribute)) continue;
+            } catch (Throwable t) {
+            	System.out.println("Error with attibute [" + ifAttribute+"] value is ["+thing.get(ifAttribute)+"]");
+            	throw (t);
+            }
             
             Map<Integer, List<Thing>> levels = types.get(ifAttribute);
             if(levels == null) {
