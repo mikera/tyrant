@@ -164,11 +164,10 @@ public class Trap {
 				if (p==null) {
 					throw new Error("Unable to find a free square in pit");
 				}
-				if ((p!=null)&&(tt!=null)) {
-					tt.message("You have fallen into a pit!");
-					tt.moveTo(pitMap,p.x,p.y);
-					
-				}	
+				
+				tt.message("You have fallen into a pit!");
+				tt.moveTo(pitMap,p.x,p.y);
+						
 				return true;
 			}
 			

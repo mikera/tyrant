@@ -81,8 +81,7 @@ public class LibMetaDataHandler {
         Iterator<String> it = plugInData.keySet().iterator();
         while(it.hasNext()) {
             String timeStampAndMetaDataName = it.next();
-            @SuppressWarnings("unchecked")
-			TreeMap<String, ?> itemData = (TreeMap<String, ?>)plugInData.get(timeStampAndMetaDataName);
+            TreeMap<String, ?> itemData = (TreeMap<String, ?>)plugInData.get(timeStampAndMetaDataName);
             String metaDataName = timeStampAndMetaDataName.substring(timeStampAndMetaDataName.indexOf("$")+1);
             MetaData metaData = LibMetaData.instance().get(metaDataName);
             createLibraryItem(itemData, metaData);

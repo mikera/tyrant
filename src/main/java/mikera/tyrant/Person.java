@@ -264,7 +264,7 @@ public class Person {
 			 * System.out.println("False [ppirrip]"); }
 			 */
 			// the item to be fixed has to be damage-able
-			if (gift != null && damagedFlag) {
+			if (damagedFlag) {
 				// TODO: chk is the gift damaged or not
 
 				int value = Item.value(gift); // value of the thing

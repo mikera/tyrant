@@ -42,7 +42,7 @@ public class Scripts {
 			}
 			
 			// add effect if probability check passes
-			if ((e!=null)&&(Rand.r(100)<chance)) {
+			if ((Rand.r(100)<chance)) {
 				tt.addAttribute(new Thing(effect));
 			}
 			return false;
@@ -54,7 +54,7 @@ public class Scripts {
 
 		public boolean handle(Thing t, Event e) {
 			Thing tt=(Thing)e.get(getString("TargetProperty"));
-			if ((e!=null)&&(Rand.r(100)<getStat("Chance"))) {
+			if (Rand.r(100)<getStat("Chance")) {
 				tt.addThing(Lib.create(getString("ThingName")));
 			}
 			return false;

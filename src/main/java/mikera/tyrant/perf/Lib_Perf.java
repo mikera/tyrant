@@ -16,7 +16,9 @@ public class Lib_Perf extends Perf {
             printUsage();
             return;
         }
-        if(args == null || args.length == 0) args = new String[] {KillAllBaddies.class.getName(), "10"};
+        if(args.length == 0) {
+        	args = new String[] {KillAllBaddies.class.getName(), "10"};
+        }
         IWork work = findWork(args[0]);
         int iterations = Integer.parseInt(args[1]);
         WorkDone[] workFinished = timeToRun(work, iterations);

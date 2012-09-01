@@ -422,8 +422,7 @@ public final class Game extends BaseObject implements Serializable {
     }
     
     private HashMap<String, ArrayList<Thing>> getMapObjectStore() {
-    	@SuppressWarnings("unchecked")
-		HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
+    	HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
     	if (h==null) {
     		h=new HashMap<String, ArrayList<Thing>>();
     		Game.instance().set("MapObjectStore",h);

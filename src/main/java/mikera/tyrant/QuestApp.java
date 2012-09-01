@@ -287,7 +287,7 @@ public class QuestApp extends Applet implements Runnable {
 			if (hname.equals("ESC")) {
 				return null;
 			}
-			if ((!notNull) && ((hname == null) || hname.equals("")))
+			if ((!notNull) && hname.equals(""))
 				return null;
 		}
 		return hname;

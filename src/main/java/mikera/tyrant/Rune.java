@@ -164,21 +164,19 @@ public class Rune {
     		String rname=Game.selectString("Select a rune to scribe: ",rs);
     		rname=rname+" runestone";
     		
-    		if (rs!=null) {
-    			t.remove(1);
-    			Thing r=Lib.create(rname);
-    			int lev=r.getStat("RuneIndex");
-    			int prob=Maths.middle(0,50-3*lev+(user.getStat("CR")*(skill-lev)/RPG.round(Math.pow(1.15,lev))),100);
-    			Game.warn("Success chance = "+prob);
-    			if (Rand.r(100)<prob) {
-    				Item.identify(r);
-    				user.message("You successfully scribe "+r.getAName());
-    				user.addThingWithStacking(r);
-    			} else {
-    				user.message("You fail to scribe the "+rname+" correctly");
-    			}
-    		}
-    		
+ 			t.remove(1);
+			Thing r=Lib.create(rname);
+			int lev=r.getStat("RuneIndex");
+			int prob=Maths.middle(0,50-3*lev+(user.getStat("CR")*(skill-lev)/RPG.round(Math.pow(1.15,lev))),100);
+			Game.warn("Success chance = "+prob);
+			if (Rand.r(100)<prob) {
+				Item.identify(r);
+				user.message("You successfully scribe "+r.getAName());
+				user.addThingWithStacking(r);
+			} else {
+				user.message("You fail to scribe the "+rname+" correctly");
+			}
+    		    		
     		return false;
 		}
 	}
