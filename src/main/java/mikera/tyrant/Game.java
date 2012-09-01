@@ -39,7 +39,7 @@ import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.Text;
 import mikera.util.Maths;
 
-public final class Game extends BaseObject implements Serializable {
+public final class Game extends BaseObject {
 	private static final long serialVersionUID = 3544670698288460592L;
     
 	// temp: static game instance

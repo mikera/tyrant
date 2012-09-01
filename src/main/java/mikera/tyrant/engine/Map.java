@@ -1,6 +1,5 @@
 package mikera.tyrant.engine;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,7 +52,7 @@ import mikera.util.Rand;
 * 
 */
 
-public final class Map extends BaseObject implements ThingOwner, Serializable {
+public final class Map extends BaseObject implements ThingOwner {
 	private static final long serialVersionUID = 2476911722567644463L;
     // Map storage
 	private int[] tiles;

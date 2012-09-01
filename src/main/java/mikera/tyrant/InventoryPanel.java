@@ -3,7 +3,6 @@ package mikera.tyrant;
 import java.awt.AWTEventMulticaster;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.ItemSelectable;
 import java.awt.event.*;
 import java.util.ArrayList;
