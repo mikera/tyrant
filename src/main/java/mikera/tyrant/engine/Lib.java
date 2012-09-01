@@ -380,8 +380,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         return t;
     }
     
-    @SuppressWarnings("unchecked")
-	public List<Thing> getTypeArray(String flag, int level) {
+    public List<Thing> getTypeArray(String flag, int level) {
         if (level < 1) {
             level = 1;
         }
