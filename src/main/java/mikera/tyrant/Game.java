@@ -27,8 +27,6 @@ import java.util.zip.ZipOutputStream;
  * @author Mike
  */
 
-import java.io.*;
-
 import mikera.engine.BaseObject;
 import mikera.tyrant.author.MapMaker;
 import mikera.tyrant.engine.Lib;
