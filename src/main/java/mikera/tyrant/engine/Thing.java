@@ -1317,7 +1317,7 @@ public final class Thing extends BaseObject implements
 		
 		if (hm==null) {
 			if (al==null) return;
-			hm=new HashMap<String,List<Modifier>>();
+			hm=new HashMap<>();
 			setModifierList(hm);
 		}
 		
@@ -1350,7 +1350,7 @@ public final class Thing extends BaseObject implements
 		String s=m.getStat();
 		List<Modifier> al=getStatModifiers(s);
 		if (al==null) {
-			al=new ArrayList<Modifier>();
+			al=new ArrayList<>();
 			setStatModifiers(s,al);
 		}
 		al.add(m);
@@ -1401,7 +1401,7 @@ public final class Thing extends BaseObject implements
     public List<Point> orthogonalExits(int directionX, int directionY) {
         Map map = getMap();
         if (map == null) return Collections.emptyList();
-        List<Point> exits = new ArrayList<Point>();
+        List<Point> exits = new ArrayList<>();
         if (directionX == 1 || directionX == -1) {
             if (!map.isBlocked(x, y - 1) || isDoorVisible(x, y - 1)) exits.add(new Point(x, y - 1));
             if (!map.isBlocked(x, y + 1) || isDoorVisible(x, y + 1)) exits.add(new Point(x, y + 1));
@@ -1442,7 +1442,7 @@ public final class Thing extends BaseObject implements
         Map map = getMap();
         int[] xDelta = new int[]{-1, 0, 1, 1, 1, 0, -1, -1};
         int[] yDelta = new int[]{-1, -1, -1, 0, 1, 1, 1, 0};
-        List<Point> notVisited = new ArrayList<Point>();
+        List<Point> notVisited = new ArrayList<>();
         for (int i = 0; i < xDelta.length; i++) {
             if(map.isTileBlocked(x + xDelta[i], y + yDelta[i])) continue;
             int pathValue = map.getPath(x + xDelta[i], y + yDelta[i]);
@@ -1524,7 +1524,7 @@ public final class Thing extends BaseObject implements
             xDelta = new int[]{-1, 0, 1, 1, 1, 0, -1, -1};
             yDelta = new int[]{-1, -1, -1, 0, 1, 1, 1, 0};
         }
-        List<Point> freedoms = new ArrayList<Point>();
+        List<Point> freedoms = new ArrayList<>();
         for (int i = 0; i < xDelta.length; i++) {
             if (!map.isBlocked(x + xDelta[i], y + yDelta[i])) {
                 int newX = x + xDelta[i];

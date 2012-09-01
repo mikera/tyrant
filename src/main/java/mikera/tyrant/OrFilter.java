@@ -8,7 +8,7 @@ import mikera.tyrant.engine.Thing;
 
 
 public class OrFilter implements IThingFilter {
-    private List<IThingFilter> filters = new LinkedList<IThingFilter>();
+    private List<IThingFilter> filters = new LinkedList<>();
     
     public OrFilter(IThingFilter filterA, IThingFilter filterB) {
         addFilter(filterA);

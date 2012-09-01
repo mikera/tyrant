@@ -414,7 +414,7 @@ public final class Game extends BaseObject implements Serializable {
     public HashMap<String,Map> getMapStore() {
     	HashMap<String,Map> h=(HashMap<String,Map>)Game.instance().get("MapStore");
     	if (h==null) {
-    		h=new HashMap<String,Map>();
+    		h=new HashMap<>();
     		Game.instance().set("MapStore",h);
     	}
     	return h;
@@ -423,7 +423,7 @@ public final class Game extends BaseObject implements Serializable {
     private HashMap<String, ArrayList<Thing>> getMapObjectStore() {
     	HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
     	if (h==null) {
-    		h=new HashMap<String, ArrayList<Thing>>();
+    		h=new HashMap<>();
     		Game.instance().set("MapObjectStore",h);
     	}
     	return h;
@@ -433,7 +433,7 @@ public final class Game extends BaseObject implements Serializable {
     	HashMap<String, ArrayList<Thing>> h=getMapObjectStore();
     	ArrayList<Thing> al=h.get(mapName);
     	if (al==null) {
-    		al=new ArrayList<Thing>();
+    		al=new ArrayList<>();
     		h.put(mapName,al);
     	}
     	return al;
@@ -488,7 +488,7 @@ public final class Game extends BaseObject implements Serializable {
 	}
 	
 	public void compressAllData() {
-		HashMap<Object, Object> hs=new HashMap<Object, Object>();
+		HashMap<Object, Object> hs=new HashMap<>();
 		
 		HashMap<String,Map> store=getMapStore();
 		Set<String> keySet=getMapStore().keySet();

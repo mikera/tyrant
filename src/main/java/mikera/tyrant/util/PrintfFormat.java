@@ -2964,7 +2964,7 @@ public class PrintfFormat {
     }
 
     /** Vector of control strings and format literals. */
-    private ArrayList<ConversionSpecification> vFmt = new ArrayList<ConversionSpecification>();
+    private ArrayList<ConversionSpecification> vFmt = new ArrayList<>();
     /** Character position. Used by the constructor. */
     private int cPos = 0;
     /** Character position. Used by the constructor. */

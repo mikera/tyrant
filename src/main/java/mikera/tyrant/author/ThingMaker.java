@@ -62,7 +62,7 @@ public class ThingMaker {
     private void storeThingsLocal(StringBuffer buffer, Thing thing) {
         java.util.Map<String,Object> local = thing.getLocal();
         if(local == null || local.isEmpty()) return;
-        TreeMap<String, Object> sortedLocal = new TreeMap<String, Object>(local);
+        TreeMap<String, Object> sortedLocal = new TreeMap<>(local);
         for (Iterator<java.util.Map.Entry<String,Object>> iter = sortedLocal.entrySet().iterator(); iter.hasNext();) {
             java.util.Map.Entry<String,Object> entry = iter.next();
             Object key = entry.getKey();

@@ -90,8 +90,8 @@ public class MapHelper {
 
     private static java.util.Map<String, List<String>> getSymbolToName() {
         if(symbolToNameMap == null) {
-            symbolToNameMap = new HashMap<String, List<String>>();
-            symbolForName = new HashMap<String, String>();
+            symbolToNameMap = new HashMap<>();
+            symbolForName = new HashMap<>();
             
             addMapping(symbolToNameMap, "@", "you");
             addMapping(symbolToNameMap, "=", "plain ring");
@@ -146,7 +146,7 @@ public class MapHelper {
             String item = splits[i].trim();
             List<String> items = tileMap2.get(symbol);
             if(items == null) {
-                items = new ArrayList<String>();
+                items = new ArrayList<>();
                 tileMap2.put(symbol, items);
             }
             items.add(item);
@@ -155,8 +155,8 @@ public class MapHelper {
 
     private static java.util.Map<String, List<String>> getTileMap() {
         if(tileMap == null) {
-        	tileMap = new HashMap<String, List<String>>();
-            charByTile = new HashMap<String, Object>();
+        	tileMap = new HashMap<>();
+            charByTile = new HashMap<>();
             addMapping(tileMap, "-", "wall");
             addMapping(tileMap, "#", "wall");
             addMapping(tileMap, " ", "nothing");

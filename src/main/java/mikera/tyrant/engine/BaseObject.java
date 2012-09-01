@@ -43,7 +43,7 @@ public class BaseObject implements Cloneable, Serializable {
     /**
      * Counter for debugging
      */
-    public static HashMap<String,Count> getCounter=new HashMap<String,Count>();
+    public static HashMap<String,Count> getCounter=new HashMap<>();
 
     public BaseObject() {
         // no properties for default baseobject
@@ -87,7 +87,7 @@ public class BaseObject implements Cloneable, Serializable {
     
 	public void replaceWith(BaseObject t) {
 	    if (t.local != null) {
-            local = new HashMap<String,Object>(t.local);
+            local = new HashMap<>(t.local);
         } else {
             local = null;
         }
@@ -124,7 +124,7 @@ public class BaseObject implements Cloneable, Serializable {
      *            Key to flatten
      */
     private void flattenEntry(String key) {
-        if (local==null) local=new HashMap<String,Object>();
+        if (local==null) local=new HashMap<>();
         local.put(key, get(key));
     }
 
@@ -205,7 +205,7 @@ public class BaseObject implements Cloneable, Serializable {
 	            if ((parentValue != null) && parentValue.equals(value)) return false;
         	}
         }
-        if (local == null) local = new HashMap<String,Object>();
+        if (local == null) local = new HashMap<>();
         local.put(key, value);
         return true;
     }
@@ -414,10 +414,10 @@ public class BaseObject implements Cloneable, Serializable {
         if (map == null) {
             if (local == null) {
                 // Create an empty HashMap
-                return new HashMap<String,Object>();
+                return new HashMap<>();
             }
             // Just copy the existing Stuff
-            map = new HashMap<String,Object>(local);
+            map = new HashMap<>(local);
         } else {
             // Copy the top level Stuff
             if (local == null) return map;
@@ -440,10 +440,10 @@ public class BaseObject implements Cloneable, Serializable {
         if (map == null) {
             if (local == null) {
                 // Create an empty HashMap
-                return new HashMap<String,Object>();
+                return new HashMap<>();
             }
             // Just copy the existing Stuff
-            map = new HashMap<String,Object>(local);
+            map = new HashMap<>(local);
         } else {
             // Copy the top level Stuff
             if (local == null) return map;
@@ -472,7 +472,7 @@ public class BaseObject implements Cloneable, Serializable {
     }
 
     public String report() {
-        List<String> al = new ArrayList<String>();
+        List<String> al = new ArrayList<>();
         String text = "";
         BaseObject p = getFlattenedStuff(this);
         if (p.local == null) return text;
@@ -494,7 +494,7 @@ public class BaseObject implements Cloneable, Serializable {
     }
     
     public String reportByValue() {
-        List<String> al = new ArrayList<String>();
+        List<String> al = new ArrayList<>();
         String text = "";
         BaseObject p = getFlattenedStuff(this);
         if (p.local == null) return text;
@@ -571,7 +571,7 @@ public class BaseObject implements Cloneable, Serializable {
     }
     
     public String[] findAttributesStartingWith(String toFind) {
-        List<String> found = new ArrayList<String>();
+        List<String> found = new ArrayList<>();
         findAttributesStartingWith(toFind, found);
         return (String[]) found.toArray(new String[found.size()]);
     }

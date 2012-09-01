@@ -555,7 +555,7 @@ public class Designer {
     }
 
     private Menu createMenu(String menuName, String[] names, Action[] actions, boolean[] separatorsBetweenItems) {
-        final java.util.Map<String, Action> menuToAction = new HashMap<String, Action>();
+        final java.util.Map<String, Action> menuToAction = new HashMap<>();
         associateNamesAndActions(menuToAction, names, actions);
         Menu menu = new Menu(menuName);
         for (int i = 0; i < names.length; i++) {
@@ -677,7 +677,7 @@ public class Designer {
     }
     
     private static void createAllIs() {
-        isThings = new HashMap<String, Thing>();
+        isThings = new HashMap<>();
         for (Iterator<String> iter = Lib.instance().getAllPropertyNames().iterator(); iter.hasNext();) {
             String ifAttribute = iter.next();
             if (!ifAttribute.startsWith("Is")) continue;
@@ -821,7 +821,7 @@ public class Designer {
     
     private void doFill(Point mapPoint) {
         int tileToChange = map.getTile(mapPoint.x, mapPoint.y);
-        List<Point> queue = new ArrayList<Point>();
+        List<Point> queue = new ArrayList<>();
         queue.add(mapPoint);
         doFillWith(queue, tileToChange);
         makeAllVisible();
@@ -830,7 +830,7 @@ public class Designer {
     }
 
     private Point[] orthoginalTiles(Point mapPoint) {
-        List<Point> points = new ArrayList<Point>();
+        List<Point> points = new ArrayList<>();
         //NESW
         if(mapPoint.y > 0) points.add(new Point(mapPoint.x, mapPoint.y - 1));
         if(mapPoint.x < map.getWidth() - 1) points.add(new Point(mapPoint.x + 1, mapPoint.y));

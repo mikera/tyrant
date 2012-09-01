@@ -28,7 +28,7 @@ public class NullHandler implements IMessageHandler {
     }
 
     public static List<String> installNullMessageHandler() {
-    	List<String> messages=new ArrayList<String>();
+    	List<String> messages=new ArrayList<>();
         installNullMessageHandler(messages);
         return messages;
     }

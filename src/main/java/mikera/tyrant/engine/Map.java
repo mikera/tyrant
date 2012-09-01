@@ -811,7 +811,7 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 		int sx = b.x;
 		int sy = b.y;
 		int viewRange=Being.calcViewRange(b);
-		List<Point> l = new LinkedList<Point>();
+		List<Point> l = new LinkedList<>();
 		
 		for (int i = 1; i <= viewRange ; i++) {
 			int x1=sx-i;

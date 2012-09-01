@@ -44,7 +44,7 @@ public class Gods {
 	public static HashMap<String, Thing> getGods() {
 		HashMap<String, Thing> h=(HashMap<String, Thing>)Lib.instance().getObject("Gods");
 		if (h==null) {
-			h=new HashMap<String, Thing>();
+			h=new HashMap<>();
             Lib.instance().set("Gods", h);
 //			Game.hero.set("Gods",h);
 		}
@@ -58,7 +58,7 @@ public class Gods {
 	 * @return
 	 */
 	public static ArrayList<String> getPossibleGods(Thing h) {
-		ArrayList<String> al=new ArrayList<String>();
+		ArrayList<String> al=new ArrayList<>();
 		
 		Iterator<String> it=getGods().keySet().iterator();
 		while(it.hasNext()) {

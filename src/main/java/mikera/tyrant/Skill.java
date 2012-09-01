@@ -194,7 +194,7 @@ public class Skill {
 	 * @return ArrayList containing 0 or more strings
 	 */
 	public static ArrayList<String> getList(Thing b) {
-		ArrayList<String> al = new ArrayList<String>();
+		ArrayList<String> al = new ArrayList<>();
 		for (int i = 0; i < names.length; i++) {
 			String s = names[i];
 			int level = b.getStat(s);
@@ -221,7 +221,7 @@ public class Skill {
 	 * @return ArrayList containing 0 or more strings
 	 */
 	public static ArrayList<String> getUnmarkedList(Thing b) {
-		ArrayList<String> al = new ArrayList<String>();
+		ArrayList<String> al = new ArrayList<>();
 		for (int i = 0; i < names.length; i++) {
 			String s = names[i];
 			int level = b.getStat(s);
@@ -238,7 +238,7 @@ public class Skill {
 
 		int skillcount = names.length;
 		int level;
-		ArrayList<String> v = new ArrayList<String>();
+		ArrayList<String> v = new ArrayList<>();
 
 		for (int i = 0; i < skillcount; i++) {
 			String s = names[i];
@@ -349,7 +349,7 @@ public class Skill {
 		return false;
 	}
 
-	private static final HashMap<String, String> descs = new HashMap<String, String>();
+	private static final HashMap<String, String> descs = new HashMap<>();
 
 	public static void init() {
 		descs.put(Skill.RIDING,

@@ -68,13 +68,13 @@ public class Lib extends Object implements Serializable, Cloneable {
 
 
     // all library objects, indexed by Name
-	private HashMap<String, Object> lib = new HashMap<String, Object>();
-	private HashMap<String, String> lowerCaseNames=new HashMap<String, String>();
+	private HashMap<String, Object> lib = new HashMap<>();
+	private HashMap<String, String> lowerCaseNames=new HashMap<>();
 	
-    private List<Thing> all = new ArrayList<Thing>();
+    private List<Thing> all = new ArrayList<>();
     private transient Map<String, Map<Integer, List<Thing>>> types;
-    private Map<String, Thing> createdUniques=new HashMap<String, Thing>();
-    private List<Thing> uniques=new ArrayList<Thing>();
+    private Map<String, Thing> createdUniques=new HashMap<>();
+    private List<Thing> uniques=new ArrayList<>();
     private static Lib instance;
     private int createCount=0;
     
@@ -90,7 +90,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public void clearTypes() {
-    	types = new HashMap<String, Map<Integer, List<Thing>>>();
+    	types = new HashMap<>();
     }
     
     public HashMap<String, Object> getLib() {
@@ -385,7 +385,7 @@ public class Lib extends Object implements Serializable, Cloneable {
             level = 1;
         }
         if (types == null) {
-            types = new Hashtable<String, Map<Integer, List<Thing>>>();
+            types = new Hashtable<>();
         }
         Map<Integer,List<Thing>> levels = types.get(flag);
         if (levels == null) {
@@ -907,7 +907,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public Set<String> getAllPropertyNames() {
-    	HashSet<String> hs=new HashSet<String>();
+    	HashSet<String> hs=new HashSet<>();
     	
     	for (Iterator<Thing> it=all.iterator(); it.hasNext(); ) {
     		BaseObject b=it.next();

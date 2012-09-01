@@ -91,7 +91,7 @@ public class TestMapMaker extends TestCase {
     }
 
     private void assertMapEquals(String toMap, java.util.Map<String,String> map) {
-        HashMap<String, String> expected = new HashMap<String, String>();
+        HashMap<String, String> expected = new HashMap<>();
         String[] splits = toMap.split("=");
         for (int i = 0; i < splits.length; i+=2) {
             String string = splits[i];

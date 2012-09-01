@@ -30,7 +30,7 @@ public class TestWorldMap extends TyrantTestCase {
 	private int mapCount;
 	
 	public void testWorld() {
-		hm=new HashMap<String, Map>();
+		hm=new HashMap<>();
 		mapCount=0;
 		
 		// create things to add to maps

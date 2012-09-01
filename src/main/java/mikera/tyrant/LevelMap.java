@@ -23,7 +23,7 @@ public class LevelMap implements java.io.Serializable {
 	private int[] pixels=null;
 	private int[] currentMemory=null;
 	private Map lastMap=null;
-	private HashMap<Map, int[]> mapMemory=new HashMap<Map, int[]>();
+	private HashMap<Map, int[]> mapMemory=new HashMap<>();
 	
 	public static LevelMap instance() {
 		LevelMap l=(LevelMap)Game.instance().get("MapMemory");

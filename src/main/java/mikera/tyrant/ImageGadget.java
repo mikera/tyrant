@@ -56,7 +56,7 @@ public class ImageGadget extends Canvas {
     protected String resourceName;
     protected ActionListener actionListener;
     protected boolean loadLater;
-    protected static Map<String, Image> images = new HashMap<String, Image>();
+    protected static Map<String, Image> images = new HashMap<>();
     protected boolean loadFailed;
     private String text;
 

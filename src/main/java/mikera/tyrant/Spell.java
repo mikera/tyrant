@@ -1637,7 +1637,7 @@ public class Spell {
 
 
 	public static void init() {
-		spellNames=new ArrayList<String>();
+		spellNames=new ArrayList<>();
 		
 		Thing t;
 		

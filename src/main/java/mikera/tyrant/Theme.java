@@ -37,7 +37,7 @@ public class Theme extends BaseObject {
 	}
 	
 	private static void init() {
-		themes=new HashMap<String, Theme>();
+		themes=new HashMap<>();
 		
 		Theme t=new Theme();
 		t.set("Name","base theme");

@@ -17,7 +17,7 @@ import mikera.tyrant.util.PrintfFormat;
 
 public class LibInspector {
     class DepthOfAttribute implements IThingsInspector {
-        private List<String> rows = new ArrayList<String>();
+        private List<String> rows = new ArrayList<>();
         private String attribute;
 
         public void inspect(Thing thing) {
@@ -73,8 +73,8 @@ public class LibInspector {
 
     private PrintfFormat nameFormat = new PrintfFormat("%-20s");
     protected PrintfFormat numberFormat = new PrintfFormat("%5s");
-    private Map<Object, Integer> totalNumberOfAttributes = new HashMap<Object, Integer>();
-    protected Map<String, Count> attributes = new HashMap<String, Count>();
+    private Map<Object, Integer> totalNumberOfAttributes = new HashMap<>();
+    protected Map<String, Count> attributes = new HashMap<>();
     
     public static void main(String[] args) {
         new LibInspector().go(args);
@@ -134,7 +134,7 @@ public class LibInspector {
         if(depth == 0) {
             row.add(nameFormat.sprintf(thing.get("Name")));
             row.add(" [");
-            List<String> localAttributes = new ArrayList<String>(thing.getLocal().keySet());
+            List<String> localAttributes = new ArrayList<>(thing.getLocal().keySet());
             row.add("" + localAttributes.size());
             row.add("]");
         } else {

@@ -91,8 +91,8 @@ public class PlugInUtility {
 				files = new File[1];
 				files[0] = file;
 			}
-			LinkedHashMap<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<String, Map<String,Object>>();
-			ArrayList<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
+			Map<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<>();
+			ArrayList<Map<String, Object>> items = new ArrayList<>();
 			for (int i = 0; i < files.length; i++) {
 				DocumentBuilderFactory dbf = DocumentBuilderFactory
 						.newInstance();
@@ -138,7 +138,7 @@ public class PlugInUtility {
 	}
 
 	private static TreeMap<String, Object> readItem(NodeList itemData) {
-		TreeMap<String,Object> properties = new TreeMap<String, Object>();
+		TreeMap<String,Object> properties = new TreeMap<>();
 		for (int i = 0; i < itemData.getLength(); i++) {
 			Node data = itemData.item(i);
 			if (data.getNodeType() == Node.ELEMENT_NODE)
@@ -149,7 +149,7 @@ public class PlugInUtility {
 	}
 
 	private static Map<String,Object> readProperties(Node propertyData, boolean isMetaData) {
-		Map<String, Object> properties = new TreeMap<String,Object>(); 
+		Map<String, Object> properties = new TreeMap<>(); 
 		Map<String, Object> metaData = new TreeMap<>();
 		String name = null;
 		String value = null;
@@ -180,7 +180,7 @@ public class PlugInUtility {
 				} else {
 					System.out.println("  Missing or unvalid meta data:");
 					System.out.println("  " + metaData);
-					return new TreeMap<String, Object>();
+					return new TreeMap<>();
 				}
 			}
 		}
@@ -190,12 +190,12 @@ public class PlugInUtility {
 			System.out.println("  Missing or unvalid property data:");
 			System.out.println("  " + properties);
 		}
-		return new TreeMap<String, Object>();
+		return new TreeMap<>();
 	}
 
 	private static LinkedHashMap<String, Map<String, Object>> checkItemData(ArrayList<Map<String, Object>> items) {
 		LibMetaData libMetaData = LibMetaData.instance();
-		LinkedHashMap<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<String, Map<String, Object>>();
+		LinkedHashMap<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<>();
 		Iterator<Map<String, Object>> it = items.iterator();
 		int i = 0;
 		System.out.println("Checking " + items.size()
@@ -301,7 +301,7 @@ public class PlugInUtility {
 	}
 
 	private static void processLibMetaData(PrintWriter writer) {
-		Map<String, Object> metaData = new HashMap<String, Object>();
+		Map<String, Object> metaData = new HashMap<>();
 		Map<String,?>  properties;
 		Map<String,String> descriptions = LibMetaDataHandler.createPropertyDescriptions();
 		// look for different properties and store them in the TreeMap metaData

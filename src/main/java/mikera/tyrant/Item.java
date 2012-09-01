@@ -59,7 +59,7 @@ public class Item {
         Thing h=Game.hero();
         Set<String> identifiedItems = (HashSet<String>) h.get("IdentifiedItems");
         if (identifiedItems == null) {
-            identifiedItems = new HashSet<String>();
+            identifiedItems = new HashSet<>();
             h.set("IdentifiedItems", identifiedItems);
         }
         if (identifiedItems.add(toIdentify.name())) {

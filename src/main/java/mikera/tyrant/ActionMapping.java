@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 public class ActionMapping {
-    private Map<Object, Action> mappings = new HashMap<Object, Action>();
+    private Map<Object, Action> mappings = new HashMap<>();
     
     public Action convertKeyToAction(char key) {
         Action action = mappings.get(new Character(key));

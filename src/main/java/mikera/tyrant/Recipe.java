@@ -265,8 +265,8 @@ public class Recipe {
 	
 	public static boolean apply(Thing h, String s) {
 		Thing[] ts=h.getFlaggedContents("IsRecipe");
-		ArrayList<String> al=new ArrayList<String>();
-		HashMap<String, Thing> hm=new HashMap<String, Thing>();
+		ArrayList<String> al=new ArrayList<>();
+		HashMap<String, Thing> hm=new HashMap<>();
 		for (int i=0; i<ts.length; i++) {
 			Thing r=ts[i];
 			if (!r.getString("RecipeOrder").equals(s)) continue;

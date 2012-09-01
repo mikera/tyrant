@@ -75,8 +75,8 @@ public class ThingEditor implements Runnable {
     private Container thingPanel;
     private Thing thing;
     private Map<String, Integer> importantAttributes;
-    private Map<TextComponent, String> textFieldMapping = new HashMap<TextComponent, String>();
-    private Map<String, String> keyTypes = new HashMap<String, String>();
+    private Map<TextComponent, String> textFieldMapping = new HashMap<>();
+    private Map<String, String> keyTypes = new HashMap<>();
     private String mapText;
     private TextArea sourceTextArea;
     private Panel sourceStatusBar;
@@ -204,7 +204,7 @@ public class ThingEditor implements Runnable {
 
     protected Map<String, Integer> getImportantAttributes() {
         if(importantAttributes == null) {
-            importantAttributes = new HashMap<String, Integer>();
+            importantAttributes = new HashMap<>();
             String[] names = {"Name", "Number", "Level", "Frequency", "HPS", "UName"};
             for (int i = 0; i < names.length; i++) {
                 importantAttributes.put(names[i], new Integer(i));

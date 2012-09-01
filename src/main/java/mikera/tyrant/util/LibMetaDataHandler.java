@@ -14,6 +14,7 @@ import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.Iterator;
 
@@ -76,12 +77,12 @@ public class LibMetaDataHandler {
     private static final String PERSON = "person";
     private static TreeMap<String, String> DESCRIPTIONS = null;
     
-    protected static void createLibraryItems(LinkedHashMap<String, ?> plugInData) {
-        System.out.println("Inserting "+plugInData.size()+" items into the library");
-        Iterator<String> it = plugInData.keySet().iterator();
+    protected static void createLibraryItems(Map<String, Map<String, Object>> itemAndMetaData) {
+        System.out.println("Inserting "+itemAndMetaData.size()+" items into the library");
+        Iterator<String> it = itemAndMetaData.keySet().iterator();
         while(it.hasNext()) {
             String timeStampAndMetaDataName = it.next();
-            TreeMap<String, ?> itemData = (TreeMap<String, ?>)plugInData.get(timeStampAndMetaDataName);
+            TreeMap<String, ?> itemData = (TreeMap<String, ?>)itemAndMetaData.get(timeStampAndMetaDataName);
             String metaDataName = timeStampAndMetaDataName.substring(timeStampAndMetaDataName.indexOf("$")+1);
             MetaData metaData = LibMetaData.instance().get(metaDataName);
             createLibraryItem(itemData, metaData);
@@ -857,7 +858,7 @@ public class LibMetaDataHandler {
     
     protected static TreeMap<String, String> createPropertyDescriptions() {
     	if(DESCRIPTIONS==null) {
-        TreeMap<String, String> descriptions = new TreeMap<String, String>();
+        TreeMap<String, String> descriptions = new TreeMap<>();
         descriptions.put("SK", "Skill");
         descriptions.put("ST", "Strength");
         descriptions.put("AG", "Agility");

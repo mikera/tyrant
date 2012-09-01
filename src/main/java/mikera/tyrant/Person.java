@@ -450,8 +450,8 @@ public class Person {
 		private static ArrayList<String> answers = null;
 
 		private static void setupRiddles() {
-			riddles = new ArrayList<String>();
-			answers = new ArrayList<String>();
+			riddles = new ArrayList<>();
+			answers = new ArrayList<>();
 			riddles.add("What walks on four legs in the morning, two in the afternoon and three in the evening?");
 			answers.add("man");
 			riddles.add("What starts with 'e', ends with 'e' and contains one letter?");

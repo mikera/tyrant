@@ -155,8 +155,8 @@ public class TestLib extends TyrantTestCase {
      */
     public void testPropertyTypes() {
     	Iterator<Thing> it=all.iterator();
-    	HashMap<String, String> types=new HashMap<String, String>();
-    	HashMap<String, String> seen=new HashMap<String, String>();
+    	HashMap<String, String> types=new HashMap<>();
+    	HashMap<String, String> seen=new HashMap<>();
     	while (it.hasNext()) {
             Thing p = it.next();
     		String name=(String)p.get("Name");

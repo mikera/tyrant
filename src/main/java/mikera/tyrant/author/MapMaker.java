@@ -21,9 +21,9 @@ import mikera.tyrant.util.Text;
 
 public class MapMaker {
     private static int nextChar = 'a';
-    private java.util.Map<String, Character> tiles = new HashMap<String, Character>();
+    private java.util.Map<String, Character> tiles = new HashMap<>();
     public static String NL = System.getProperty("line.separator");
-    private java.util.Map<String, String> legend = new HashMap<String, String>();
+    private java.util.Map<String, String> legend = new HashMap<>();
     private ThingMaker thingMaker = new ThingMaker();
     
     public String store(Map map) {
@@ -41,7 +41,7 @@ public class MapMaker {
         buffer.append(NL);
         buffer.append("---Legend---");
         buffer.append(NL);
-        SortedMap<String, String> sorted = new TreeMap<String, String>(legend);
+        SortedMap<String, String> sorted = new TreeMap<>(legend);
         for (Iterator<java.util.Map.Entry<String, String>> iter = sorted.entrySet().iterator(); iter.hasNext();) {
             java.util.Map.Entry<String, String> entry = iter.next();
             buffer.append(entry.getKey());
@@ -188,7 +188,7 @@ public class MapMaker {
     }
     
     private TreeMap<String, Object> createProperties(String propertyText) {
-    	TreeMap<String, Object> map=new TreeMap<String, Object>();
+    	TreeMap<String, Object> map=new TreeMap<>();
     	
         if (propertyText == null || propertyText.length() == 0) return map;
         BufferedReader reader = new BufferedReader(new StringReader(propertyText));

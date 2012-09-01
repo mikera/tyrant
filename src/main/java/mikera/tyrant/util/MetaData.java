@@ -15,7 +15,7 @@ public class MetaData {
     private TreeMap<String, MetaDataEntry> metaDataEntries; // key = property name, value = MetaDataEntry
     
     protected MetaData() {
-        metaDataEntries = new TreeMap<String, MetaDataEntry>();
+        metaDataEntries = new TreeMap<>();
     }
     
     protected MetaData(MetaData parent) {

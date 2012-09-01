@@ -7,7 +7,7 @@ import mikera.tyrant.engine.Thing;
 
 
 public class RogueLikeFilter implements IThingFilter {
-    private Map<String,String> types = new HashMap<String, String>();
+    private Map<String,String> types = new HashMap<>();
     
     public RogueLikeFilter() {
         setupMappings();

@@ -238,7 +238,7 @@ public class SpellBook {
 
 	private static void initSpellBooks() {
 		// assemble list of titles
-		ArrayList<String> ta = new ArrayList<String>();
+		ArrayList<String> ta = new ArrayList<>();
 		for (int i = 0; i < titles.length; i++) {
 			ta.add(titles[i]);
 		}

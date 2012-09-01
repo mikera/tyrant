@@ -703,7 +703,7 @@ public class Hero {
 	public static String reportKillData() {
 		HashMap<String, Integer> hm=getKillHashMap();
 		
-		ArrayList<String> al=new ArrayList<String>(hm.keySet());
+		ArrayList<String> al=new ArrayList<>(hm.keySet());
 		
 		Collections.sort(al);
 		
@@ -743,7 +743,7 @@ public class Hero {
 		Thing h=Game.hero();
 		HashMap<String, Integer> hm=(HashMap<String, Integer>)h.get("Kills");
 		if (hm==null) {
-			hm=new HashMap<String, Integer>();
+			hm=new HashMap<>();
 			h.set("Kills",hm);
 		}
 		return hm;
@@ -816,7 +816,7 @@ public class Hero {
 	public static String[] heroProfessionDescriptions(String race) {
 		String [] profs=heroProfessions(race);
 		
-		HashMap<String, String> pds=new HashMap<String, String>();
+		HashMap<String, String> pds=new HashMap<>();
 		
 		pds.put("fighter","Fighters are trained in all aspects of combat. Whether they work in the service of a powerful lord or travel alone as adventurers, they are formidable in battle and can expect to earn a good living from their valuable skills in turbulent times such as these. Fighters often join brotherhoods and guilds where they form bonds of loyalty and friendship.");
 		pds.put("wizard","By the mastery of arcane forces, wizards are able to summon supernatural powers to their aid by casting spells. The secrets of their craft are closely guarded, and only a few wizards are ever able to master the most powerful spells. Many aspire to the ultimate honour of joining the Council of The Archmagi, and the ultimate prize of immortality.");

@@ -16,7 +16,7 @@ public class TestGame extends TyrantTestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        theMessages = new ArrayList<String>();
+        theMessages = new ArrayList<>();
         NullHandler.installNullMessageHandler(theMessages);
     }
 

@@ -226,7 +226,7 @@ public class Scroll  {
         }
         
         private static void addSpecialScroll(Thing t) {
-            ArrayList<String> ta=new ArrayList<String>();
+            ArrayList<String> ta=new ArrayList<>();
             for (int i=0;i<specialtitles.length;i++) {
                 ta.add(specialtitles[i]);
             }        	
@@ -239,7 +239,7 @@ public class Scroll  {
         
         public static void initSpellScrolls() {
             // assemble list of titles
-            ArrayList<String> ta=new ArrayList<String>();
+            ArrayList<String> ta=new ArrayList<>();
             for (int i=0;i<titles.length;i++) {
                 ta.add(titles[i]);
             }

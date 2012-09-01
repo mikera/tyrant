@@ -16,7 +16,7 @@ public class LibMetaData {
 	private TreeMap<String, MetaData> metaData; // key = thing name, value = MetaData of thing
 
 	private LibMetaData() {
-		metaData = new TreeMap<String, MetaData>();
+		metaData = new TreeMap<>();
 	}
 
 	protected static LibMetaData instance() {
@@ -40,7 +40,7 @@ public class LibMetaData {
 	}
 
 	protected String describes(Map<String, Object> item) {
-		ArrayList<String> metaDataNames = new ArrayList<String>();
+		ArrayList<String> metaDataNames = new ArrayList<>();
 		Iterator<String> it = metaData.keySet().iterator();
 		while (it.hasNext()) {
 			String libItemName = it.next();
