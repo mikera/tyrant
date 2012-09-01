@@ -587,4 +587,10 @@ public class BaseObject implements Cloneable, Serializable {
             inherited.findAttributesStartingWith(toFind, found);
         }
     }
+
+	@Override
+	public int hashCode() {
+		// TODO should we have a better hashcode??
+		return super.hashCode();
+	}
 }
