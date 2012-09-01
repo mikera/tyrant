@@ -122,8 +122,8 @@ public class Tile {
 	}
 
     private static void createMaps() {
-        tileByName = new HashMap<String, Integer>();
-        nameById = new HashMap<Integer, String>();
+        tileByName = new HashMap<>();
+        nameById = new HashMap<>();
         for (int i=0; i<names.length; i++) {
             tileByName.put(names[i], new Integer(i));
             nameById.put(new Integer(i), names[i]);

@@ -34,7 +34,7 @@ public class GameScreen extends Screen {
     private List<IActionHandler> actionHandlers;
     
     public void addActionHandler(IActionHandler actionHandler) {
-        if(actionHandlers == null) actionHandlers = new LinkedList<IActionHandler>();
+        if(actionHandlers == null) actionHandlers = new LinkedList<>();
         actionHandlers.add(actionHandler);
     }
     

@@ -342,7 +342,7 @@ public class Lib extends Object implements Serializable, Cloneable {
             
             Map<Integer, List<Thing>> levels = types.get(ifAttribute);
             if(levels == null) {
-                levels = new HashMap<Integer, List<Thing>>();
+                levels = new HashMap<>();
                 types.put(ifAttribute, levels);
             }
             for (int level = min.intValue(); level < max; level++) {
@@ -389,7 +389,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         }
         Map<Integer,List<Thing>> levels = types.get(flag);
         if (levels == null) {
-            levels = new HashMap<Integer, List<Thing>>();
+            levels = new HashMap<>();
             types.put(flag, levels);
         }
         Integer levelIndex = new Integer(level);

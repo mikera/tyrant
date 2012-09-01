@@ -82,7 +82,7 @@ public class Action implements Serializable {
     
     private Map<Integer, Action> getAllById() {
         if(allById == null)
-            allById = new HashMap<Integer, Action>();
+            allById = new HashMap<>();
         return allById;
     }
 

@@ -171,7 +171,7 @@ public final class Game extends BaseObject implements Serializable {
 	}
 	
 	public void clearMessageList() {
-		messageStack=new Stack<ArrayList<String>>();
+		messageStack=new Stack<>();
 	}
 	
 	public static char showData(String s) {
@@ -207,7 +207,7 @@ public final class Game extends BaseObject implements Serializable {
 	 * the same technique, but omit the final line).
 	 * 
 	 */
-	private Stack<ArrayList<String>> messageStack=new Stack<ArrayList<String>>();
+	private Stack<ArrayList<String>> messageStack=new Stack<>();
     private boolean lineOfSightDisabled;
     private boolean isDesigner = false;
 	

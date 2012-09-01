@@ -463,7 +463,7 @@ public class MapPanel extends Panel implements Runnable {
 		}
 	}
 	
-	private ArrayList<Animation> animationElements=new ArrayList<Animation>();
+	private ArrayList<Animation> animationElements=new ArrayList<>();
 	
 	public void drawAnimationFrame(Graphics g) {
 		synchronized(animationElements) {

@@ -16,11 +16,11 @@ import mikera.tyrant.engine.Thing;
  */
 public class MapHelper {
     private static java.util.Map<String, List<String>> symbolToNameMap;
-    private static java.util.Map<String, String> attributeMap = new HashMap<String, String>();
+    private static java.util.Map<String, String> attributeMap = new HashMap<>();
     private static java.util.Map<String, List<String>> tileMap;
     private static java.util.Map<String, String> symbolForName;
     private static java.util.Map<String, Object> charByTile;
-    private java.util.Map<Character, Thing> seenMarkers = new HashMap<Character, Thing>();
+    private java.util.Map<Character, Thing> seenMarkers = new HashMap<>();
     
     public Map createMap(String mapString, boolean useMarkers) {
         int firstNewline = mapString.indexOf('\n');
