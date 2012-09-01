@@ -237,7 +237,7 @@ public class Tile {
 		
 		// fill array values for each tile
 		for (int i=0; i<n; i++) {
-			Thing t=(Thing)al.get(i);
+			Thing t=al.get(i);
 			if (t==null) {
 				Game.warn("Null in tile list at position "+i);
 				continue;

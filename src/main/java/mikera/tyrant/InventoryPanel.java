@@ -270,7 +270,7 @@ public class InventoryPanel extends Screen implements ItemSelectable {
 				int sy = (image / 20) * MapPanel.TILEHEIGHT;
 				int px = 30;
 				int py = ypos;
-				g.drawImage((Image)QuestApp.images.get(t.get("ImageSource")), px, py, px + MapPanel.TILEWIDTH, py
+				g.drawImage(QuestApp.images.get(t.get("ImageSource")), px, py, px + MapPanel.TILEWIDTH, py
 						+ MapPanel.TILEHEIGHT, sx, sy, sx + MapPanel.TILEWIDTH,
 						sy + MapPanel.TILEHEIGHT, null);
 			}
@@ -314,7 +314,7 @@ public class InventoryPanel extends Screen implements ItemSelectable {
                 Thing thing = allThings[i];
                 if(filter.accept(thing, query)) filtered.add(thing);
             }
-            things = (Thing[]) filtered.toArray(new Thing[filtered.size()]);
+            things = filtered.toArray(new Thing[filtered.size()]);
         } finally {
             repaint();
         }

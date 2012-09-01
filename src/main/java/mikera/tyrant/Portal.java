@@ -258,7 +258,7 @@ public class Portal  {
 		
         HashMap<String, Map> maps=Game.instance().getMapStore();
         
-        Map map=(Map)maps.get(hashName);
+        Map map=maps.get(hashName);
         if (map==null) {
         	// create map and add it to store
         	map=createMap(complexName,dlevel);

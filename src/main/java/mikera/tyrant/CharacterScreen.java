@@ -303,8 +303,8 @@ if (Game.isDebug()) {
 		
 		int skillLines=0;
 		for (int i=0 ; i<al.size(); i++) {
-		  String s = (String)al.get(i);
-		  String s_core = (String)al_core.get(i);
+		  String s = al.get(i);
+		  String s_core = al_core.get(i);
 		  if( Skill.isNotUsed(s_core) ){
 		    g.setColor(QuestApp.INFOTEXTCOLOUR_GRAY);
 		  }else{
@@ -322,8 +322,8 @@ if (Game.isDebug()) {
 		
 		int abilityLines=0;
 		for (int i=0 ; i<al.size(); i++) {
-		  String s = (String)al.get(i);
-		  String s_core = (String)al_core.get(i);
+		  String s = al.get(i);
+		  String s_core = al_core.get(i);
 		  if( Skill.isNotUsed(s_core) ){
 		    g.setColor(QuestApp.INFOTEXTCOLOUR_GRAY);
 		  }else{

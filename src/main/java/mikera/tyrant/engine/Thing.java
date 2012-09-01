@@ -955,7 +955,7 @@ public final class Thing extends BaseObject implements
 			t.next = null;
 
 			if (inv != null) {
-				t.inv = (Thing[]) inv.clone();
+				t.inv = inv.clone();
 				for (int x = 0; x < invcount; x++) {
 					t.inv[x] = (Thing) inv[x].clone();
 					t.inv[x].place = t;
@@ -1424,7 +1424,7 @@ public final class Thing extends BaseObject implements
 
 	public List<Point> moreExits(int directionX, int directionY) {
         Map map = getMap();
-        if (map == null) return Collections.emptyList();;
+        if (map == null) return Collections.emptyList();
         List<Point> exits = orthogonalExits(directionX, directionY);
         if (directionX == 1 || directionX == -1) {
              if(!map.isBlocked(x + directionX, y - 1)  || isDoorVisible(x + directionX, y - 1)) exits.add(new Point(x + directionX, y - 1));
@@ -1480,7 +1480,7 @@ public final class Thing extends BaseObject implements
         int[] xDelta = {};
         int[] yDelta = {};
         Map map = getMap();
-        if(map == null) return Collections.emptyList();;
+        if(map == null) return Collections.emptyList();
         if (x == 0) {
             if (y == 0) {
                 // region A

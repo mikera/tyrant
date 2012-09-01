@@ -723,7 +723,7 @@ public class Hero {
 				sb.append("\n");
 			}
 			
-			Integer count=(Integer)(hm.get(name));
+			Integer count=(hm.get(name));
 			String g=Text.centrePad(name,count.toString(),60);
 			sb.append(g+"\n");
 		}
@@ -733,7 +733,7 @@ public class Hero {
 	
 	public static int getKillCount(Thing t) {
 		HashMap<String,Integer> hm=getKillHashMap();
-		Integer i=(Integer)hm.get(t.name());
+		Integer i=hm.get(t.name());
 		
 		if (i==null) return 0;
 		return i.intValue();
@@ -752,7 +752,7 @@ public class Hero {
 	public static int incKillCount(Thing t) {
 		HashMap<String, Integer> hm=getKillHashMap();
 		String name=t.name();
-		Integer i=(Integer)hm.get(name);
+		Integer i=hm.get(name);
 		if (i==null) {
 			i=new Integer(0);
 		} 
@@ -834,7 +834,7 @@ public class Hero {
 		
 		String[] result=new String[profs.length];
 		for (int i=0; i<profs.length; i++) {
-			String pd=(String)pds.get(profs[i]);
+			String pd=pds.get(profs[i]);
 			if (pd==null) {
 				pd="No description for "+profs[i]+" yet...";
 			}

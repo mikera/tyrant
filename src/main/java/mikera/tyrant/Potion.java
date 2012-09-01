@@ -538,7 +538,7 @@ public class Potion  {
         		String s=null;
         		
         		if (skills.size()>0) {
-        			s=Skill.trim((String)skills.get(Rand.r(skills.size())));
+        			s=Skill.trim(skills.get(Rand.r(skills.size())));
         		}
         		
          		if ((s!=null)&&(user.getBaseStat(s)>0)) {

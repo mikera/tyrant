@@ -284,7 +284,7 @@ public class Designer {
     protected Map map;
     private InventoryScreen tilesScreen;
     private InventoryScreen thingsScreen;
-    private Thing currentThing = (Thing) Lib.get("cave wall");
+    private Thing currentThing = Lib.get("cave wall");
     private Frame tilePalette;
     private Frame thingPalette;
     private boolean switchPalette = false;
@@ -720,7 +720,7 @@ public class Designer {
     }
 
     private Thing[] tilesAsThings() {
-        return (Thing[]) Lib.instance().getTiles().toArray(new Thing[Lib.instance().getTiles().size()]);
+        return Lib.instance().getTiles().toArray(new Thing[Lib.instance().getTiles().size()]);
     }
 
     protected ActionMapping createActions() {

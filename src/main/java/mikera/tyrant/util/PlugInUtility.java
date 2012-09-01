@@ -107,7 +107,7 @@ public class PlugInUtility {
 					NodeList itemList = doc.getElementsByTagName("Item");
 					System.out.println(files[i] + " contains "
 							+ itemList.getLength() + " items");
-					items.addAll((Collection<? extends Map<String, Object>>) readItems(itemList));
+					items.addAll(readItems(itemList));
 					System.out.println(items.size()
 							+ " items were successful loaded from "
 							+ file.getName());
@@ -281,7 +281,7 @@ public class PlugInUtility {
 					writer.println("<MetaData>");
 					while (jt.hasNext()) {
 						String property = jt.next();
-						MetaDataEntry mde = (MetaDataEntry) meta.get(property);
+						MetaDataEntry mde = meta.get(property);
 						writer.println("<" + property + ">" + mde.getValue()
 								+ "</" + property + ">");
 					}

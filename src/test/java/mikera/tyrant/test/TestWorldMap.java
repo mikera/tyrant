@@ -48,12 +48,12 @@ public class TestWorldMap extends TyrantTestCase {
 		mapTest(m);
 		
 		// check that we got all the way to The Tyrant's Lair
-		Map darktower=(Map)Game.instance().getMapStore().get("dark tower:10");
+		Map darktower=Game.instance().getMapStore().get("dark tower:10");
 		assertTrue(darktower!=null);	
 		assertEquals(darktower,t.place);
 		
 		// check that we got all the way to The Tyrant's Lair
-		Map inn=(Map)Game.instance().getMapStore().get("tutorial inn:1");
+		Map inn=Game.instance().getMapStore().get("tutorial inn:1");
 		assertTrue(inn!=null);
 		assertEquals(inn,t2.place);
 		assertEquals(1,t2.x);
@@ -125,7 +125,7 @@ public class TestWorldMap extends TyrantTestCase {
 		ArrayList<Thing> al=m.getAllPortals();
 		
 		for (Iterator<Thing> it=al.iterator(); it.hasNext();) {
-			Thing p=(Thing)it.next();
+			Thing p=it.next();
 			
 			Map newMap;
 			

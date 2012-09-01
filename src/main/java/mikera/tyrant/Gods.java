@@ -62,7 +62,7 @@ public class Gods {
 		
 		Iterator<String> it=getGods().keySet().iterator();
 		while(it.hasNext()) {
-			String s=(String)it.next();
+			String s=it.next();
 			if (acceptsFollower(s,h)) al.add(s);
 		}
 		

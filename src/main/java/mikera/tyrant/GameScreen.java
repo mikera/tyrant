@@ -344,7 +344,7 @@ public class GameScreen extends Screen {
 				case 'x':
 				case 'l':
 					if( stuffIndex >= stuff.size()) stuffIndex = 0;
-					Point p = (Point)stuff.get( stuffIndex );
+					Point p = stuff.get( stuffIndex );
 					stuffIndex++;
 					if( p == null ) p = start;
 					dx = p.x - getMappanel().curx;
@@ -1300,7 +1300,7 @@ public class GameScreen extends Screen {
 		ArrayList<Thing> quests = Quest.getQuests();
 		String s = "Your quests:\n\n";
 		for (int i = 0; i < quests.size(); i++) {
-			s += Quest.getQuestText((Thing)quests.get(i)) + "\n";
+			s += Quest.getQuestText(quests.get(i)) + "\n";
 			
 		}
 		s += "[Press space to continue]";

@@ -45,7 +45,7 @@ public class LibMetaData {
 		while (it.hasNext()) {
 			String libItemName = it.next();
 			MetaData libItem = metaData.get(libItemName);
-			if (libItem.describes((Map<String, Object>) item, false))
+			if (libItem.describes(item, false))
 				metaDataNames.add(libItemName);
 		}
 		if (metaDataNames.size() == 0)
@@ -99,6 +99,6 @@ public class LibMetaData {
 	}
 	
 	public static String getPropertyDescription(String property) {
-		return (String)LibMetaDataHandler.createPropertyDescriptions().get(property);
+		return LibMetaDataHandler.createPropertyDescriptions().get(property);
 	}
 }

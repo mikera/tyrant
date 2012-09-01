@@ -170,7 +170,7 @@ public class TestLib extends TyrantTestCase {
     			Object value=t.get(key);
     			
     			String type=getPropertyType(value);
-    			String seenType=(String)types.get(key);
+    			String seenType=types.get(key);
     			if ((type!=null)&&(seenType!=null)) {
     				assertTrue("["+name+"] has property ["+key+"] of unexpected type ["+type+"] "+seen.get(key),type.equals(seenType));
     			} else if (type!=null) {

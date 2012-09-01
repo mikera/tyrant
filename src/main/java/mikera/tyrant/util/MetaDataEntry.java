@@ -79,8 +79,7 @@ public class MetaDataEntry {
                 o = new Integer((String)o);
             if((value instanceof Double) && (!(o instanceof Double)))
                 o = new Double((String)o);
-            if(value instanceof MetaData)
-                o = (Map<String, Object>)o;
+
             System.out.println("    "+o+" matches the value type "+value.getClass().getName());
         } catch(Exception e) {e.printStackTrace();
             System.out.println("    "+o+" is a "+o.getClass()+" and doesn't match the value type "+value.getClass()+": "+e.getMessage());

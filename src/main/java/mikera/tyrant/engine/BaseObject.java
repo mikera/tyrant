@@ -143,7 +143,7 @@ public class BaseObject implements Cloneable, Serializable {
     public void setProperties(Map<String,Object> map) {
     	Iterator<String> it=map.keySet().iterator();
     	while (it.hasNext()) {
-    		String key=(String)it.next();
+    		String key=it.next();
     		set(key,map.get(key));
     	}
     }
@@ -325,7 +325,7 @@ public class BaseObject implements Cloneable, Serializable {
         if(GET_SET_DEBUG) {
         	
         	// access counting
-            Count count = (Count) getCounter.get(key);
+            Count count = getCounter.get(key);
             if (count == null) {
                 count = new Count();
                 getCounter.put(key, count);
@@ -478,7 +478,7 @@ public class BaseObject implements Cloneable, Serializable {
         if (p.local == null) return text;
         Iterator<String> i = p.local.keySet().iterator();
         while (i.hasNext()) {
-            String k = (String) i.next();
+            String k = i.next();
             Object o = p.get(k);
             String s=k + " : " + (o == null ? "null" : o.toString());
             s=Text.rightPad(s,50);
@@ -487,7 +487,7 @@ public class BaseObject implements Cloneable, Serializable {
         Collections.sort(al);
         i = al.iterator();
         while (i.hasNext()) {
-            String s = (String) i.next();
+            String s = i.next();
             text = text + s;
         }
         return text;
@@ -500,7 +500,7 @@ public class BaseObject implements Cloneable, Serializable {
         if (p.local == null) return text;
         Iterator<String> i = p.local.keySet().iterator();
         while (i.hasNext()) {
-            String k = (String) i.next();
+            String k = i.next();
             Object o = p.get(k);
             String s=Text.leftPad((o == null ? "null" : o.toString()),20);
             s=s + " : " + k;
@@ -510,7 +510,7 @@ public class BaseObject implements Cloneable, Serializable {
         Collections.sort(al);
         i = al.iterator();
         while (i.hasNext()) {
-            String s = (String) i.next();
+            String s = i.next();
             text = text + s;
         }
         return text;
@@ -548,7 +548,7 @@ public class BaseObject implements Cloneable, Serializable {
         // iterate through top-level Stuff
         Iterator<String> it = source.local.keySet().iterator();
         while (it.hasNext()) {
-            String s = (String) it.next();
+            String s = it.next();
             dest.set(s, source.get(s));
         }
     }
@@ -573,13 +573,13 @@ public class BaseObject implements Cloneable, Serializable {
     public String[] findAttributesStartingWith(String toFind) {
         List<String> found = new ArrayList<>();
         findAttributesStartingWith(toFind, found);
-        return (String[]) found.toArray(new String[found.size()]);
+        return found.toArray(new String[found.size()]);
     }
     
     public void findAttributesStartingWith(String toFind, List<String> found) {
         if (local != null) {
             for (Iterator<String> iter = getLocal().keySet().iterator(); iter.hasNext();) {
-                String attribute = (String) iter.next();
+                String attribute = iter.next();
                 if (attribute.startsWith(toFind)) found.add(attribute);
             }
         }

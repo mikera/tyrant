@@ -95,7 +95,7 @@ public class LibMetaDataHandler {
         t.set("Name", itemName);
         boolean inserted = false;
         System.out.println(" Inserting "+itemName);
-        Iterator<String> it = (Iterator<String>) itemData.keySet().iterator();
+        Iterator<String> it = itemData.keySet().iterator();
         while(it.hasNext()) {
             inserted = false;
             String property = it.next();

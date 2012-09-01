@@ -125,7 +125,7 @@ public class ImageGadget extends Canvas {
     protected synchronized static Image imageFor(ImageGadget imageGadget) throws AWTException {
         String resourceName = imageGadget.resourceName;
         if (resourceName == null) return null;
-        Image image = (Image) getImages().get(resourceName);
+        Image image = getImages().get(resourceName);
         if (image == null) {
             // System.out.println("loading image " + resourceName);
             imageGadget.loadImage();

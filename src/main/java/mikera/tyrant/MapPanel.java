@@ -291,7 +291,7 @@ public class MapPanel extends Panel implements Runnable {
 			if (source == null) {
 				im = QuestApp.items; // default
 			} else {
-				im = (Image) QuestApp.images.get(source);
+				im = QuestApp.images.get(source);
 			}
 			
 			buffergraphics.drawImage(im, px, py, px + TILEWIDTH, py + TILEHEIGHT, sx, sy,
@@ -469,7 +469,7 @@ public class MapPanel extends Panel implements Runnable {
 		synchronized(animationElements) {
 			Iterator<Animation> it=animationElements.iterator();
 			while(it.hasNext()) {
-				Animation ae=(Animation)it.next();
+				Animation ae=it.next();
 				ae.draw(this, g);
 				
 				// remove finished animation parts

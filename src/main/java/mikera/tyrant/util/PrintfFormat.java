@@ -517,7 +517,7 @@ public class PrintfFormat {
         int i = 0;
         StringBuffer sb = new StringBuffer();
         while (e.hasNext()) {
-            cs = (ConversionSpecification) e.next();
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -569,7 +569,7 @@ public class PrintfFormat {
         char c = 0;
         StringBuffer sb = new StringBuffer();
         while (e.hasNext()) {
-            cs = (ConversionSpecification) e.next();
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");
@@ -697,7 +697,7 @@ public class PrintfFormat {
         char c = 0;
         StringBuffer sb = new StringBuffer();
         while (e.hasNext()) {
-            cs = (ConversionSpecification) e.next();
+            cs = e.next();
             c = cs.getConversionCharacter();
             if (c == '\0') sb.append(cs.getLiteral());
             else if (c == '%') sb.append("%");

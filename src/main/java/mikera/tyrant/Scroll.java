@@ -253,8 +253,7 @@ public class Scroll  {
             	Game.warn("Not enough scroll titles!!");
             }
             
-            for (int i=0; i<ns; i++) {
-                String spellName=(String)sa.get(i);
+            for (String spellName: sa) {
                 
                 Thing spell=Spell.create(spellName);
                 

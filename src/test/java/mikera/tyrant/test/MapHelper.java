@@ -57,7 +57,7 @@ public class MapHelper {
         Character markerName = new Character(c);
         Thing seen = seenMarkers.get(markerName);
         if(seen != null) return seen;
-        Thing marker = (Thing) Lib.get("marker");
+        Thing marker = Lib.get("marker");
         if(marker == null) {
             marker = Lib.extend("marker", "base thing");
             marker.set("ASCII", "*");
@@ -75,7 +75,7 @@ public class MapHelper {
         if(things == null) {
             return null;
         }
-    	return (String) things.get(0);
+    	return things.get(0);
     }
     
     private Thing createThing(char aChar) {
@@ -85,7 +85,7 @@ public class MapHelper {
         if (things == null) {
             throw new Error("Unsure how to handle [" + name + "] in MapHelper");
         }
-        return Lib.create((String) things.get(0));
+        return Lib.create(things.get(0));
     }
 
     private static java.util.Map<String, List<String>> getSymbolToName() {
@@ -125,7 +125,7 @@ public class MapHelper {
                 Entry<String, List<String>> entry = iter.next();
                 List<String> names = entry.getValue();
                 for (Iterator<String> iterator = names.iterator(); iterator.hasNext();) {
-                    String name = (String) iterator.next();
+                    String name = iterator.next();
                     symbolForName.put(name, entry.getKey());
                 }
             }

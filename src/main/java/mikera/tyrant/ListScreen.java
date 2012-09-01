@@ -64,7 +64,7 @@ public class ListScreen extends Screen {
 		Iterator<String> it=c.iterator();
 		int i=0;
 		while (it.hasNext()) {
-			ss[i++]=(String)it.next();
+			ss[i++]=it.next();
 		}
 		return ss;
 	}

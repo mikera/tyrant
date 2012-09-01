@@ -37,7 +37,7 @@ public class MetaData {
     }
     
    protected MetaDataEntry get(String property) {
-        return (MetaDataEntry)metaDataEntries.get(property);
+        return metaDataEntries.get(property);
     }
     
     protected int numberOfMandatoryProperties() {
@@ -53,16 +53,16 @@ public class MetaData {
     
     protected boolean describes(Map<String, Object> properties, boolean isMetaData) {
         int mandatoryPropertiesChecked = 0;
-        Set<String> propertyNames = (Set<String>) properties.keySet();
+        Set<String> propertyNames = properties.keySet();
         if(metaDataEntries.keySet().containsAll(propertyNames)) {
             Iterator<String> it = propertyNames.iterator();
             while(it.hasNext()) {
-                String propertyName = (String)it.next();
+                String propertyName = it.next();
                 if(isMetaData)
                     System.out.println("   Checking meta data property \""+propertyName+"\"");
                 else
                     System.out.println("   Checking property \""+propertyName+"\"");
-                MetaDataEntry mde = (MetaDataEntry)metaDataEntries.get(propertyName);
+                MetaDataEntry mde = metaDataEntries.get(propertyName);
                 if((mde!=null)&&(mde.describes(properties.get(propertyName)))) {
                     if(mde.isMandatory())
                         mandatoryPropertiesChecked++;

@@ -396,7 +396,7 @@ public class Clothing {
         // When I tried this as a List with an iterator I got
         // a ConcurrentModificationException from the AbstractList
         // so we'll walk an array.  A puzzle...
-        Thing[] candidates = (Thing[])Lib.instance().getTypeArray(type,1).toArray(new Thing[1]);
+        Thing[] candidates = Lib.instance().getTypeArray(type,1).toArray(new Thing[1]);
         Thing newThing = null;
         String name = null;
         //while (iterator.hasNext()) {

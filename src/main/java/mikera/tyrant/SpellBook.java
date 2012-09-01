@@ -251,8 +251,8 @@ public class SpellBook {
 		int ns = sa.size();
 
 		for (int i = 0; i < ns; i++) {
-			String spellName = (String) sa.get(i);
-			String title = (String) ta.get(Rand.r(ta.size()));
+			String spellName = sa.get(i);
+			String title = ta.get(Rand.r(ta.size()));
 
 			Thing spell = Spell.create(spellName);
 

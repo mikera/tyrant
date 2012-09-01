@@ -40,7 +40,7 @@ public class LevelMap implements java.io.Serializable {
 	
 	private int[] getMapMemory(Map m) {
 		HashMap<Map, int[]> h=getMapMemory();
-		int[] memory=(int[])h.get(m);
+		int[] memory=h.get(m);
 		if ((memory==null)&&(m==lastMap)) {
 			memory=currentMemory;
 		}

@@ -456,7 +456,7 @@ public final class Game extends BaseObject implements Serializable {
     	t.x=x;
     	t.y=y;
     	
-    	Map map = (Map)getMapStore().get(mapName);
+    	Map map = getMapStore().get(mapName);
     	if (map==null) {
     		ArrayList<Thing> al=getMapObjectList(mapName);
     		al.add(t);
@@ -494,7 +494,7 @@ public final class Game extends BaseObject implements Serializable {
 		Set<String> keySet=getMapStore().keySet();
 		
 		for (Iterator<String> it=keySet.iterator(); it.hasNext();) {
-			Map m=(Map)store.get(it.next());
+			Map m=store.get(it.next());
 			compressMapData(hs,m);
 		}
 	}
@@ -685,7 +685,7 @@ public final class Game extends BaseObject implements Serializable {
 	public static String selectString(String message, List<String> sks, List<String> sksr) {
 		String[] ss=new String[sks.size()];
 		for (int i=0; i<ss.length; i++) {
-			ss[i]=(String)sks.get(i);
+			ss[i]=sks.get(i);
 		}
 		int i=sks.indexOf(selectString(message,ss));
 		return (i>=0) ? (String)sksr.get(i) : null;
