@@ -125,7 +125,7 @@ public class Recipe {
 	/**
 	 * ArrayList for registered items requiring recipes
 	 */
-	private static ArrayList<Thing> recs=new ArrayList<Thing>();
+	private static ArrayList<Thing> recs=new ArrayList<>();
 	
 	/**
 	 * Register a recipe for creation. This will be created later in the init procedure

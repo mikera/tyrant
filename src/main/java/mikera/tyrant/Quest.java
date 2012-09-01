@@ -22,7 +22,7 @@ public class Quest {
 		
 		ArrayList<Thing> qs=(ArrayList<Thing>)Game.hero().get("Quests");
 		if (qs==null) {
-			qs=new ArrayList<Thing>();
+			qs=new ArrayList<>();
 			Game.hero().set("Quests",qs);
 		}
 		
@@ -59,7 +59,7 @@ public class Quest {
 	public static void addQuest(Thing h, Thing q) {
 		ArrayList<Thing> qs=(ArrayList<Thing>)h.get("Quests");
 		if (qs==null) {
-			qs= new ArrayList<Thing>();
+			qs= new ArrayList<>();
 			h.set("Quests",qs);
 		}
 		q.set("Hero",h);
@@ -89,14 +89,14 @@ public class Quest {
 	
 	private static ArrayList<Thing> getSubQuests(Thing q) {
 		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
-		if (qs==null) qs= new ArrayList<Thing>();
+		if (qs==null) qs= new ArrayList<>();
 		return qs;
 	}
 	
 	public static void addSubQuest(Thing q, Thing sq) {
 		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
 		if (qs==null) {
-			qs= new ArrayList<Thing>();
+			qs= new ArrayList<>();
 			q.set("Quests",qs);
 		}
 		sq.set("Parent",q);

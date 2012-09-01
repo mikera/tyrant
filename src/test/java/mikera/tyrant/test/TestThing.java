@@ -1,11 +1,12 @@
 package mikera.tyrant.test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import mikera.tyrant.*;
+import mikera.tyrant.Coin;
+import mikera.tyrant.Damage;
+import mikera.tyrant.Scripts;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.RPG;

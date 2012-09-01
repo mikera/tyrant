@@ -1710,7 +1710,7 @@ public final class Map extends BaseObject implements ThingOwner, Serializable {
 	}
 	
 	public ArrayList<Thing> getAllPortals() {
-		ArrayList<Thing> al=new ArrayList<Thing>();
+		ArrayList<Thing> al=new ArrayList<>();
 		Thing[] ps=getObjects(0,0,width-1,height-1,"IsPortal");
 		for (int i=0; i<ps.length; i++) {
 			al.add(ps[i]);

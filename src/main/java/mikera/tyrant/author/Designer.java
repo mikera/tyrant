@@ -637,7 +637,7 @@ public class Designer {
 
     private Thing[] getThings() {
         List<Thing> all = Lib.instance().getAll();
-        List<Thing> toShow = new ArrayList<Thing>();
+        List<Thing> toShow = new ArrayList<>();
         addIsThings(toShow);
         for (Iterator<Thing> iter = all.iterator(); iter.hasNext();) {
             Thing thing = iter.next();

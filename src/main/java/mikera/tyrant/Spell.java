@@ -1599,7 +1599,7 @@ public class Spell {
 
 	public static String spellReport() {
 		StringBuffer ss=new StringBuffer();
-		ArrayList<Thing> spells=new ArrayList<Thing>();
+		ArrayList<Thing> spells=new ArrayList<>();
 		
 		for (int i=0; i<spellNames.size(); i++) {
 			String name=spellNames.get(i);

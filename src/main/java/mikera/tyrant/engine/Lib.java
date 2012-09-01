@@ -354,7 +354,7 @@ public class Lib extends Object implements Serializable, Cloneable {
                 Integer levelIndex = new Integer(level);
                 List<Thing> stuff = levels.get(levelIndex);
                 if (stuff == null) {
-                    stuff = new ArrayList<Thing>();
+                    stuff = new ArrayList<>();
                     levels.put(levelIndex, stuff);
                 }
                 stuff.add(thing);
@@ -600,7 +600,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         t.set("Seed",Rand.r(1000000));
     }
     
-    private ArrayList<Thing> tileList=new ArrayList<Thing>();
+    private ArrayList<Thing> tileList=new ArrayList<>();
     
     public ArrayList<Thing> getTiles() {
     	return tileList;
@@ -774,7 +774,7 @@ public class Lib extends Object implements Serializable, Cloneable {
     }
     
     public static Thing createArtifact(int level) {
-        ArrayList<Thing> al=new ArrayList<Thing>();
+        ArrayList<Thing> al=new ArrayList<>();
         List<Thing> un=instance().uniques;
         
         for (int i=0; i<un.size(); i++) {
