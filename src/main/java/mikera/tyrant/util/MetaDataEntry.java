@@ -1,11 +1,11 @@
 package mikera.tyrant.util;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
 
 /**
  *
@@ -29,7 +29,7 @@ public class MetaDataEntry {
     private int valueCondition;
     private int propertyCondition;
     
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	protected MetaDataEntry(Object o, Object[] vv, int v, int p) throws IllegalArgumentException {
         if((valueCondition==INTERVAL) && (vv.length!=2))
             throw new IllegalArgumentException("The INTERVAL condition needs two valid values: [minimum ; maximum]. "+vv.length+" values were found");
@@ -73,7 +73,6 @@ public class MetaDataEntry {
     
     @SuppressWarnings("unchecked")
 	protected boolean describes(Object o) {
-        Iterator<?> it;
         boolean condition = false;
         try {
             if((value instanceof Integer) && (!(o instanceof Integer)))
@@ -81,7 +80,7 @@ public class MetaDataEntry {
             if((value instanceof Double) && (!(o instanceof Double)))
                 o = new Double((String)o);
             if(value instanceof MetaData)
-                o = (Map)o;
+                o = (Map<String, Object>)o;
             System.out.println("    "+o+" matches the value type "+value.getClass().getName());
         } catch(Exception e) {e.printStackTrace();
             System.out.println("    "+o+" is a "+o.getClass()+" and doesn't match the value type "+value.getClass()+": "+e.getMessage());
@@ -108,24 +107,24 @@ public class MetaDataEntry {
                 if(o instanceof Double)
                     condition = (new Double(0).compareTo((Double)o) > 0);
                 break;
-            case INTERVAL:
-                it = validValues.iterator();
+            case INTERVAL: {
+            	Iterator<Object> it = validValues.iterator();
                 if(o instanceof Integer)
                     condition = (((Integer)it.next()).compareTo((Integer)o)>=0) && (((Integer)it.next()).compareTo((Integer)o)<=0);
                 if(o instanceof Double)
                     condition = (((Double)it.next()).compareTo((Double)o)>=0) && (((Double)it.next()).compareTo((Double)o)<=0);
-                break;
-            case CERTAIN_VALUES:
+                break;}
+            case CERTAIN_VALUES: {
                 if(o instanceof Map) {
-                    Map properties = (Map)o;
-                    it = validValues.iterator();
+                    Map<String, Object> properties = (Map<String, Object>)o;
+                    Iterator<Object> it = validValues.iterator();
                     while(it.hasNext()) {
                         if(((MetaData)it.next()).describes(properties, true))
                             condition = true;
                     }
                 } else
                     condition = validValues.contains(o);
-                break;
+                break; }
             default:
                 break;
         }

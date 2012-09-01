@@ -5,8 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -14,6 +20,7 @@ import mikera.tyrant.Game;
 import mikera.tyrant.Hero;
 import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.engine.Lib;
+import mikera.tyrant.engine.Thing;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -85,7 +92,7 @@ public class PlugInUtility {
 				files[0] = file;
 			}
 			LinkedHashMap<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<String, Map<String,Object>>();
-			ArrayList<Map<String, Serializable>> items = new ArrayList<Map<String, Serializable>>();
+			ArrayList<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
 			for (int i = 0; i < files.length; i++) {
 				DocumentBuilderFactory dbf = DocumentBuilderFactory
 						.newInstance();
@@ -100,7 +107,7 @@ public class PlugInUtility {
 					NodeList itemList = doc.getElementsByTagName("Item");
 					System.out.println(files[i] + " contains "
 							+ itemList.getLength() + " items");
-					items.addAll(readItems(itemList));
+					items.addAll((Collection<? extends Map<String, Object>>) readItems(itemList));
 					System.out.println(items.size()
 							+ " items were successful loaded from "
 							+ file.getName());
@@ -116,8 +123,8 @@ public class PlugInUtility {
 		}
 	}
 
-	private static ArrayList readItems(NodeList itemList) {
-		ArrayList items = new ArrayList();
+	private static ArrayList<Map<String, Object>> readItems(NodeList itemList) {
+		ArrayList<Map<String, Object>> items = new ArrayList<>();
 		for (int i = 0; i < itemList.getLength(); i++) {
 			Node item = itemList.item(i);
 			if (item.hasChildNodes()) {
@@ -130,8 +137,8 @@ public class PlugInUtility {
 		return items;
 	}
 
-	private static TreeMap readItem(NodeList itemData) {
-		TreeMap properties = new TreeMap();
+	private static TreeMap<String, Object> readItem(NodeList itemData) {
+		TreeMap<String,Object> properties = new TreeMap<String, Object>();
 		for (int i = 0; i < itemData.getLength(); i++) {
 			Node data = itemData.item(i);
 			if (data.getNodeType() == Node.ELEMENT_NODE)
@@ -141,9 +148,9 @@ public class PlugInUtility {
 		return properties;
 	}
 
-	private static Map readProperties(Node propertyData, boolean isMetaData) {
-		Map<String, Object> properties = new TreeMap(); 
-		Map<String, Map> metaData = new TreeMap();
+	private static Map<String,Object> readProperties(Node propertyData, boolean isMetaData) {
+		Map<String, Object> properties = new TreeMap<String,Object>(); 
+		Map<String, Object> metaData = new TreeMap<>();
 		String name = null;
 		String value = null;
 		String nodeName = propertyData.getNodeName();
@@ -164,15 +171,16 @@ public class PlugInUtility {
 			} else {
 				System.out.println("  Loading meta data");
 				NodeList meta = propertyData.getChildNodes();
-				for (int j = 0; j < meta.getLength(); j++)
+				for (int j = 0; j < meta.getLength(); j++) {
 					metaData.putAll(readProperties(meta.item(j), true));
+				}
 				if (metaData.size() > 0) {
 					System.out.println("  Meta data successful loaded");
 					properties.put(name, metaData);
 				} else {
 					System.out.println("  Missing or unvalid meta data:");
 					System.out.println("  " + metaData);
-					return new TreeMap();
+					return new TreeMap<String, Object>();
 				}
 			}
 		}
@@ -182,19 +190,19 @@ public class PlugInUtility {
 			System.out.println("  Missing or unvalid property data:");
 			System.out.println("  " + properties);
 		}
-		return new TreeMap();
+		return new TreeMap<String, Object>();
 	}
 
-	private static LinkedHashMap checkItemData(ArrayList items) {
+	private static LinkedHashMap<String, Map<String, Object>> checkItemData(ArrayList<Map<String, Object>> items) {
 		LibMetaData libMetaData = LibMetaData.instance();
-		LinkedHashMap itemAndMetaData = new LinkedHashMap();
-		Iterator it = items.iterator();
+		LinkedHashMap<String, Map<String, Object>> itemAndMetaData = new LinkedHashMap<String, Map<String, Object>>();
+		Iterator<Map<String, Object>> it = items.iterator();
 		int i = 0;
 		System.out.println("Checking " + items.size()
 				+ " item(s) for matching library meta data");
 		while (it.hasNext()) {
 			i++;
-			TreeMap item = (TreeMap) it.next();
+			TreeMap<String, Object> item = (TreeMap<String, Object>) it.next();
 			System.out.println(" Checking item " + i);
 			String metaDataName = libMetaData.describes(item);
 			if (metaDataName != null)
@@ -232,7 +240,7 @@ public class PlugInUtility {
 		// get the library items and write the first XML line
 		Hero.createHero("dummy", "human", "sorceror");
 		Lib lib = Lib.instance();
-		List libItems = lib.getAll();
+		List<Thing> libItems = lib.getAll();
 		MetaData metaData = null;
 
 		writer.println(XML_BEGIN);
@@ -241,7 +249,7 @@ public class PlugInUtility {
 		writer.println(XML_OPEN_LIBRARY);
 		// loop through all item
 		for (int i = 0; i < libItems.size(); i++) {
-			TreeMap props = new TreeMap(
+			TreeMap<String,Object> props = new TreeMap<>(
 					((BaseObject) libItems.get(i)).getCollapsedMap());
 
 			// write the output and start with the item name
@@ -249,9 +257,9 @@ public class PlugInUtility {
 			writer.println(getSpaces(2) + XML_OPEN_NAME + props.remove("Name")
 					+ XML_CLOSE_NAME);
 			// now the other properties
-			Iterator it = props.keySet().iterator();
+			Iterator<String> it = props.keySet().iterator();
 			while (it.hasNext()) {
-				String key = (String) it.next();
+				String key = it.next();
 				Object entry = props.get(key);
 				// we only display the important part of class name and cut the
 				// rest off
@@ -263,8 +271,8 @@ public class PlugInUtility {
 								entry.toString().lastIndexOf("@"));
 				}
 				if (metaData != null) {
-					TreeMap meta = metaData.getAll();
-					Iterator jt = meta.keySet().iterator();
+					TreeMap<String, MetaDataEntry> meta = metaData.getAll();
+					Iterator<String> jt = meta.keySet().iterator();
 					// to do: sometimes getValue() returns numbers which are
 					// unvalid XML tags
 					// don't know what's wrong with it, maybe due to recent
@@ -272,7 +280,7 @@ public class PlugInUtility {
 					writer.println("<" + getValue(entry) + ">");
 					writer.println("<MetaData>");
 					while (jt.hasNext()) {
-						String property = (String) jt.next();
+						String property = jt.next();
 						MetaDataEntry mde = (MetaDataEntry) meta.get(property);
 						writer.println("<" + property + ">" + mde.getValue()
 								+ "</" + property + ">");
@@ -326,8 +334,8 @@ public class PlugInUtility {
 		writer.println(getSpaces(1) + XML_OPEN_ITEM_SPECIFICATION);
 		it = LIBMETADATA.keySet().iterator();
 		while (it.hasNext()) {
-			String thingName = (String) it.next();
-			MetaData md = (MetaData) LIBMETADATA.get(thingName);
+			String thingName = it.next();
+			MetaData md = LIBMETADATA.get(thingName);
 			properties = md.getAll();
 			writer.println(getSpaces(2) + XML_OPEN_ITEM);
 			writer.println(getSpaces(3) + XML_OPEN_NAME + thingName
@@ -366,7 +374,7 @@ public class PlugInUtility {
 			writer.println(getSpaces(level) + XML_OPEN_TYPE
 					+ value.getClass().getName() + XML_CLOSE_TYPE);
 			writer.println(getSpaces(level) + XML_OPEN_DESCRIPTION
-					+ getDescription((String) descriptions.get(propertyName))
+					+ getDescription(descriptions.get(propertyName))
 					+ XML_CLOSE_DESCRIPTION);
 		}
 		// properties can be described by meta data, if so process the meta
