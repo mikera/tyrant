@@ -367,14 +367,20 @@ public class MapPanel extends Panel implements Runnable {
 
 
 	
-	public void drawImage(Graphics g,double x, double y, int image) {
+	public void drawImage(Graphics g, double x, double y, int image) {
+		// only draw if the drawn area is visible
 		if (!map.isVisible((int)Math.round(x), (int)Math.round(y))) {
 			return;
 		}
+		
+		// calculate target position in pixels
 		int px = (int)((x - scrollx) * TILEWIDTH);
 		int py = (int)((y - scrolly) * TILEHEIGHT);
+		
+		// calculate source position in pixel, using image index into sprite sheet
 		int sx = (image%20) * TILEWIDTH;
 		int sy = TILEHEIGHT * (image/20);
+		
 		g.drawImage(QuestApp.effects, px, py, px + TILEWIDTH,
 				py + TILEHEIGHT, sx, sy, sx + TILEWIDTH, sy + TILEHEIGHT,
 				null);
