@@ -1,8 +1,9 @@
 package mikera.tyrant.test;
 
-import java.awt.Button;
 import java.awt.event.KeyEvent;
 import java.util.List;
+
+import javax.swing.JButton;
 
 import org.junit.BeforeClass;
 
@@ -41,7 +42,7 @@ public class TyrantTestCase extends TestCase {
         }
 
         public void getInput() {
-            keyevent = new KeyEvent(button, 0, 0, 0, keyEvent, aChar);
+            keyevent = new KeyEvent(new JButton(), 0, 0, 0, keyEvent, aChar);
             if(next != null) next.getInput();
         }
     }
@@ -49,7 +50,6 @@ public class TyrantTestCase extends TestCase {
     protected Thing person;
     protected List<String> messages;
     protected static Thing hero;
-    protected Button button = new Button();
 
     /**
      * Return the last message
