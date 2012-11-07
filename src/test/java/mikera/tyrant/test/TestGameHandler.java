@@ -8,6 +8,7 @@ import mikera.tyrant.Portal;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Thing;
+import mikera.tyrant.util.MapHelper;
 
 public class TestGameHandler extends TyrantTestCase {
     private GameHandler gameHandler;

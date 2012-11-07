@@ -1,4 +1,4 @@
-package mikera.tyrant.test;
+package mikera.tyrant.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import mikera.tyrant.Tile;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Thing;
+import mikera.tyrant.test.TyrantTestCase;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org
@@ -177,7 +178,7 @@ public class MapHelper {
         return tileMap;
     }
 
-    protected int countMatches(String string, String sub) {
+    public int countMatches(String string, String sub) {
         if (string == null || string.length() == 0 || sub == null || sub.length() == 0) return 0;
         int count = 0;
         int index = 0;

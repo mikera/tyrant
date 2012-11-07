@@ -2,6 +2,7 @@ package mikera.tyrant.test;
 
 import mikera.tyrant.Combat;
 import mikera.tyrant.Game;
+import mikera.tyrant.util.MapHelper;
 
 
 public class TestCombat extends TyrantTestCase {

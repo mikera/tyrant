@@ -7,6 +7,7 @@ package mikera.tyrant.test;
 
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Thing;
+import mikera.tyrant.util.MapHelper;
 
 /**
  * @author Mike

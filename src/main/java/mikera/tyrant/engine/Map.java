@@ -17,7 +17,7 @@ import mikera.tyrant.Spell;
 import mikera.tyrant.Theme;
 import mikera.tyrant.Tile;
 import mikera.tyrant.WorldMap;
-import mikera.tyrant.test.MapHelper;
+import mikera.tyrant.util.MapHelper;
 import mikera.tyrant.util.Text;
 import mikera.tyrant.util.TyrantException;
 import mikera.util.Maths;
