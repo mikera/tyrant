@@ -29,7 +29,7 @@ public class MetaDataEntry {
     private int valueCondition;
     private int propertyCondition;
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected MetaDataEntry(Object o, Object[] vv, int v, int p) throws IllegalArgumentException {
         if((valueCondition==INTERVAL) && (vv.length!=2))
             throw new IllegalArgumentException("The INTERVAL condition needs two valid values: [minimum ; maximum]. "+vv.length+" values were found");
@@ -40,7 +40,7 @@ public class MetaDataEntry {
             for(int i=0; i<vv.length; i++)
                 validValues.add(vv[i]);
             if(!(vv instanceof MetaData[]))
-                Collections.sort((List<? extends Comparable>)validValues);
+                Collections.sort((List)validValues);
         }
         value = o;
         valueCondition = v;
