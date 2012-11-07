@@ -10,9 +10,9 @@ import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
-import mikera.tyrant.test.NullHandler;
 import mikera.tyrant.test.TyrantTestCase;
 import mikera.tyrant.util.MapHelper;
+import mikera.tyrant.util.NullHandler;
 
 
 public class KillAllBaddies implements IWork {

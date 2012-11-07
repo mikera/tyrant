@@ -13,6 +13,7 @@ import mikera.tyrant.Interface;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
+import mikera.tyrant.util.NullHandler;
 
 /**
  * The sole purpose of this is to consistently seed the random # generator.

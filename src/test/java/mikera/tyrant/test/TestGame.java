@@ -6,6 +6,7 @@ import java.io.*;
 
 import mikera.tyrant.*;
 import mikera.tyrant.engine.Thing;
+import mikera.tyrant.util.NullHandler;
 
 
 /**
