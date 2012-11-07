@@ -870,9 +870,9 @@ public class LibMetaDataHandler {
         descriptions.put("HPSMAX", "Maximum hit points");
         descriptions.put("MPS", "Magic points");
         descriptions.put("MPSMAX", "Maximum magic points");
-        descriptions.put("APS", "Action points (100 – 1 turn at normal speed)");
+        descriptions.put("APS", "Action points (100 +1 turn at normal speed)");
         descriptions.put("IsDecoration", "");
-        descriptions.put("NoStack", "Don’t allow multiple adds to same square");
+        descriptions.put("NoStack", "Don't allow multiple adds to same square");
         descriptions.put("IsBlocking", "Prevents free movement into same square");
         descriptions.put("IsViewBlocking", "");
         descriptions.put("IsInvisible", "");
@@ -896,7 +896,7 @@ public class LibMetaDataHandler {
         descriptions.put("PortalTargetY", "");
         descriptions.put("DestinationLevel", "Specific level for target dungeon");
         descriptions.put("DestinationLevelIncrement", "Level increment over current portal level");
-        descriptions.put("WorldMap",  "Hero only – top level world map");
+        descriptions.put("WorldMap",  "Hero only - top level world map");
         descriptions.put("IsPenetrable", "Is possible to move through (with some resistance), requires IsBlocking");
         descriptions.put("IsPushable", "");
         descriptions.put("IsWarning", "Warning for monsters");
@@ -930,8 +930,8 @@ public class LibMetaDataHandler {
         descriptions.put("IsSpell", "");
         descriptions.put("Level", "Achieved skill level");
         descriptions.put("SpellCost", "Cost in Mps");
-        descriptions.put("SpellTarget", "Int type – self, target, item etc.");
-        descriptions.put("SpellUsage", "Int type – offensive, defensive etc.");
+        descriptions.put("SpellTarget", "Int type - self, target, item etc.");
+        descriptions.put("SpellUsage", "Int type - offensive, defensive etc.");
         descriptions.put("SpellCastTime", "");
         descriptions.put("SpellRadius", "");
         descriptions.put("BoltImage", "");

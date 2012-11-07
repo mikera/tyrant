@@ -77,7 +77,7 @@ public class Tutorial {
                         Game.quotedMessage("Tha's a narsty goblin by tha name of Borrok. Kilt sum village folk lass year. Ee's built a lair unda tha deep forest ruin. Up North ya know? An 'ero who could beat tha rogue would be right famous!");
                     } else
                     {
-                        Game.quotedMessage("Hey pal, listen and advice here. When ya fitin’, best position iz to hold weapon in one hand and shield in another. Got it?");
+                        Game.quotedMessage("Hey pal, listen and advice here. When ya fitinï¿½, best position iz to hold weapon in one hand and shield in another. Got it?");
                     }
                     break;
 
@@ -301,9 +301,9 @@ public class Tutorial {
                                 final String[] arr2 = {
                                     "",
                                     " Be careful there!",
-                                    " Be careful – monsters (or something else) can happen there…",
-                                    " Be careful there – you know, darkness, monsters and so on…",
-                                    " Be careful – monsters can happen there.",
+                                    " Be careful - monsters (or something else) can happen there!",
+                                    " Be careful there - you know, darkness, monsters and so on!",
+                                    " Be careful - monsters can happen there.",
                                     " There can be monsters there - so be careful!"
                                 };
                                 Game.quotedMessage(RPG.pick(arr1) +
@@ -402,13 +402,13 @@ public class Tutorial {
 
         private void sayIamBored() {
             final String[] bored = {
-                "I’m little bored talking to you.",
-                "I’m little bored talking to you, sorry.",
-                "Sorry, I’m little bored talking to you.",
-                "Sorry pal, I’m little bored talking to you.",
-                "I’m afraid I have nothing more to tell you, sorry.",
-                "I’m afraid I have nothing more to tell you, pal.",
-                "I’m afraid I have nothing more to tell you, my friend.",
+                "I'm little bored talking to you.",
+                "I'm little bored talking to you, sorry.",
+                "Sorry, I'm little bored talking to you.",
+                "Sorry pal, I'm little bored talking to you.",
+                "I'm afraid I have nothing more to tell you, sorry.",
+                "I'm afraid I have nothing more to tell you, pal.",
+                "I'm afraid I have nothing more to tell you, my friend.",
                 "I think I have nothing more to tell you, sorry."
             };
             Game.quotedMessage(RPG.pick(bored));
