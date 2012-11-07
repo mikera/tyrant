@@ -400,7 +400,7 @@ public class Lib extends Object implements Serializable, Cloneable {
         Integer levelIndex = new Integer(level);
         List<Thing> itemsAtLevel = levels.get(levelIndex);
         if (itemsAtLevel == null) {    	
-        	itemsAtLevel=Collections.EMPTY_LIST;
+        	itemsAtLevel=Collections.emptyList();
         }
         return itemsAtLevel;
     }

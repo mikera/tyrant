@@ -20,7 +20,8 @@ import mikera.util.Maths;
 public class Item {
 
 	public static boolean isIdentified(Thing item) {
-        HashSet<String> identifiedItems = (HashSet<String>) Game.hero().get("IdentifiedItems");
+        @SuppressWarnings("unchecked")
+		HashSet<String> identifiedItems = (HashSet<String>) Game.hero().get("IdentifiedItems");
         if (identifiedItems == null)
             return false;
         return identifiedItems.contains(item.name());
