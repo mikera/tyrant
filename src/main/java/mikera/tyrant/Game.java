@@ -410,7 +410,8 @@ public final class Game extends BaseObject {
      * @return
      */
     public HashMap<String,Map> getMapStore() {
-    	HashMap<String,Map> h=(HashMap<String,Map>)Game.instance().get("MapStore");
+    	@SuppressWarnings("unchecked")
+		HashMap<String,Map> h=(HashMap<String,Map>)Game.instance().get("MapStore");
     	if (h==null) {
     		h=new HashMap<>();
     		Game.instance().set("MapStore",h);
@@ -419,7 +420,8 @@ public final class Game extends BaseObject {
     }
     
     private HashMap<String, ArrayList<Thing>> getMapObjectStore() {
-    	HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
+    	@SuppressWarnings("unchecked")
+		HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
     	if (h==null) {
     		h=new HashMap<>();
     		Game.instance().set("MapObjectStore",h);
