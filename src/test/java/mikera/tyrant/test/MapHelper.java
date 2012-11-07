@@ -1,4 +1,4 @@
-package mikera.tyrant.util;
+package mikera.tyrant.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,6 @@ import mikera.tyrant.Tile;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Thing;
-import mikera.tyrant.test.TyrantTestCase;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org

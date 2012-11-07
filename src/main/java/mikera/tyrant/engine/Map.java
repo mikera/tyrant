@@ -17,7 +17,6 @@ import mikera.tyrant.Spell;
 import mikera.tyrant.Theme;
 import mikera.tyrant.Tile;
 import mikera.tyrant.WorldMap;
-import mikera.tyrant.util.MapHelper;
 import mikera.tyrant.util.Text;
 import mikera.tyrant.util.TyrantException;
 import mikera.util.Maths;
@@ -1870,10 +1869,6 @@ public final class Map extends BaseObject implements ThingOwner {
 		return s.toString();
 	}
     
-	public String toString() {
-        return new MapHelper().mapToString(this);
-    }
-	
 	public String name() {
 		return getString("HashName");
 	}

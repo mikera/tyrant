@@ -6,7 +6,6 @@ import mikera.tyrant.Tutorial;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Thing;
-import mikera.tyrant.util.MapHelper;
 
 /**
  * @author Chris Grindstaff chris@gstaff.org

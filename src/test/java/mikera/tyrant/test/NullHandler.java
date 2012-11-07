@@ -1,4 +1,4 @@
-package mikera.tyrant.util;
+package mikera.tyrant.test;
 
 import java.awt.Color;
 import java.util.ArrayList;
