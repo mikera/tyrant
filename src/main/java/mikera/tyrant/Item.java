@@ -58,7 +58,8 @@ public class Item {
 	 */
 	public static void identify(Thing toIdentify) {
         Thing h=Game.hero();
-        Set<String> identifiedItems = (HashSet<String>) h.get("IdentifiedItems");
+        @SuppressWarnings("unchecked")
+		Set<String> identifiedItems = (HashSet<String>) h.get("IdentifiedItems");
         if (identifiedItems == null) {
             identifiedItems = new HashSet<>();
             h.set("IdentifiedItems", identifiedItems);
