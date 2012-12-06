@@ -117,18 +117,6 @@ public class TestGameHandler extends TyrantTestCase {
          assertLocation(hero, 11, 14);
     }
     
-    public void testRunOffEdge() throws Exception {
-        String mapString = 
-            "&@&" + "\n" +
-            "&.&" + "\n" +
-            "&.&";
-        new MapHelper().createMap(mapString);
-        answerGetInputWithChar('n');
-        walk(Action.MOVE_S, true);
-        assertLocation(hero, 1, 2);
-        assertFalse(hero.isRunning());
-    }
-    
     public void testRunningZigZag_doubleWide() throws Exception {
         String mapString = 
             "         #######" + "\n" +    

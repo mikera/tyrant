@@ -226,7 +226,7 @@ public class BaseObject implements Cloneable, Serializable {
 				
 				Object ho=hs.get(k);
 				if (ho==null) {
-					hs.put(o,o);
+					hs.put(o,ho);
 				} else {
 					local.put(k,ho);
 				}

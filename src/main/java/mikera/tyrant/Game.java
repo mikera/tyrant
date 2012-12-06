@@ -499,10 +499,10 @@ public final class Game extends BaseObject {
 		}
 	}
 	
-	private void compressMapData(HashMap<Object, Object> hs, Map m) {
+	private void compressMapData(HashMap<Object, Object> hm, Map m) {
 		Thing[] ts=m.getThings();
 		for (int i=0; i<ts.length; i++) {
-			ts[i].compressData(hs);
+			ts[i].compressData(hm);
 		}
 	}
 	

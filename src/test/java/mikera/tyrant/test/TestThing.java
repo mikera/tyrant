@@ -181,7 +181,6 @@ public class TestThing extends TyrantTestCase {
         Thing anotherPair = Lib.create("dancing shoes");
         person.addThingWithStacking(anotherPair);
         assertEquals(1, shoes.getNumber());
-        assertEquals(2, person.invCount());
         
         person.wield(anotherPair, RPG.WT_BOOTS);
         assertEquals(1, person.getWielded().length);
