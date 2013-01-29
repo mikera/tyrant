@@ -38,7 +38,7 @@ public final class Point implements java.io.Serializable {
 	 * @return distance
 	 */
 	public int hvDistance(Point a) {
-		return Maths.max(Maths.abs(x-a.x),Maths.abs(y-a.y));
+		return Maths.max(Math.abs(x-a.x),Math.abs(y-a.y));
 	}
 
 	public Point(Point p) {

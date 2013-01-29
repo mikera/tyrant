@@ -357,11 +357,11 @@ public class AI implements Serializable {
 			return true;
 		}
 		
-		int ld=Maths.abs(m.x-l.x)+Maths.abs(m.y-l.y);
+		int ld=Math.abs(m.x-l.x)+Math.abs(m.y-l.y);
 		
 		Thing f=findFoe(l);
 		if (f!=null) {
-			int fd=Maths.abs(f.x-m.x)+Maths.abs(f.y-m.y);
+			int fd=Math.abs(f.x-m.x)+Math.abs(f.y-m.y);
 			if ((fd<=2)||(ld<=fd)) {
 				doAttack(m,f.x,f.y);
 				return true;

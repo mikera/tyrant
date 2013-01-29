@@ -10,7 +10,6 @@ import mikera.tyrant.engine.Point;
 import mikera.tyrant.engine.RPG;
 import mikera.tyrant.engine.Thing;
 import mikera.tyrant.util.TyrantException;
-import mikera.util.Maths;
 import mikera.util.Rand;
 
 
@@ -280,10 +279,10 @@ public class Dungeon {
 	
 	private static boolean makeRoom(Map m,int x, int y, int dx, int dy) {
 		// random dimesions and offset
-		int x1 = x - Rand.d(Maths.abs(dx - 1), 5);
-		int y1 = y - Rand.d(Maths.abs(dy - 1), 5);
-		int x2 = x + Rand.d(Maths.abs(dx + 1), 5);
-		int y2 = y + Rand.d(Maths.abs(dy + 1), 5);
+		int x1 = x - Rand.d(Math.abs(dx - 1), 5);
+		int y1 = y - Rand.d(Math.abs(dy - 1), 5);
+		int x2 = x + Rand.d(Math.abs(dx + 1), 5);
+		int y2 = y + Rand.d(Math.abs(dy + 1), 5);
 
 		if (((x2 - x1) < 3) || ((y2 - y1) < 3) || (!m.isBlank(x1, y1, x2, y2)))
 			return false;

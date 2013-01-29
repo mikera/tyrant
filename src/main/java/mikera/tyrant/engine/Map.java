@@ -1057,16 +1057,16 @@ public final class Map extends BaseObject implements ThingOwner {
 		int dx;
 		int dy;
 		int count;
-		if (Maths.abs(xd) <= Maths.abs(yd)) {
+		if (Math.abs(xd) <= Math.abs(yd)) {
 			if (yd == 0)
 				return true; // check for (0,0)
-			dx = (xd << 8) / Maths.abs(yd);
+			dx = (xd << 8) / Math.abs(yd);
 			dy = RPG.sign(yd) << 8;
-			count = Maths.abs(yd);
+			count = Math.abs(yd);
 		} else {
 			dx = RPG.sign(xd) << 8;
-			dy = (yd << 8) / Maths.abs(xd);
-			count = Maths.abs(xd);
+			dy = (yd << 8) / Math.abs(xd);
+			count = Math.abs(xd);
 		}
 		while (count > 0) {
 			x += dx;

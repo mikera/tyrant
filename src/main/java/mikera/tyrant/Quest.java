@@ -305,7 +305,7 @@ public class Quest {
 				if (h.place!=target.place) return false;
 
 				// check if character is adjacent to hero
-				if ((Maths.abs(h.x-target.x)<=1)&&(Maths.abs(h.y-target.y)<=1)) {
+				if ((Math.abs(h.x-target.x)<=1)&&(Math.abs(h.y-target.y)<=1)) {
 					setComplete(q);
 				}
 				
