@@ -741,7 +741,6 @@ public class Hero {
 	
 	private static HashMap<String, Integer> getKillHashMap() {
 		Thing h=Game.hero();
-		@SuppressWarnings("unchecked")
 		HashMap<String, Integer> hm=(HashMap<String, Integer>)h.get("Kills");
 		if (hm==null) {
 			hm=new HashMap<>();

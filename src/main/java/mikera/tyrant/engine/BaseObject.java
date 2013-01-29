@@ -49,7 +49,6 @@ public class BaseObject implements Cloneable, Serializable {
         // no properties for default baseobject
     }
     
-	@SuppressWarnings("unchecked")
 	public BaseObject(HashMap<String,?> propertiesToCopy, BaseObject parent) {
 		if (propertiesToCopy!=null) {
 			local=(HashMap<String,Object>)propertiesToCopy.clone();
@@ -61,7 +60,6 @@ public class BaseObject implements Cloneable, Serializable {
      * Clone copies a BaseObject instance, maintaining
      * the same inherited properties
      */
-    @SuppressWarnings("unchecked")
 	public Object clone() {
         BaseObject o=new BaseObject();
         o.inherited=inherited;
