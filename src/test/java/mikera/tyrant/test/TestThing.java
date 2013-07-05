@@ -110,7 +110,6 @@ public class TestThing extends TyrantTestCase {
         person.addThing(carrots);
         person.addThingWithStacking(Lib.create("5 carrot"));
         assertTrue(person.invCount()>=1);
-        Thing[] inv=person.getInventory();
         Thing inInventory = person.getInventory()[person.invCount()-1];
         assertEquals(carrots, inInventory);
         assertEquals(14, inInventory.getNumber());
