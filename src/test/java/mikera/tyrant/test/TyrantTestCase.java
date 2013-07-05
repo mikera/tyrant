@@ -79,6 +79,7 @@ public class TyrantTestCase extends TestCase {
         messages = NullHandler.installNullMessageHandler();
         Game.setUserinterface(null);
         person = Lib.create("human");
+        person.removeAllItems();
     }
 
     

@@ -99,6 +99,8 @@ public final class Thing extends BaseObject implements
 	public static final int Z_OVERHEAD = 60;
 	public static final int Z_SYSTEM = 80;
 
+	private static final Thing[] EMPTY_THING_ARRAY = new Thing[0];
+
 	public Thing() {
 		super();
 	}
@@ -209,6 +211,17 @@ public final class Thing extends BaseObject implements
 		}
 		return c;
 	}
+	
+
+	public void removeAllItems() {
+		for (int i=0; i<invcount; i++) {
+			Thing t=inv[i];
+			if (t.getFlag("IsItem")) {
+				t.remove();
+                i--; // step back one since stack is removed
+			}
+		}
+	}
 
 	/**
 	 * Gets an inventory item with a particular name
@@ -279,7 +292,7 @@ public final class Thing extends BaseObject implements
         // It is here for performance testing purposes and will probably go away soon.
         // Do not use this method in your code -Rick
         if (invcount == 0) {
-            return null;
+            return Thing.EMPTY_THING_ARRAY;
         }
         int count = 0;
         Thing t = null;
@@ -1574,4 +1587,5 @@ public final class Thing extends BaseObject implements
 	public Thing getFlattened() {
 		return new Thing(BaseObject.getFlattened(this));
 	}
+
 }

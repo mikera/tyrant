@@ -55,7 +55,7 @@ public class TestThing extends TyrantTestCase {
         assertTrue(person.invCount()>=2);
         Thing hasteEffect = Lib.create("haste");
         person.addThing(hasteEffect);
-        assertEquals(2, person.invCount());
+        assertTrue(person.invCount()>=2);
         assertSame(carrot, person.getInventory()[0]);
         assertSame(hasteEffect, person.getInventory()[1]);
     }
@@ -106,11 +106,12 @@ public class TestThing extends TyrantTestCase {
     }
 
     public void testAddThingWithStacking() {
-        Thing carrots = Lib.create("9 carrot");
+    	Thing carrots = Lib.create("9 carrot");
         person.addThing(carrots);
         person.addThingWithStacking(Lib.create("5 carrot"));
         assertTrue(person.invCount()>=1);
-        Thing inInventory = person.getInventory()[0];
+        Thing[] inv=person.getInventory();
+        Thing inInventory = person.getInventory()[person.invCount()-1];
         assertEquals(carrots, inInventory);
         assertEquals(14, inInventory.getNumber());
         assertEquals(14, carrots.getNumber());
@@ -378,7 +379,7 @@ public class TestThing extends TyrantTestCase {
         assertEquals("chicken leg",foodArray[0].getString("Name"));
         assertEquals("dead fly",foodArray[1].getString("Name"));
         Thing[] emptyArray = person.getFlaggedItems("IsScroll");
-        assertNull(emptyArray);
+        assertTrue(emptyArray==null);
     }
 
     public void testGetFlaggedContents() {
