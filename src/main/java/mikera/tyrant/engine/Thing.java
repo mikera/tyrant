@@ -55,8 +55,8 @@ public final class Thing extends BaseObject implements
 	/**
 	 * x-position of thing
 	 * 
-	 * Precise definition dependant on the owner
-	 * e.g. if place is an instanc of Map
+	 * Precise definition dependent on the owner
+	 * e.g. if place is an instance of Map
 	 * Then x is the column number of the Thing's location
 	 */
 	public int x;
@@ -64,8 +64,8 @@ public final class Thing extends BaseObject implements
 	/**
 	 * y-position of thing
 	 * 
-	 * Precise definition dependant on the owner
-	 * e.g. if place is an instanc of Map
+	 * Precise definition dependent on the owner
+	 * e.g. if place is an instance of Map
 	 * Then y is the column number of the Thing's location
 	 */
 	public int y;
