@@ -27,6 +27,8 @@ import java.util.zip.ZipOutputStream;
  * @author Mike
  */
 
+
+
 import mikera.engine.BaseObject;
 import mikera.tyrant.author.MapMaker;
 import mikera.tyrant.engine.Lib;
@@ -70,7 +72,7 @@ public final class Game extends BaseObject {
     // Flag that shows if save() call is first or no
     private static boolean saveHasBeenCalledAlready = true;
 
-	// Thread for recieveing user input
+	// Thread for receiving user input
 	public static Thread thread;
 
 	public static int seed() {
@@ -409,7 +411,8 @@ public final class Game extends BaseObject {
      * 
      * @return
      */
-    public HashMap<String,Map> getMapStore() {
+    @SuppressWarnings("unchecked")
+	public HashMap<String,Map> getMapStore() {
 		HashMap<String,Map> h=(HashMap<String,Map>)Game.instance().get("MapStore");
     	if (h==null) {
     		h=new HashMap<>();
@@ -418,7 +421,8 @@ public final class Game extends BaseObject {
     	return h;
     }
     
-    private HashMap<String, ArrayList<Thing>> getMapObjectStore() {
+    @SuppressWarnings("unchecked")
+	private HashMap<String, ArrayList<Thing>> getMapObjectStore() {
 		HashMap<String, ArrayList<Thing>> h=(HashMap<String, ArrayList<Thing>>)Game.instance().get("MapObjectStore");
     	if (h==null) {
     		h=new HashMap<>();

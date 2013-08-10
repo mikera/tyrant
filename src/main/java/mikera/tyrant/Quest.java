@@ -16,6 +16,7 @@ import mikera.tyrant.util.Text;
 public class Quest {
 
 	// get all quests currently active
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Thing> getQuests() {
 		if (Game.hero()==null) return null;
 		
@@ -55,6 +56,7 @@ public class Quest {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void addQuest(Thing h, Thing q) {
 		ArrayList<Thing> qs=(ArrayList<Thing>)h.get("Quests");
 		if (qs==null) {
@@ -86,12 +88,14 @@ public class Quest {
 		return false;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private static ArrayList<Thing> getSubQuests(Thing q) {
 		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
 		if (qs==null) qs= new ArrayList<>();
 		return qs;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void addSubQuest(Thing q, Thing sq) {
 		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
 		if (qs==null) {

@@ -739,6 +739,7 @@ public class Hero {
 		return i.intValue();
 	}
 	
+	@SuppressWarnings("unchecked")
 	private static HashMap<String, Integer> getKillHashMap() {
 		Thing h=Game.hero();
 		HashMap<String, Integer> hm=(HashMap<String, Integer>)h.get("Kills");

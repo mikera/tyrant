@@ -1114,6 +1114,7 @@ public class Spell {
 		addDefensiveSpell(t);		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static ArrayList<String> getSpellNames() {
 		return (ArrayList<String>)spellNames.clone();
 	}
