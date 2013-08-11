@@ -46,7 +46,7 @@ public class BaseObject implements Cloneable, Serializable {
     public static HashMap<String,Count> getCounter=new HashMap<>();
 
     public BaseObject() {
-        // no properties for default baseobject
+        // no properties for default BaseObject
     }
     
 	@SuppressWarnings("unchecked")
