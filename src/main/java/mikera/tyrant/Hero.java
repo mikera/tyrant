@@ -1028,7 +1028,7 @@ public class Hero {
 		/////////////
 		// religion
 		String god=h.getString("Religion");
-		sb.append("You were brough up to worship "+god+". ");
+		sb.append("You were brought up to worship "+god+". ");
 		switch (Rand.d(5)) {
 		case 1:
 			sb.append("You avoided religious ceremonies, as you disliked your priest intensely. You even came to feel that he had laid a curse upon you. ");
