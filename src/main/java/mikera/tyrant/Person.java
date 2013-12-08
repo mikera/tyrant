@@ -377,10 +377,11 @@ public class Person {
 
 			if (giver.getStat(RPG.ST_SKILLPOINTS) <= 0) {
 				final String[] needMoreExperience = {
-						"You need to gain experience before I can teach you any more!",
-						"Sorry, I can't teach you any more now - you need to gain experience before.",
-						"I can't teach you any more now, sorry - you need to gain experience before.",
-						"Unfortunately, I can't teach you any more now - you need to gain experience before." };
+						"You need to gain more experience before I can teach you, sorry!",
+						"Sorry, I can't teach you - you need to gain more experience first.",
+						"I can't teach you now, sorry - you need to gain more experience first.",
+						"Unfortunately, I can't teach you - you need to gain more experience first.",
+						"I cannot teach you until you gain more experience, sorry!"};
 				Game.message("\"" + RPG.pick(needMoreExperience) + "\"");
 				return true;
 			}
@@ -405,8 +406,7 @@ public class Person {
 						"My friend, I can give you some free training to improve your skills.",
 						"I like you; I can give you some free training to improve your skills.",
 						"I like you; I offer some free training to improve your skills.",
-						"I can give you some free training to improve your skills.",
-						"Well, I can give you some free training to improve your skills." };
+						"I can give you some free training to improve your skills, my friend.",};
 				Game.message("You talk to " + t.getTheName());
 				Game.message("\"" + RPG.pick(phrases) + "\"");
 				Game.message("Do you agree? (y/n)");
@@ -415,7 +415,8 @@ public class Person {
 							"Come back later if you change your mind!",
 							"You can come back later if you change your mind!",
 							"You don't want FREE training? Anyway, come back later if you change your mind.",
-							"You don't want training for FREE? What a guy :-) !" };
+							"You don't want training for FREE? Haha, what a guy!",
+							"You don't want training that's FREE? Well, ok...come back later if you change your mind."};
 					Game.message("\"" + RPG.pick(comeBackLater) + "\"");
 					return true;
 				}
@@ -434,7 +435,9 @@ public class Person {
 			} else {
 				final String laterThen[] = { "Maybe later then!",
 						"Well, maybe later then.",
-						"Anyway, you can come back later." };
+						"Anyway, you can come back later.",
+						"Maybe some other time.",
+						"Well, maybe some other time."};
 				Game.message("\"" + RPG.pick(laterThen) + "\"");
 			}
 			return true;
@@ -502,6 +505,8 @@ public class Person {
 			answers.add("short");
 			riddles.add("What do you lose every time you stand up?");
 			answers.add("lap");
+			riddles.add("Give me food and I will live but give me water and I will die. What am I?");
+			answers.add("fire");
 		}
 
 		static {
