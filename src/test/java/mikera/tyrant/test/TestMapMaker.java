@@ -11,6 +11,8 @@ import junit.framework.TestCase;
 public class TestMapMaker extends TestCase {
     private MapMaker mapMaker;
     private StringBuffer actual;
+    
+    private static final String NL=MapMaker.NL;
 
     protected void setUp() throws Exception {
         actual = new StringBuffer();
@@ -38,11 +40,11 @@ public class TestMapMaker extends TestCase {
         Map map = new Map(3, 3);
         map.fillArea(0, 0, map.getWidth(), map.getHeight(), Tile.CAVEFLOOR);
         String expected =
-            "---Tiles---\r\n" +
-            "aaa\r\n" + 
-            "aaa\r\n" + 
-            "aaa\r\n" +
-            "---Tiles---\r\n";
+            "---Tiles---" + NL +
+            "aaa" + NL +
+            "aaa" + NL +
+            "aaa" + NL +
+            "---Tiles---" + NL;
         mapMaker.storeTiles(map, actual);
         assertEquals(expected, actual.toString());
     }
@@ -52,11 +54,11 @@ public class TestMapMaker extends TestCase {
         map.fillArea(0, 0, map.getWidth(), map.getHeight(), Tile.CAVEFLOOR);
         map.fillArea(1, 1, 1, 1, Tile.ICEFLOOR);
         String expected =
-            "---Tiles---\r\n" +
-            "aaa\r\n" + 
-            "aba\r\n" + 
-            "aaa\r\n" +
-            "---Tiles---\r\n";
+            "---Tiles---" + NL +
+            "aaa" + NL +
+            "aba" + NL +
+            "aaa" +NL +
+            "---Tiles---" + NL;
         mapMaker.storeTiles(map, actual);
         assertEquals(expected, actual.toString());
     }
@@ -66,9 +68,9 @@ public class TestMapMaker extends TestCase {
         map.fillArea(1, 0, 1, 0, Tile.ICEFLOOR);
         map.fillArea(2, 0, 2, 0, Tile.LAVA);
         String expected =
-            "---Tiles---\r\n" +
-            "abc\r\n" + 
-            "---Tiles---\r\n";
+            "---Tiles---" + NL +
+            "abc" + NL +
+            "---Tiles---" + NL;
         mapMaker.storeTiles(map, actual);
         assertEquals(expected, actual.toString());
     }
