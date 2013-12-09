@@ -2,6 +2,7 @@ package mikera.tyrant.test;
 
 import junit.framework.TestCase;
 import mikera.tyrant.author.Designer;
+import mikera.tyrant.author.MapMaker;
 import mikera.tyrant.author.ThingMaker;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
@@ -10,6 +11,8 @@ import mikera.tyrant.engine.Thing;
 public class TestThingMaker extends TestCase {
     private ThingMaker thingMaker;
     private StringBuffer actual;
+
+    private static final String NL=MapMaker.NL;
 
     protected void setUp() throws Exception {
         thingMaker = new ThingMaker();
@@ -22,11 +25,11 @@ public class TestThingMaker extends TestCase {
         map.addThing("parsnip", 1, 0);
         map.addThing("beefcake", 1, 0);
         String expected = 
-            "\r\n---Things---\r\n" + 
-            "0x0 carrot\r\n" + 
-            "1x0 beefcake\r\n" +
-            "1x0 parsnip\r\n" + 
-            "---Things---\r\n" + 
+            "\r\n---Things---" + NL + 
+            "0x0 carrot" + NL + 
+            "1x0 beefcake" + NL +
+            "1x0 parsnip" + NL + 
+            "---Things---" + NL + 
             "";
         thingMaker.storeThings(map, actual);
         assertEquals(expected, actual.toString());
@@ -36,9 +39,9 @@ public class TestThingMaker extends TestCase {
         Map map = new Map(3, 3);
         map.addThing(Designer.getFlagged("IsFood"), 0, 0);
         String expected = 
-            "\r\n---Things---\r\n" + 
-            "0x0 [IsFood]\r\n" + 
-            "---Things---\r\n" + 
+            "\r\n---Things---"+ NL  + 
+            "0x0 [IsFood]"+ NL  + 
+            "---Things---"+ NL  + 
             "";
         thingMaker.storeThings(map, actual);
         assertEquals(expected, actual.toString());
@@ -53,13 +56,13 @@ public class TestThingMaker extends TestCase {
         map.addThing("parsnip", 1, 0);
         map.addThing("beefcake", 1, 0);
         String expected = 
-            "\r\n---Things---\r\n" + 
-            "0x0 carrot\r\n" + 
-            ThingMaker.SPACES_3 + "Level = 16\r\n" + 
-            ThingMaker.SPACES_3 + "Number = 6\r\n" + 
-            "1x0 beefcake\r\n" + 
-            "1x0 parsnip\r\n" +
-            "---Things---\r\n"; 
+            "\r\n---Things---"+ NL  + 
+            "0x0 carrot" + NL + 
+            ThingMaker.SPACES_3 + "Level = 16" + NL + 
+            ThingMaker.SPACES_3 + "Number = 6" + NL + 
+            "1x0 beefcake" + NL + 
+            "1x0 parsnip" + NL +
+            "---Things---"+ NL ; 
         thingMaker.storeThings(map, actual);
         assertEquals(expected, actual.toString());
     }
@@ -67,16 +70,16 @@ public class TestThingMaker extends TestCase {
 
     public void testThings_create() throws Exception {
         String mapText = "" +
-                "---Legend---\r\n" + 
-                "Width = 3 \r\n" + 
-                "Height = 3\r\n" + 
-                "EntranceX = 3 \r\n" + 
-                "EntranceY = 3\r\n" + 
-                "---Legend---\r\n" + 
-                "---Things---\r\n" + 
-                "0x0 carrot\r\n" + 
-                "2x2 carrot\r\n" +
-                "2x2 parsnip\r\n" +
+                "---Legend---"+ NL  + 
+                "Width = 3 " + NL + 
+                "Height = 3" + NL + 
+                "EntranceX = 3 " + NL + 
+                "EntranceY = 3" + NL + 
+                "---Legend---" + NL + 
+                "---Things---" + NL + 
+                "0x0 carrot" + NL + 
+                "2x2 carrot" + NL +
+                "2x2 parsnip" + NL +
                 "---Things---";
         Map map = new Map(3, 3);
         thingMaker.addThingsToMap(map, mapText);
@@ -87,12 +90,12 @@ public class TestThingMaker extends TestCase {
     
     public void testThings_createWithAttributes() throws Exception {
         String mapText = "" +
-                "---Things---\r\n" + 
-                "0x0 carrot\r\n" +
-                ThingMaker.SPACES_3 + "Level = 16\r\n" + 
-                ThingMaker.SPACES_3 + "Number = 6\r\n" + 
-                "2x2 carrot\r\n" +
-                "2x2 parsnip\r\n" +
+                "---Things---" + NL + 
+                "0x0 carrot" + NL +
+                ThingMaker.SPACES_3 + "Level = 16" + NL + 
+                ThingMaker.SPACES_3 + "Number = 6" + NL + 
+                "2x2 carrot" + NL +
+                "2x2 parsnip" + NL +
                 "---Things---";
         Map map = new Map(3, 3);
         thingMaker.addThingsToMap(map, mapText);
