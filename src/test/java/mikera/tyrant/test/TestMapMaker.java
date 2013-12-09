@@ -104,19 +104,19 @@ public class TestMapMaker extends TestCase {
     
     public void testMake() throws Exception {
         String mapText = 
-            "---Tiles---\r\n" + 
-            "abcd\r\n" + 
-            "---Tiles---\r\n" + 
-            "\r\n" + 
-            "---Legend---\r\n" + 
-            "a = grass\r\n" + 
-            "b = wall\r\n" + 
-            "c = stone floor\r\n" + 
-            "d = posh floor\r\n" + 
-            "Width = 4\r\n" +
-            "Height = 1\r\n" +
-            "EntranceX = 1\r\n" +
-            "EntranceY = 1\r\n" +
+            "---Tiles---" + NL +
+            "abcd" + NL +
+            "---Tiles---" + NL +
+            "" + NL +
+            "---Legend---" + NL +
+            "a = grass" + NL +
+            "b = wall" + NL +
+            "c = stone floor" + NL +
+            "d = posh floor" + NL +
+            "Width = 4" +NL +
+            "Height = 1" +NL +
+            "EntranceX = 1" +NL +
+            "EntranceY = 1" +NL +
             "---Legend---";
         Map map = mapMaker.create(mapText, true);
         assertEquals(Tile.GRASS, map.getTile(0, 0));
