@@ -24,8 +24,8 @@ public class TestThingMaker extends TestCase {
         map.addThing("carrot", 0, 0);
         map.addThing("parsnip", 1, 0);
         map.addThing("beefcake", 1, 0);
-        String expected = 
-            "\r\n---Things---" + NL + 
+        String expected = NL +
+            "---Things---" + NL + 
             "0x0 carrot" + NL + 
             "1x0 beefcake" + NL +
             "1x0 parsnip" + NL + 
@@ -38,13 +38,15 @@ public class TestThingMaker extends TestCase {
     public void testStoringIs() throws Exception {
         Map map = new Map(3, 3);
         map.addThing(Designer.getFlagged("IsFood"), 0, 0);
-        String expected = 
-            "\r\n---Things---"+ NL  + 
+        String expected = NL +
+            "---Things---"+ NL  + 
             "0x0 [IsFood]"+ NL  + 
             "---Things---"+ NL  + 
             "";
         thingMaker.storeThings(map, actual);
-        assertEquals(expected, actual.toString());
+        String actuals=actual.toString();
+        assertEquals(expected.length(),actuals.length());
+        assertEquals(expected, actuals);
     }
     
     public void testThings_modififed() throws Exception {
@@ -55,8 +57,8 @@ public class TestThingMaker extends TestCase {
         map.addThing(carrot, 0, 0);
         map.addThing("parsnip", 1, 0);
         map.addThing("beefcake", 1, 0);
-        String expected = 
-            "\r\n---Things---"+ NL  + 
+        String expected = NL +
+            "---Things---"+ NL  + 
             "0x0 carrot" + NL + 
             ThingMaker.SPACES_3 + "Level = 16" + NL + 
             ThingMaker.SPACES_3 + "Number = 6" + NL + 

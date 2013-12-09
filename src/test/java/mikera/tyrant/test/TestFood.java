@@ -44,6 +44,7 @@ public class TestFood extends TyrantTestCase {
     
     public void testEating_andRemoving() throws Exception {
         Thing apple = Lib.create("apple");
+        hero.removeAllItems();
         hero.addThing(apple);
         int howHungry = hero.getStat(RPG.ST_HUNGERTHRESHOLD) * 3;
         int nutritionalValue = Food.nutritionValue(apple, hero);

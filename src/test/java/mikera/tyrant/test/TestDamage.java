@@ -25,14 +25,14 @@ public class TestDamage extends TyrantTestCase {
         Thing scroll = Lib.create("scroll of total identification");
         Thing bagScroll = Lib.create("invulnerable scroll case");
         
-        int startInventory=hero.invCount();
+        hero.removeAllItems();
         hero.addThing(carrots);
         hero.addThing(scroll);
         hero.addThing(bagScroll);
         hero.wield(bagScroll);
-        assertEquals(startInventory+3, hero.invCount());
+        assertEquals(3, hero.invCount());
         Damage.damageInventory(hero, 100000, RPG.DT_DISINTEGRATE, 100);
-        assertEquals(startInventory+1, hero.invCount());
+        assertEquals(1, hero.invCount());
     }
     public void testInventoryDamage_bagProtectionFire() throws Exception {
         Thing hero = Lib.create("rat");
