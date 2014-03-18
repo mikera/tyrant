@@ -68,6 +68,7 @@ public class TestMonster extends TyrantTestCase {
 
     public void testStealingMagic() throws Exception {
         Monster.SpecialHit specialHit = new Monster.SpecialHit(Monster.TAKE_THE_MAGIC_AND_RUN, 100);
+        person.removeAllItems();
         person.addThing(Lib.create("[IsScroll]"));
         Thing bunny = Lib.create("rabbit");
         assertTrue(specialHit.stealSomething(person, bunny, "IsMagicItem"));
@@ -76,6 +77,7 @@ public class TestMonster extends TyrantTestCase {
 
     public void testStealingMultipleThings() throws Exception {
         Monster.SpecialHit specialHit = new Monster.SpecialHit(Monster.TAKE_THE_MAGIC_AND_RUN, 100);
+        person.removeAllItems();
         person.addThing(Lib.create("[IsScroll]"));
         person.addThing(Lib.create("[IsPotion]"));
         Thing bunny = Lib.create("rabbit");
