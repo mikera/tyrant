@@ -9,6 +9,7 @@ import mikera.tyrant.engine.Thing;
 public class TestDamage extends TyrantTestCase {
     public void testInventoryDamage() throws Exception {
         Thing rabbit = Lib.create("rabbit");
+       	rabbit.removeAllItems();
         Thing carrots = Lib.create("10 carrot");
         Thing parsnips = Lib.create("parsnip");
         rabbit.addThing(carrots);
