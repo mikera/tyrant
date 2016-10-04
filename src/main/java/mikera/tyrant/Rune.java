@@ -147,7 +147,8 @@ public class Rune {
 	private static class RuneScribeScript extends Script {
 		private static final long serialVersionUID = 3762820367848585273L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
     		Thing user=e.getThing("User");
     		
     		int skill=user.getStat(Skill.RUNELORE)-1;
@@ -184,7 +185,8 @@ public class Rune {
 	private static class RuneUseScript extends Script {
 		private static final long serialVersionUID = 3258688810429592888L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
     		Thing user=e.getThing("User");
     		
     		Thing it=Game.selectItem("Select an item to apply the rune to:",user.getItems());

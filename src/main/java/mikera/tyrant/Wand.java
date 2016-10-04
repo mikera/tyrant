@@ -74,7 +74,8 @@ public class Wand  {
     private static class WandScript extends Script {
     	private static final long serialVersionUID = 8376119664408202073L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
     		int charges=t.getStat("Charges");
     		Thing user=e.getThing("User");
     		if (charges>0) {
@@ -93,7 +94,8 @@ public class Wand  {
     private static class DestroyWandScript extends Script {
         private static final long serialVersionUID = 6191533767727822085L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             String spell=t.getString("WandSpell");
             Thing s=Spell.create(spell);
             Spell.castAtLocation(s,null,(Map)e.get("DeathMap"),e.getStat("DeathX"),e.getStat("DeathY"));

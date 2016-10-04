@@ -117,7 +117,8 @@ public class Trap {
 	protected static class SpellTrapTrigger extends Script {
 		private static final long serialVersionUID = 4049353132389774130L;
 
-        public boolean handle(Thing rt, Event e) {
+        @Override
+		public boolean handle(Thing rt, Event e) {
 			Map map=rt.getMap();
 			int tx=rt.x;
 			int ty=rt.y;
@@ -143,7 +144,8 @@ public class Trap {
 	protected static class PitTrapTrigger extends Script {
 		private static final long serialVersionUID = 3257008748072613943L;
 
-        public boolean handle(Thing trap, Event e) {
+        @Override
+		public boolean handle(Thing trap, Event e) {
 			Map map=trap.getMap();
 			
 			Thing tt=e.getThing("Target");
@@ -179,7 +181,8 @@ public class Trap {
 	protected static class AmbushTrapTrigger extends Script {
 		private static final long serialVersionUID = 3258135751886516790L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Map map=t.getMap();
 			int level=map.getLevel();
 			Thing a=Lib.createType("IsMonster",level);
@@ -207,7 +210,8 @@ public class Trap {
 	protected static class RockfallTrapTrigger extends Script {
 		private static final long serialVersionUID = 4121129234254214969L;
 
-        public boolean handle(Thing rt, Event e) {
+        @Override
+		public boolean handle(Thing rt, Event e) {
 			Map map=rt.getMap();
 			int tx=rt.x;
 			int ty=rt.y;
@@ -233,7 +237,8 @@ public class Trap {
 	protected static class AttributeTrapTrigger extends Script {
 		private static final long serialVersionUID = 3256721771276022839L;
 
-        public boolean handle(Thing rt, Event e) {
+        @Override
+		public boolean handle(Thing rt, Event e) {
 			Thing tt=e.getThing("Target");
 			
 			rt.remove();

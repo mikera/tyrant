@@ -257,10 +257,12 @@ public final class Game extends BaseObject {
 
 	public InputHandler createInputHandler() {
 		InputHandler ih=new InputHandler() {
+			@Override
 			public char getCharacter() {
 				return getKeyEvent().getKeyChar();
 			}
 			
+			@Override
 			public KeyEvent getKeyEvent() {
 				getUserinterface().getInput();
 				return getUserinterface().keyevent;
@@ -1159,6 +1161,7 @@ public final class Game extends BaseObject {
     
     public static void asynchronousCreateLib() {
 		new Thread(new Runnable() {
+			@Override
 			public void run() {
 				Lib.instance();
 			}

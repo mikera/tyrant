@@ -41,7 +41,8 @@ public class TyrantTestCase extends TestCase {
             this.keyEvent = keyEvent;
         }
 
-        public void getInput() {
+        @Override
+		public void getInput() {
             keyevent = new KeyEvent(new JButton(), 0, 0, 0, keyEvent, aChar);
             if(next != null) next.getInput();
         }
@@ -71,7 +72,8 @@ public class TyrantTestCase extends TestCase {
         Game.instance().setHero(h);
     }
     
-    @BeforeClass
+    @Override
+	@BeforeClass
     protected void setUp() throws Exception {
         RPG.setRandSeed(0);
         setTestHero(Hero.createHero("bob", "human", "fighter"));

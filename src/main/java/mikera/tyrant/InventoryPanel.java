@@ -141,7 +141,8 @@ public class InventoryPanel extends Screen implements ItemSelectable {
     
 	private void selfHookItemListener() {
         selfItemListener = new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
+            @Override
+			public void itemStateChanged(ItemEvent e) {
                 removeItemListener(selfItemListener);
                 Game.simulateKey(charForThing);
                 addItemListener(selfItemListener);
@@ -161,7 +162,8 @@ public class InventoryPanel extends Screen implements ItemSelectable {
         filter = new OrFilter(rougeLikeFilter, new NameFilter(), new IsFilter());
 	
         addMouseListener(new MouseAdapter() {
-        	public void mousePressed(MouseEvent e) {
+        	@Override
+			public void mousePressed(MouseEvent e) {
         		int y=e.getY();
         		for (int i = 0; i < Math.min(things.length - (page * PAGESIZE), PAGESIZE); i++) {
                     int ypos = getYPosition(i);
@@ -179,7 +181,8 @@ public class InventoryPanel extends Screen implements ItemSelectable {
     public void selfHookKeyEvents() {
         removeKeyListener(Game.getQuestapp().keyadapter);
         addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
+            @Override
+			public void keyPressed(KeyEvent e) {
                 handleKeyEvent(e);
             }
         });
@@ -229,6 +232,7 @@ public class InventoryPanel extends Screen implements ItemSelectable {
 		return s;
 	}
 	
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 
@@ -327,7 +331,8 @@ public class InventoryPanel extends Screen implements ItemSelectable {
         filterThings(null);
     }
     
-    public synchronized void addItemListener(ItemListener l) {
+    @Override
+	public synchronized void addItemListener(ItemListener l) {
         if (l == null) { return; }
         itemListener = AWTEventMulticaster.add(itemListener, l);
     }
@@ -338,12 +343,14 @@ public class InventoryPanel extends Screen implements ItemSelectable {
         itemListener.itemStateChanged(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED, selected, ItemEvent.SELECTED));
     }
 
-    public void removeItemListener(ItemListener l) {
+    @Override
+	public void removeItemListener(ItemListener l) {
         if(itemListener == null) return;
         itemListener = AWTEventMulticaster.remove(itemListener, l);
     }
 
-    public Object[] getSelectedObjects() {
+    @Override
+	public Object[] getSelectedObjects() {
         return new Object[] {selected};
     }
 }

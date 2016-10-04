@@ -23,6 +23,7 @@ public class QuestApplication {
 		Frame f = new Frame("Tyrant - The Adventure - v"+Game.VERSION);
 		f.setBackground(Color.black);
 		f.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}

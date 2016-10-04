@@ -16,7 +16,8 @@ public class TestModifier extends TyrantTestCase {
     private Thing berry;
     private Thing berry2;
 
-    public void setUp() throws Exception {
+    @Override
+	public void setUp() throws Exception {
         super.setUp();
         rabbit = Lib.create("rabbit");
         berry = Lib.extend("berry", "base item");
@@ -72,6 +73,7 @@ public class TestModifier extends TyrantTestCase {
     @SuppressWarnings("serial")
 	public void testScripted() {
         berry.add("CarriedModifiers", Modifier.scripted("ST", new Script() {
+			@Override
 			public boolean handle(Thing t, Event e) {
 				Thing b=e.getThing("Source");
 				int num=b.getNumber();

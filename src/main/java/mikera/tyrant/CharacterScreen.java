@@ -39,6 +39,7 @@ public class CharacterScreen extends Screen {
 				+ ")", 8);
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		

@@ -27,7 +27,8 @@ public class RogueLikeFilter implements IThingFilter {
         types.put("/", "IsMissile");
     }
 
-    public boolean accept(Thing thing, String text) {
+    @Override
+	public boolean accept(Thing thing, String text) {
         if(text == null) return true;
         text = text.trim();
         if(text.length() == 0) return true;

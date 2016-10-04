@@ -28,6 +28,7 @@ public class LevelMapPanel extends TPanel {
 		super(Game.getQuestapp());
 	}
 	
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(200,150);
 	}
@@ -36,6 +37,7 @@ public class LevelMapPanel extends TPanel {
 		permanentMap=m;
 	}
 	
+	@Override
 	public void paint(Graphics g) {
 		
 		Map map;

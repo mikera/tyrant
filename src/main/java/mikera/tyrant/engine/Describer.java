@@ -38,6 +38,7 @@ public class Describer implements Description, java.io.Serializable {
 		this(n, pn, d, nt, GENDER_NEUTER);
 	}
 
+	@Override
 	public String getName(int number, int article) {
 		switch (article) {
 			case ARTICLE_NONE :
@@ -56,6 +57,7 @@ public class Describer implements Description, java.io.Serializable {
         return (pluralname != null) ? pluralname : (name + "s");
 	}
 
+	@Override
 	public String getDescriptionText() {
 		return (description == null)
 				? (Text.capitalise(name) + ".")

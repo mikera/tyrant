@@ -201,6 +201,7 @@ public class Quest {
 		q.set("IsPhysical",0);
 		q.set("Frequency",50);
 		q.set("OnQuestComplete",new Script() {
+			@Override
 			public boolean handle(Thing q, Event e) {
 				String desc=q.getString("Description");
 				
@@ -214,6 +215,7 @@ public class Quest {
 		
 		q=Lib.extend("kill quest","base quest");
 		q.addHandler("OnKill",new Script() {
+			@Override
 			public boolean handle(Thing q, Event e) {
 				Thing target=q.getThing("Target");
 				
@@ -227,6 +229,7 @@ public class Quest {
 		
 		q=Lib.extend("kill number quest","base quest");
 		q.addHandler("OnKill",new Script() {
+			@Override
 			public boolean handle(Thing q, Event e) {
 				int target=q.getStat("TargetCount");
 				int current=q.getStat("CurrentCount");
@@ -265,6 +268,7 @@ public class Quest {
 		
 		q=Lib.extend("visit map quest","base quest");
 		q.addHandler("OnAction",new Script() {
+			@Override
 			public boolean handle(Thing q, Event e) {
 				Map targetMap=(Map)q.get("TargetMap");
 				Map heroMap=Game.hero().getMap();
@@ -291,6 +295,7 @@ public class Quest {
 		
 		q=Lib.extend("meet quest","base quest");
 		q.addHandler("OnAction",new Script() {
+			@Override
 			public boolean handle(Thing q, Event e) {
 				Thing target=q.getThing("Target");
 				
@@ -315,6 +320,7 @@ public class Quest {
 		
 		q=Lib.extend("sequence quest","base quest");
 		Script subQuestScript=new Script() {
+			@Override
 			public boolean handle(Thing q, Event e) {
 				ArrayList<Thing> sqs=getSubQuests(q);
 				

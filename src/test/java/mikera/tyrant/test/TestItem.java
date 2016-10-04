@@ -193,7 +193,8 @@ public class TestItem extends TyrantTestCase {
         final Thing carrot = Lib.create("carrot");
         final boolean[] handleCalled = new boolean[] {false};
         carrot.addHandler("OnBob", new EventHandler() {
-            public boolean handle(Thing thing, Event event) {
+            @Override
+			public boolean handle(Thing thing, Event event) {
                 assertEquals(carrot, thing);
                 handleCalled[0] = true;
                 return true;
@@ -211,19 +212,22 @@ public class TestItem extends TyrantTestCase {
         final String[] value = new String[] {""};
         final boolean[] toReturn = new boolean[] {true};
         carrot.addHandler("OnBob", new EventHandler() {
-            public boolean handle(Thing thing, Event event) {
+            @Override
+			public boolean handle(Thing thing, Event event) {
                 value[0] += "a";
                 return toReturn[0];
             }
         });
         carrot.addHandler("OnBob", new EventHandler() {
-            public boolean handle(Thing thing, Event event) {
+            @Override
+			public boolean handle(Thing thing, Event event) {
                 value[0] += "b";
                 return toReturn[0];
             }
         });
         carrot.addHandler("OnBob", new EventHandler() {
-            public boolean handle(Thing thing, Event event) {
+            @Override
+			public boolean handle(Thing thing, Event event) {
                 value[0] += "c";
                 return toReturn[0];
             }

@@ -227,7 +227,8 @@ public class AI implements Serializable {
 	public static class AIScript extends Script {
 		private static final long serialVersionUID = 3257562910623609394L;
 
-        public boolean handle(Thing m, Event e) {
+        @Override
+		public boolean handle(Thing m, Event e) {
 			int time=e.getStat("Time");
 			
 			// bail out if no time to perform action

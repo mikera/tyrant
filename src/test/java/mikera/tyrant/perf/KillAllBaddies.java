@@ -24,7 +24,8 @@ public class KillAllBaddies implements IWork {
     	// empty
     }
     
-    public void run() {
+    @Override
+	public void run() {
         boolean originalGetSet = BaseObject.GET_SET_DEBUG;
 //        int ticks = -1;
         try {
@@ -47,7 +48,8 @@ public class KillAllBaddies implements IWork {
 //            libInspector.go(new String[] {"IsMobile"});
     }
 
-    public void setUp() {
+    @Override
+	public void setUp() {
         RPG.setRandSeed(0);
         Lib.clear();
         hero = Hero.createHero("bob", "human", "fighter");
@@ -77,7 +79,8 @@ public class KillAllBaddies implements IWork {
         return false;
     }
     
-    public String getMessage() {
+    @Override
+	public String getMessage() {
         return "";
     }
 }

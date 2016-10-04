@@ -142,7 +142,8 @@ public class WorldMap {
 	private static class EncounterAction extends Script {
 		private static final long serialVersionUID = -5212739439548360407L;
 
-        public boolean handle(Thing t, Event ae) {
+        @Override
+		public boolean handle(Thing t, Event ae) {
 			Thing h=Game.hero();
 			// Game.warn("EncounterAction: "+time);
 			encounter(h.getMap(),h.x,h.y);

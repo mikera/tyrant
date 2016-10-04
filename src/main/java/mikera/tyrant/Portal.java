@@ -31,6 +31,7 @@ public class Portal  {
     
 	@SuppressWarnings("serial")
 	private static class PortalAction extends Script {
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Map m=t.getMap();
 			

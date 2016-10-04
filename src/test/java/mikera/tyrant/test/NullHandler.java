@@ -11,19 +11,23 @@ import mikera.tyrant.TPanel;
 
 public class NullHandler implements IMessageHandler {
     public List<String> messages;
-    public void clear() {
+    @Override
+	public void clear() {
         messages.clear();
     }
 
-    public void add(String s) {
+    @Override
+	public void add(String s) {
         messages.add(s);
     }
 
-    public void add(String s, Color c) {
+    @Override
+	public void add(String s, Color c) {
         add(s);
     }
 
-    public TPanel getPanel() {
+    @Override
+	public TPanel getPanel() {
         return null;
     }
 

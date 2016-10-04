@@ -36,7 +36,8 @@ public class TestFilters extends TyrantTestCase {
         assertTrue("" + bone + "should be type of weapon", filter.accept(bone, "("));
     }
 
-    protected void setUp() throws Exception {
+    @Override
+	protected void setUp() throws Exception {
         super.setUp();
         carrot = Lib.create("carrot");
         cloak = Lib.create("light cloak");

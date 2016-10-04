@@ -11,7 +11,8 @@ public class Door {
 	public static class DoorCreation extends Script {
 		private static final long serialVersionUID = 3904958655442006583L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			String keyName=t.getString("KeyName");
 			if (keyName==null) {
 				t.set("KeyName",chooseKey(t.getLevel()));
@@ -23,7 +24,8 @@ public class Door {
     public static class DoorBump extends Script {
         private static final long serialVersionUID = 3904958655442006583L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing user=e.getThing("Target");
 			e.set("ActionTaken",useDoor(user,t));
 			return false;
@@ -39,7 +41,8 @@ public class Door {
     public static class RiddleDoorBump extends Script {
         private static final long serialVersionUID = -3945891430842518588L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             Thing user = e.getThing("Target");
             e.set("ActionTaken",useRiddleDoor(user,t));
             return false;
@@ -66,7 +69,8 @@ public class Door {
     public static class QuestDoorBump extends Script {
         private static final long serialVersionUID = 8212975466499234213L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             Thing user = e.getThing("Target");
             e.set("ActionTaken",useQuestDoor(user,t));
             return false;
@@ -90,7 +94,8 @@ public class Door {
     public static class DoorDamage extends Script {
 		private static final long serialVersionUID = 3904677184760132917L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing[] ts=t.getFlaggedContents("IsTrap");
 			Map m=t.getMap();
 			
@@ -342,7 +347,8 @@ public class Door {
 	    t.addHandler("OnOpen",new Script() {
 	    	private static final long serialVersionUID = 4120849971320142133L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 	    		if (t.isVisible(Game.hero())) {
 	    			Game.message(t.getTheName()+" crumbles into dust");
 	    		}
@@ -394,7 +400,8 @@ public class Door {
 	    t.addHandler("OnAction",new Script() {
 	    	private static final long serialVersionUID = 3761692294637435190L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 	    		int time=e.getStat("Time");
 	    		Map map=t.getMap();
 	    		if (map==null) return false;
@@ -459,7 +466,8 @@ public class Door {
 	    t.set("OnAction",new Script() {
 	    	private static final long serialVersionUID = 3258413915376333623L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 	    		Map m=t.getMap();
 	    		if (m.getFlag("IsHostile")) {
 	    			Door.setOpen(t,false);

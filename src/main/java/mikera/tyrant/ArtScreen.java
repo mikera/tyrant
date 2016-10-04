@@ -63,6 +63,7 @@ public class ArtScreen extends Screen {
 		title = s;
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		if ((page * pagesize) > arts.length)
 			page = 0;

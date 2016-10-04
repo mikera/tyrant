@@ -13,6 +13,7 @@ public class InputHandler {
 	
 	public static InputHandler repeat(final char c) {
 		return new InputHandler() {
+			@Override
 			public KeyEvent getKeyEvent() {
 				return new KeyEvent(Game.getQuestapp(),
                                     KeyEvent.KEY_PRESSED,

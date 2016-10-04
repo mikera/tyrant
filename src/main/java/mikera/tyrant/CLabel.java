@@ -22,12 +22,14 @@ public class CLabel extends Component {
 		return text;
 	}
     
-    public void paint(Graphics g) {
+    @Override
+	public void paint(Graphics g) {
         super.paint(g);
         g.drawString(text, 20, 0);
     }
     
-    public Dimension getMinimumSize() {
+    @Override
+	public Dimension getMinimumSize() {
         Image image = QuestApp.paneltexture; 
         
         if (image == null) {
@@ -36,7 +38,8 @@ public class CLabel extends Component {
         return new Dimension(image.getWidth(null), image.getHeight(null));
     }
 
-    public Dimension getPreferredSize() {
+    @Override
+	public Dimension getPreferredSize() {
         return getMinimumSize();
     }
 

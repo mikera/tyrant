@@ -24,7 +24,8 @@ public class MoreKilling implements IWork {
     	// empty constructor
     }
     
-    public void run() {
+    @Override
+	public void run() {
         boolean originalGetSet = BaseObject.GET_SET_DEBUG;
         try {
             while (hero.x < (map.getWidth() - 2)) {
@@ -37,7 +38,8 @@ public class MoreKilling implements IWork {
         }    
     }
 
-    public void setUp() {
+    @Override
+	public void setUp() {
         RPG.setRandSeed(0);
         Lib.clear();
         hero = Hero.createHero("bob", "human", "fighter");
@@ -67,7 +69,8 @@ public class MoreKilling implements IWork {
         gameScreen.map = map;
     }
     
-    public String getMessage() {
+    @Override
+	public String getMessage() {
         return "";
     }
 }

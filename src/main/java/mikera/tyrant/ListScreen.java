@@ -89,6 +89,7 @@ public class ListScreen extends Screen {
 		title = s;
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		

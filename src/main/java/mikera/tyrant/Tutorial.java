@@ -48,7 +48,8 @@ public class Tutorial {
         private void tryToSayHello(final Thing h) {
             Tutorial.sayHello(h, 0.3, 0.1, 0.1);
         }
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             chattedToHero = true;
             final Thing h = e.getThing("Target");
             t.incStat("ChatCount",1);
@@ -222,7 +223,8 @@ public class Tutorial {
                     "Talk to her: she can say something interesting.");
             }
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
                 chattedToHero = true;
                 this.t = t;
                 Thing h=e.getThing("Target");
@@ -414,7 +416,8 @@ public class Tutorial {
             Game.quotedMessage(RPG.pick(bored));
         }
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             chattedToHero = true;
             Thing h=e.getThing("Target");
             t.incStat("ChatCount",1);
@@ -493,7 +496,8 @@ public class Tutorial {
     {
         static final long serialVersionUID = -3409510129139664108L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             t.incStat("ChatCount",1);
             switch (t.getStat("ChatCount")) {
                 case 1:
@@ -541,7 +545,8 @@ public class Tutorial {
     {
         private static final long serialVersionUID = 6595782575469702238L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             t.incStat("ChatCount",1);
             switch (t.getStat("ChatCount")) {
                 case 1:

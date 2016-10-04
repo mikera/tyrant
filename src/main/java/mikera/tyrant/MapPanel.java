@@ -23,7 +23,8 @@ import mikera.util.Maths;
 // also some animation/explosion handling
 public class MapPanel extends Panel implements Runnable {
 	private final class MyMouseListener extends MouseAdapter {
-        public void mousePressed(MouseEvent e) {
+        @Override
+		public void mousePressed(MouseEvent e) {
         	Thing h=Game.hero();
         	
         	int dir = (e.getModifiers() & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK
@@ -111,7 +112,8 @@ public class MapPanel extends Panel implements Runnable {
 	private boolean animating=false;
 	private boolean animationdone=false;
 	
-    public void run() {
+    @Override
+	public void run() {
     	while (true) {
     	    try {
         	    if (animating) {
@@ -169,10 +171,12 @@ public class MapPanel extends Panel implements Runnable {
 	}
 
 	//override update to stop flicker
+	@Override
 	public void update(Graphics g) {
 		paint(g);
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(width * TILEWIDTH, height * TILEHEIGHT);
 	}
@@ -448,6 +452,7 @@ public class MapPanel extends Panel implements Runnable {
 
 	// standard paint method
 	// - builds map image in back buffer then copies to screen
+	@Override
 	public void paint(Graphics g) {
 		// System.out.println("MapPanel.Paint()");
 		

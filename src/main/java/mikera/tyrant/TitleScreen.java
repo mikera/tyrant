@@ -14,7 +14,8 @@ public class TitleScreen extends Screen {
 	
 	private static final long serialVersionUID = 3904958651298164789L;
 
-    public void paint(Graphics g) {
+    @Override
+	public void paint(Graphics g) {
 		super.paint(g);
 		Image im = QuestApp.title;
 		g.drawImage(im, (getBounds().width - im.getWidth(null)) / 2,

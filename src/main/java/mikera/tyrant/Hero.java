@@ -1104,7 +1104,8 @@ public class Hero {
 	public static class HeroAction extends Script {
 		private static final long serialVersionUID = 3257571689436033328L;
 
-        public boolean handle(Thing h, Event e) {
+        @Override
+		public boolean handle(Thing h, Event e) {
 			int time=e.getStat("Time");
 			Hero.action(h,time);
 			Being.recover(h,time);

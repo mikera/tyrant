@@ -429,7 +429,8 @@ public class Food {
         t.addHandler("OnTouch",new Script() {
         	private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
         		Thing tt=e.getThing("Target");
         		if ((Rand.d(5)==1)&&tt.isHero()&&!tt.getFlag(Skill.HERBLORE)) {
         			Item.curse(t,false);

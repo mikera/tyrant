@@ -45,7 +45,8 @@ public class SpellBook {
 	private static class ReadSpellbookScript extends Script {
 		private static final long serialVersionUID = 6685634600657516648L;
 
-        public boolean handle(Thing s, Event e) {
+        @Override
+		public boolean handle(Thing s, Event e) {
 			Thing user = e.getThing("Reader");
 
 			if (!s.getFlag("IsSpellBook")) {
@@ -77,7 +78,8 @@ public class SpellBook {
 	private static class ReadRecipeBookScript extends Script {
 		private static final long serialVersionUID = 3616728296604514359L;
 
-        public boolean handle(Thing s, Event e) {
+        @Override
+		public boolean handle(Thing s, Event e) {
 			Thing user = e.getThing("Reader");
 
 			if (!s.getFlag("IsRecipeBook")) {
@@ -103,7 +105,8 @@ public class SpellBook {
 	private static class ReadManualScript extends Script {
 		private static final long serialVersionUID = 3256723983117464881L;
 
-        public boolean handle(Thing s, Event e) {
+        @Override
+		public boolean handle(Thing s, Event e) {
 			Thing h = e.getThing("Reader");
 			String skill = s.getString("SkillName");
 			

@@ -28,6 +28,7 @@ public class Script extends BaseObject implements EventHandler {
 	 * @param t The Thing to which the event has been sent
 	 * @param e The event to respond to 
 	 */
+	@Override
 	public boolean handle(Thing t, Event e) {
 		
 		return false;

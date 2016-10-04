@@ -117,6 +117,7 @@ public final class Thing extends BaseObject implements
 		super(t);
 	}
 
+	@Override
 	public String toString() {
 		return getString("Name");
 	}
@@ -384,6 +385,7 @@ public final class Thing extends BaseObject implements
 
 	// all removes go through here eventually....
 	// part of ThingOwner interface
+	@Override
 	public void removeThing(Thing thing) {
 		int pos = thing.x;
 		if (inv == null)
@@ -420,6 +422,7 @@ public final class Thing extends BaseObject implements
 	public void sortItems() {
 		if (inv==null) return;
 		Arrays.sort(inv,new Comparator<Thing>() {
+			@Override
 			public int compare(Thing ta, Thing tb) {
 				
 				if (tb==null) return -1;
@@ -623,6 +626,7 @@ public final class Thing extends BaseObject implements
 	}
 
 	// Description interface
+	@Override
 	public String getName(int number, int article) {
 		return Describer.describe(Game.hero(), this, article, number);
 	}
@@ -640,6 +644,7 @@ public final class Thing extends BaseObject implements
 		return getStat("Gender");
 	}
 
+	@Override
 	public String getDescriptionText() {
 		String s = (String) get("Description");
 		return (s != null) ? s : Text.capitalise(getName(Game.hero()) + ".");
@@ -754,6 +759,7 @@ public final class Thing extends BaseObject implements
 		return getStat("Quality");
 	}
 
+	@Override
 	public final Map getMap() {
 		return (place == null) ? null : place.getMap();
 	}
@@ -962,6 +968,7 @@ public final class Thing extends BaseObject implements
 	}
 
 	// clone method. Creates displaced copy of this
+	@Override
 	public Object clone() {
 			Thing t = new Thing(super.getLocal(),super.getInherited());
 			t.place = null;
@@ -1344,6 +1351,7 @@ public final class Thing extends BaseObject implements
 		}
 	}
 	
+	@Override
 	public void add(String reason, Modifier mod) {
 		super.add(reason,mod);
 		
@@ -1384,12 +1392,14 @@ public final class Thing extends BaseObject implements
 		return super.get(s);
 	}	
 	
+	@Override
 	public int getStat(String key) {
 		Integer i=(Integer)get(key);
 		if (i==null) return 0;
 		return i.intValue();
 	}
 	
+	@Override
 	public Object get(String key) {
 		if (modifiers!=null) {
 			return getModified(key,0);
@@ -1397,6 +1407,7 @@ public final class Thing extends BaseObject implements
         return super.get(key);
 	}
 	
+	@Override
 	public String report() {
 		String s = super.report();
 		if (modifiers!=null) {

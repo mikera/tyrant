@@ -26,7 +26,8 @@ public class Chest {
 	public static class ChestDamage extends Script {
 		private static final long serialVersionUID = 4121411791663740466L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing[] ts=t.getFlaggedContents("IsTrap");
 			Map m=t.getMap();
 			
@@ -55,7 +56,8 @@ public class Chest {
     public static class ChestCreation extends Script {
         private static final long serialVersionUID = 3256723974577598773L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             int l=e.getStat("Level");
             for (int i=Maths.min(1,Rand.d(2,4)-3); i>0; i--) {
                 t.addThing(Lib.createItem(l+Rand.r(5)));
@@ -68,7 +70,8 @@ public class Chest {
     public static class ChestClosed extends Script {
         private static final long serialVersionUID = 3256718494266373688L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             // TODO
             return false;
         }
@@ -77,7 +80,8 @@ public class Chest {
     public static class ChestOpen extends Script {
         private static final long serialVersionUID = 4120851040649491762L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             Thing[] ts=t.getItems();
             Score.scoreExplore(t);
             for (int i=0; i<ts.length; i++) {
@@ -93,7 +97,8 @@ public class Chest {
     public static class ChestBump extends Script {
         private static final long serialVersionUID = 4120851040649491762L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             Thing tt=e.getThing("Target");
             if (tt.isHero()) {
             	Item.touch(tt,t);

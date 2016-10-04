@@ -10,7 +10,8 @@ import mikera.tyrant.engine.RPG;
 public class SizeOfLib implements IWork {
     private int size;
 
-    public void run() {
+    @Override
+	public void run() {
         Lib.instance();
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -22,12 +23,14 @@ public class SizeOfLib implements IWork {
         }
     }
 
-    public void setUp() {
+    @Override
+	public void setUp() {
         RPG.setRandSeed(0);
         Lib.clear();
     }
 
-    public String getMessage() {
+    @Override
+	public String getMessage() {
         return "" + size + " bytes";
     }
 }

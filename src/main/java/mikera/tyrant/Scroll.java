@@ -115,7 +115,8 @@ public class Scroll  {
         private static class DestroyScrollScript extends Script {
 	        private static final long serialVersionUID = -8023348676467373601L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
                 String spell=t.getString("ScrollSpell");
                 if (spell==null) return false;
                 Thing s=Spell.create(spell);
@@ -127,7 +128,8 @@ public class Scroll  {
         private static class ReadScrollScript extends Script {
 	        private static final long serialVersionUID = -90663348604771008L;
 
-            public boolean handle(Thing s, Event e) {
+            @Override
+			public boolean handle(Thing s, Event e) {
 	            Thing user=e.getThing("Reader");
 	        	
 	        	if (!s.getFlag("IsScroll")) {
@@ -194,7 +196,8 @@ public class Scroll  {
         	t.set("OnRead",new Script() {
         		private static final long serialVersionUID = 3256722862197913397L;
 
-                public boolean handle(Thing t,Event e) {
+                @Override
+				public boolean handle(Thing t,Event e) {
         			Game.warn("note read script:");
         			if (e.getThing("Reader")!=Game.hero()) return false;
         			
@@ -286,7 +289,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3761967168350336050L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
             		t.remove(1);
             		Thing r=e.getThing("Reader");
             		r.message("Your head spins... where are you?");
@@ -301,7 +305,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3760560888616269105L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
             		Thing r=e.getThing("Reader");
             		r.message("You suddenly know this place like the back of your hand");
             		LevelMap.reveal(r.getMap());
@@ -316,7 +321,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3763091964450451513L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
               		t.remove(1);
                		Thing r=e.getThing("Reader");
             		Thing[] its=r.getItems();
@@ -344,7 +350,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3834315042081354553L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
               		t.remove(1);
                		Thing r=e.getThing("Reader");
             		Thing[] its=r.getItems();
@@ -364,7 +371,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3257571710911001395L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
               		t.remove(1);
                		Thing r=e.getThing("Reader");
                		Map m=r.getMap();
@@ -394,7 +402,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3761409733168806195L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
               		t.remove(1);
                		Thing r=e.getThing("Reader");
             		Thing[] its=r.getItems();
@@ -414,7 +423,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3257290244557582388L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
               		t.remove(1);
                		Thing r=e.getThing("Reader");
             		Thing[] its=r.getItems();
@@ -438,7 +448,8 @@ public class Scroll  {
             t.set("OnRead",new Script() {
             	private static final long serialVersionUID = 3016187993514949388L;
 
-                public boolean handle(Thing t, Event e) {
+                @Override
+				public boolean handle(Thing t, Event e) {
               		t.remove(1);
                		Thing r=e.getThing("Reader");
             		Thing[] its=r.getItems();

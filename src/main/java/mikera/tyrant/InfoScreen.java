@@ -28,6 +28,7 @@ public class InfoScreen extends Screen {
 		// questapp.setKeyHandler(keyhandler);
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		

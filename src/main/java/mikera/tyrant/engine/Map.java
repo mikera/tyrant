@@ -984,6 +984,7 @@ public final class Map extends BaseObject implements ThingOwner {
 	}
 
 	/** removes thing from map, returns thing if found, null otherwise */
+	@Override
 	public void removeThing(Thing thing) {
 		if (thing.place != this)
 			throw new Error("Thing in wrong place!");
@@ -1022,6 +1023,7 @@ public final class Map extends BaseObject implements ThingOwner {
 		}
 	}
 
+	@Override
 	public final Map getMap() {
 		return this;
 	}

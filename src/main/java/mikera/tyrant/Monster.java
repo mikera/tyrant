@@ -62,6 +62,7 @@ public class Monster {
 		 */
 		private static final long serialVersionUID = 3257006536114256182L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
     		int time=e.getStat("Time");
     		int rate=getStat("Rate");
@@ -103,7 +104,8 @@ public class Monster {
     		set("SpecialHitPower",power);    		
     	}
 
-    	public boolean handle(Thing t, Event e) {
+    	@Override
+		public boolean handle(Thing t, Event e) {
     		int chance=getStat("SpecialHitChance");
     		if (Rand.d(100)>chance) return false;
     		String type= getString("SpecialHitTarget");
@@ -174,7 +176,8 @@ public class Monster {
             return value;
         }
 
-        public boolean handle(Thing thing, Event e) {
+        @Override
+		public boolean handle(Thing thing, Event e) {
     		int chance = getStat("SpecialHitChance");
             if (Rand.d(100) > chance) {
                 return false;

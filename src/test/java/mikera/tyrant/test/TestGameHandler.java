@@ -12,7 +12,8 @@ import mikera.tyrant.engine.Thing;
 public class TestGameHandler extends TyrantTestCase {
     private GameHandler gameHandler;
 
-    protected void setUp() throws Exception {
+    @Override
+	protected void setUp() throws Exception {
         super.setUp();
         gameHandler = new GameHandler();
     }

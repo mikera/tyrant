@@ -25,25 +25,30 @@ import java.util.Map;
  */
 public class ImageGadget extends Canvas {
     private final class ForwardingMouseListener implements MouseListener {
-        public void mouseClicked(MouseEvent e) {
+        @Override
+		public void mouseClicked(MouseEvent e) {
         	// null handler for mouselistener interface
         }
 
-        public void mouseEntered(MouseEvent e) {
+        @Override
+		public void mouseEntered(MouseEvent e) {
         	// null handler for mouselistener interface
         }
 
-        public void mouseExited(MouseEvent e) {
+        @Override
+		public void mouseExited(MouseEvent e) {
         	// null handler for mouselistener interface
         }
 
-        public void mousePressed(MouseEvent e) {
+        @Override
+		public void mousePressed(MouseEvent e) {
             e.consume();
             if (actionListener == null) return;
             actionListener.actionPerformed(new ActionEvent(this, -100, null));
         }
 
-        public void mouseReleased(MouseEvent e) {
+        @Override
+		public void mouseReleased(MouseEvent e) {
         	// null handler for mouselistener interface
         }
     }
@@ -89,7 +94,8 @@ public class ImageGadget extends Canvas {
         return images;
     }
 
-    public Dimension getMinimumSize() {
+    @Override
+	public Dimension getMinimumSize() {
         int textWidth = 0;
         int textHeight = 0;
         if (text != null) {
@@ -109,7 +115,8 @@ public class ImageGadget extends Canvas {
         return new Dimension(image.getWidth(null) + 2 + textWidth, image.getHeight(null));
     }
 
-    public Dimension getPreferredSize() {
+    @Override
+	public Dimension getPreferredSize() {
         return getMinimumSize();
     }
 
@@ -177,7 +184,8 @@ public class ImageGadget extends Canvas {
         }
     }
 
-    public void paint(Graphics g) {
+    @Override
+	public void paint(Graphics g) {
         Dimension mySize = getSize();
         int w = mySize.width;
         int h = mySize.height;

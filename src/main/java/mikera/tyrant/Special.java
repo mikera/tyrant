@@ -47,7 +47,8 @@ public class Special {
 	private static class MessagePointAction extends Script {
 		private static final long serialVersionUID = 3905525999230595378L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing tt=e.getThing("Target");
 			if (!tt.isHero()) return false;
             tt.isRunning(false);
@@ -72,7 +73,8 @@ public class Special {
 	private static class CloudAction extends Script {
 		private static final long serialVersionUID = 4121129221436814640L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			int time=e.getStat("Time");
 			for (int i=RPG.po(time*t.getStat("MoveSpeed"),10000); i>0; i--) {
 				wander(t);			
@@ -113,7 +115,8 @@ public class Special {
 	private static class CloudTouch extends Script {
 		private static final long serialVersionUID = 3258416110087977270L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing target=e.getThing("Target");
 			if (affects(t,target)) {
 
@@ -151,7 +154,8 @@ public class Special {
 	private static class StockingAction extends Script {
 		private static final long serialVersionUID = 8701791275653201559L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			int time=e.getStat("Time");
 			if ((t.getFlag("StockingStock")||(RPG.po(time*t.getStat("StockingRate"),1000000)>0))) {
 				Map m=t.getMap();
@@ -240,6 +244,7 @@ public class Special {
         t.set("ASCII", "_");
 		t.set("LevelMin",1);
 		t.set("OnAction",new Script() {
+			@Override
 			public boolean handle(Thing t, Event e) {
 				Map m=t.getMap();
 				Thing[] ts=m.getThings(t.x,t.y);
@@ -264,6 +269,7 @@ public class Special {
 		
 		t=Lib.extend("redistribution point","base special");
 		t.set("OnAction",new Script() {
+			@Override
 			public boolean handle(Thing t, Event e) {
 				Map m=t.getMap();
 				Thing[] ts=m.getThings(t.x,t.y);

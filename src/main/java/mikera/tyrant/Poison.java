@@ -17,7 +17,8 @@ public class Poison {
     public static class PoisonAction extends Script {
         private static final long serialVersionUID = 3258410638316287027L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             int time=e.getStat("Time");
             
             // set actor

@@ -33,6 +33,7 @@ public class TPanel extends Panel {
     protected boolean globalKeyListenerHasBeenAdded;
 
 	// update with double buffering. 
+	@Override
 	public void update(Graphics g) {
 		// graphics context for the buffer
 		Graphics bg; 
@@ -56,7 +57,8 @@ public class TPanel extends Panel {
 		g.drawImage(buffer, 0, 0, this);
 	}
 
-  public void paint(Graphics g) {
+  @Override
+public void paint(Graphics g) {
     Rectangle bounds=getBounds();
     int width=bounds.width;
     int height=bounds.height;

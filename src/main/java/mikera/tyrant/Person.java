@@ -56,6 +56,7 @@ public class Person {
 	private static class TeachSkillScript extends Script {
 		private static final long serialVersionUID = 6064405547665614436L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing h = e.getThing("Target");
 
@@ -109,6 +110,7 @@ public class Person {
 	private static class SwapScript extends Script {
 		private static final long serialVersionUID = -1462156804224496122L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing gift = e.getThing("Gift");
 			Thing giver = e.getThing("Giver");
@@ -162,6 +164,7 @@ public class Person {
 	private static class ListSellingScript extends Script {
 		private static final long serialVersionUID = 5075582255481317201L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing h = e.getThing("Target");
 
@@ -204,6 +207,7 @@ public class Person {
 	private static class SellingScript extends Script {
 		private static final long serialVersionUID = -6816925315754576522L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing gift = e.getThing("Gift");
 			Thing giver = e.getThing("Giver");
@@ -248,6 +252,7 @@ public class Person {
 
 		private static final long serialVersionUID = -6588466277758378986L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			// first try repair for free.
 			Thing gift = e.getThing("Gift");
@@ -317,6 +322,7 @@ public class Person {
 		 */
 
 		// private static final long serialVersionUID = -6588466277758378986L;
+		@Override
 		public boolean handle(Thing t, Event e) {
 			// Thing t is the identifier
 			Thing gift = e.getThing("Gift");
@@ -368,6 +374,7 @@ public class Person {
 	private static class TeachingScript extends Script {
 		private static final long serialVersionUID = 3760564208726914357L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing giver = e.getThing("Target");
 
@@ -513,6 +520,7 @@ public class Person {
 			setupRiddles();
 		}
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing responder = e.getThing("Target");
 
@@ -1234,6 +1242,7 @@ public class Person {
 		t.set("OnChat", new Script() {
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			public boolean handle(Thing t, Event e) {
 				Thing tt = e.getThing("Target");
 

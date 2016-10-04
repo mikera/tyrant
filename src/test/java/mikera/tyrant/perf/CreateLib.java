@@ -5,16 +5,19 @@ import mikera.tyrant.engine.RPG;
 
 
 public class CreateLib implements IWork {
-    public void run() {
+    @Override
+	public void run() {
         Lib.instance();
     }
 
-    public void setUp() {
+    @Override
+	public void setUp() {
         RPG.setRandSeed(0);
         Lib.clear();
     }
 
-    public String getMessage() {
+    @Override
+	public String getMessage() {
         return "";
     }
 }

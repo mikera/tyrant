@@ -39,7 +39,8 @@ public class Recipe {
     private static class ReadRecipeScrollScript extends Script {
         private static final long serialVersionUID = 3977020660478586934L;
 
-        public boolean handle(Thing s, Event e) {
+        @Override
+		public boolean handle(Thing s, Event e) {
             Thing user=e.getThing("Reader");
         	
            	String rname=s.getString("RecipeName");

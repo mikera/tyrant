@@ -20,7 +20,8 @@ public class LibInspector {
         private List<String> rows = new ArrayList<>();
         private String attribute;
 
-        public void inspect(Thing thing) {
+        @Override
+		public void inspect(Thing thing) {
             // Find at what depth the attribute is in a thing
             // A -> B -> C -> root
             // 0    1    2     3
@@ -31,7 +32,8 @@ public class LibInspector {
             rows.add("" + totalDepth);
         }
 
-        public void printResults() {
+        @Override
+		public void printResults() {
             System.out.println("distance from me | name | total depth > for " + attribute);
             for (Iterator<String> iter = rows.iterator(); iter.hasNext();) {
                 String name = iter.next();
@@ -41,13 +43,15 @@ public class LibInspector {
             }
         }
 
-        public void setup(String[] args) {
+        @Override
+		public void setup(String[] args) {
             attribute = args[0];
         }
     }
 
     class AttributesForAllThings implements IThingsInspector {
-        public void inspect(Thing thing) {
+        @Override
+		public void inspect(Thing thing) {
             for(Iterator<String> iterator = thing.getCollapsedMap().keySet().iterator(); iterator.hasNext();) {
                 String attribute = iterator.next();
                 Count count = attributes.get(attribute);
@@ -59,14 +63,16 @@ public class LibInspector {
             }
         }
 
-        public void printResults() {
+        @Override
+		public void printResults() {
             for (Iterator<Entry<String, Count>> iter = attributes.entrySet().iterator(); iter.hasNext();) {
                 Map.Entry<String, Count> entry = iter.next();
                 System.out.println(numberFormat.sprintf(entry.getValue()) + " " + entry.getKey());
             }
         }
 
-        public void setup(String[] args) {
+        @Override
+		public void setup(String[] args) {
         	// empty
         }
     }

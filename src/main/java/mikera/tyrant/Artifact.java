@@ -350,7 +350,8 @@ public class Artifact {
 		t.set("OnWeaponHit",new Script() {
 			private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing target=e.getThing("Target");
 				Thing shooter=e.getThing("Shooter");
 				

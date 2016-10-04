@@ -14,7 +14,8 @@ import mikera.tyrant.engine.Thing;
 public class TestGame extends TyrantTestCase {
     private ArrayList<String> theMessages;
 
-    protected void setUp() throws Exception {
+    @Override
+	protected void setUp() throws Exception {
         super.setUp();
         theMessages = new ArrayList<>();
         NullHandler.installNullMessageHandler(theMessages);

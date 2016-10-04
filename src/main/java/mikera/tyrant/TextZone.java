@@ -39,6 +39,7 @@ public class TextZone extends Component {
 		return text;
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		FontMetrics met = g.getFontMetrics(g.getFont());
 

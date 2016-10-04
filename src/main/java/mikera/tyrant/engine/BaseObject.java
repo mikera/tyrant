@@ -61,6 +61,7 @@ public class BaseObject implements Cloneable, Serializable {
      * Clone copies a BaseObject instance, maintaining
      * the same inherited properties
      */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object clone() {
         BaseObject o=new BaseObject();
@@ -72,7 +73,8 @@ public class BaseObject implements Cloneable, Serializable {
         return o;
     }
 
-    public final boolean equals(Object o) {
+    @Override
+	public final boolean equals(Object o) {
     	return this==o;
     }
     

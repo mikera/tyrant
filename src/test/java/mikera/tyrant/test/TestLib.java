@@ -80,7 +80,8 @@ public class TestLib extends TyrantTestCase {
     	return "Object";
     }
 
-    public void setUp() throws Exception {
+    @Override
+	public void setUp() throws Exception {
     	super.setUp();
     	all=Lib.instance().getAll();
     }

@@ -51,7 +51,8 @@ public final class Point implements java.io.Serializable {
 		y += dy;
 	}
     
-    public String toString() {
+    @Override
+	public String toString() {
         return x + "," + y;
     }
     
@@ -119,7 +120,8 @@ public final class Point implements java.io.Serializable {
 		return new Point(dx,dy);
 		 
 	}
-    public boolean equals(Object obj) {
+    @Override
+	public boolean equals(Object obj) {
         if (obj instanceof Point) {
             Point pt = (Point) obj;
             return (x == pt.x) && (y == pt.y);
@@ -127,7 +129,8 @@ public final class Point implements java.io.Serializable {
         return super.equals(obj);
     }    
     
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         long bits = java.lang.Double.doubleToLongBits(x);
         bits ^= java.lang.Double.doubleToLongBits(y) * 31;
         return (((int) bits) ^ ((int) (bits >> 32)));

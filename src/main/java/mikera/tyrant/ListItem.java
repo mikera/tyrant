@@ -13,6 +13,7 @@ public class ListItem extends Panel {
 		text = t.getName(Game.hero());
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.drawString(text, 32, getHeight());

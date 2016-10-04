@@ -70,7 +70,8 @@ public class EndGame {
 		t.addHandler("OnDeath",new Script() {
 			private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t,Event e) {
+            @Override
+			public boolean handle(Thing t,Event e) {
 				Game.over=true;
 				return false;
 			}

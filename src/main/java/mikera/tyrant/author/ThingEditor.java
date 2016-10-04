@@ -41,13 +41,15 @@ import com.jgoodies.forms.layout.FormLayout;
 
 public class ThingEditor implements Runnable {
     private final class SourceRevertPressed implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        @Override
+		public void actionPerformed(ActionEvent e) {
             sourceTextArea.setText(mapText);
         }
     }
 
     private final class SourceOKPressed implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        @Override
+		public void actionPerformed(ActionEvent e) {
             String newText = sourceTextArea.getText();
             if(newText.equals(mapText)) return;
             mikera.tyrant.engine.Map newMap = new MapMaker().create(newText, true);
@@ -190,7 +192,8 @@ public class ThingEditor implements Runnable {
 
     private void sortKeys(String[] keys) {
         Arrays.sort(keys, new Comparator<String>() {
-             public int compare(String s1, String s2) {
+             @Override
+			public int compare(String s1, String s2) {
                 Map<String, Integer> important = getImportantAttributes();
                 Integer sortOrder1 = important.get(s1);
                 Integer sortOrder2 = important.get(s2);
@@ -216,7 +219,8 @@ public class ThingEditor implements Runnable {
     private void createFrame() {
         frame = new Frame("ThingEditor - v" + Game.VERSION);
         frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            @Override
+			public void windowClosing(WindowEvent e) {
                 frame.setVisible(false);
             }
         });
@@ -240,7 +244,8 @@ public class ThingEditor implements Runnable {
         gridBagConstraints.insets = new Insets(2, 2, 2, 2);
         statusBar.add(textField, gridBagConstraints);
         textListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+			public void actionPerformed(ActionEvent e) {
                 doTextPerformed(e);
             }
         };
@@ -306,7 +311,8 @@ public class ThingEditor implements Runnable {
             if(type.equals("boolean")) {
                 Checkbox checkbox = new Checkbox(key, ((Integer)value).intValue() == 1);
                 checkbox.addItemListener(new ItemListener() {
-                    public void itemStateChanged(ItemEvent e) {
+                    @Override
+					public void itemStateChanged(ItemEvent e) {
                         doCheckboxPerformed(e);
                     }
                 });
@@ -336,11 +342,13 @@ public class ThingEditor implements Runnable {
         
     }
 
-    public void run() {
+    @Override
+	public void run() {
         try {
             Thread.sleep(6000);
             SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     sourceStatusBar.setVisible(false);
                     sourceStatusLabel.setText("There is an error creating the map");
                     sourceStatusBar.getParent().invalidate();

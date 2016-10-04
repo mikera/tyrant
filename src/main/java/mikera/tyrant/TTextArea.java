@@ -22,6 +22,7 @@ public class TTextArea extends TextArea {
 		super(s,r,c,sb);
 	}
 	
+	@Override
 	public void update(Graphics g) {
 		paint(g);
 	}

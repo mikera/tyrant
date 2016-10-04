@@ -26,10 +26,12 @@ public class StatusPanel extends TPanel {
 		
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(208, 272);
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 

@@ -96,7 +96,8 @@ public class Potion  {
     private static class DipScript extends Script {
     	private static final long serialVersionUID = 3258133544223061043L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
     		Thing user=e.getThing("User");
     		
     		Thing it=Game.selectItem("Select an item to apply the potion to:",user.getItems());
@@ -120,7 +121,8 @@ public class Potion  {
     private static class WaterDip extends Script {
     	private static final long serialVersionUID = 3688784773950550576L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
     		Thing target=e.getThing("Target");
     		Item.identify(t);
     		
@@ -226,7 +228,8 @@ public class Potion  {
     public static class HealingScript extends Script {
         private static final long serialVersionUID = 3258130254312059186L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             Thing targ=(Thing)e.get("Target");
             if (t.getFlag("HealingPower")&&targ.getFlag("HPS")) {
                 int heal=t.getStat("HealingPower");
@@ -242,7 +245,8 @@ public class Potion  {
     public static class GainScript extends Script {
         private static final long serialVersionUID = 3688503307446268472L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
             Thing targ=(Thing)e.get("Target");
             int max=t.getStat("GainMax");
             String stat=t.getString("GainStat");
@@ -468,7 +472,8 @@ public class Potion  {
         t.addHandler("OnDip",new Script() {
         	private static final long serialVersionUID = 3257286915873911348L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
         		Thing tt=e.getThing("Target");
         		if (t.getFlag("IsCursed")) {
         			Game.message("The potion seems to damage "+tt.getYourName());
@@ -491,7 +496,8 @@ public class Potion  {
         t.addHandler("OnDip",new Script() {
         	private static final long serialVersionUID = 3906372640363917361L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
         		Thing tt=e.getThing("Target");
         		if (t.getFlag("IsCursed")) {
         			Game.message(tt.getYourName()+" is attacked by black magic!");
@@ -512,7 +518,8 @@ public class Potion  {
         t.set("OnDrunk",new Script() {
         	private static final long serialVersionUID = 3257290244507383856L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
         		Thing user=e.getThing("Target");
         		int h=user.getStat(RPG.ST_HUNGER);
         		int ht=user.getStat(RPG.ST_HUNGERTHRESHOLD);
@@ -531,7 +538,8 @@ public class Potion  {
         t.set("OnDrunk",new Script() {
         	private static final long serialVersionUID = 3833188016825840952L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
         		Thing user=e.getThing("Target");
         		ArrayList<String> skills=Skill.getList(user);
          		

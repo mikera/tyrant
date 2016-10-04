@@ -37,6 +37,7 @@ public final class Modifier extends BaseObject {
 	 * Implements sort in modifier priority order
 	 */ 
 	private static class ModifierSorter implements Comparator<Modifier> {
+		@Override
 		public int compare(Modifier ma, Modifier mb) {
 			return mb.getPriority()-ma.getPriority();
 		}
@@ -205,6 +206,7 @@ public final class Modifier extends BaseObject {
 		return mod;
 	}
 	
+	@Override
 	public String toString() {
 		String s= getStat();
 		if (getFlag("Calculation")) {

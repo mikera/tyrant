@@ -24,13 +24,15 @@ import mikera.tyrant.engine.Thing;
 public class InventoryScreen extends Screen {
     
 	private final class FindFieldTextListener implements TextListener {
-        public void textValueChanged(TextEvent e) {
+        @Override
+		public void textValueChanged(TextEvent e) {
             inventoryPanel.filterThings(findField.getText());
         }
     }
 
     private final class FindFieldKeyListener extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
+        @Override
+		public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 hideFindField();
                 inventoryPanel.clearFilter();
@@ -45,7 +47,8 @@ public class InventoryScreen extends Screen {
     }
 
     private final class FindKeyOpener extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
+        @Override
+		public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_F && (e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) != 0)
                 showFindField();
             else if(e.getKeyCode() == KeyEvent.VK_SLASH) showFindField();
@@ -139,7 +142,8 @@ public class InventoryScreen extends Screen {
             ImageGadget imageGadget = new ImageGadget("/images/cancel.png", "Filter: ");
             imageGadget.setBackgroundImage(getTexture());
             imageGadget.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+                @Override
+				public void actionPerformed(ActionEvent e) {
                     hideFindField();
                 }
             });

@@ -565,6 +565,7 @@ public class Spell {
 			set("SummonType",s);
 		}
 		
+		@Override
 		public boolean handle(Thing spell, Event e) {
 			Map m=(Map)e.get("TargetMap");
 			if (m==null) return false;
@@ -588,7 +589,8 @@ public class Spell {
 	private static class TeleportEffect extends Script {
 		private static final long serialVersionUID = 4049358595655349555L;
 
-        public boolean handle(Thing spell, Event e) {
+        @Override
+		public boolean handle(Thing spell, Event e) {
 			Thing target=e.getThing("Target");
 			Map map=target.getMap();
 			if (map==null) return false;
@@ -611,7 +613,8 @@ public class Spell {
 	private static class SummonEffect extends Script {
         private static final long serialVersionUID = 1L;
 
-        public boolean handle(Thing spell, Event e) {
+        @Override
+		public boolean handle(Thing spell, Event e) {
 			int min = getStat("SummonMin");
 			int max = getStat("SummonMax");
 			int n=RPG.rspread(min,max);
@@ -656,7 +659,8 @@ public class Spell {
 	private static class OffensiveEffect extends Script {
 		private static final long serialVersionUID = -1441648028619126968L;
 
-        public boolean handle(Thing spell, Event e) {
+        @Override
+		public boolean handle(Thing spell, Event e) {
 			Thing target=e.getThing("Target");
 			int eff=e.getStat("Strength");
 			if (eff>0) {
@@ -680,7 +684,8 @@ public class Spell {
     public static class HealingScript extends Script {
         private static final long serialVersionUID = 3257009860535989298L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing target=e.getThing("Target");
 			int eff=e.getStat("Strength");
 
@@ -694,7 +699,8 @@ public class Spell {
     public static class CureScript extends Script {
         private static final long serialVersionUID = 3978138846573377330L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing target=e.getThing("Target");
 			int eff=e.getStat("Strength");
 
@@ -708,7 +714,8 @@ public class Spell {
 	private static class AddScript extends Script {
 		private static final long serialVersionUID = 3762529005907293232L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing tt=e.getThing("Target");
 			int chance=getStat("Chance");
 			String thing=getString("Thing");
@@ -1013,7 +1020,8 @@ public class Spell {
 		t.set("OnLocationEffect",new Script() {
 			private static final long serialVersionUID = 3979270248400893753L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Map m=(Map)e.get("TargetMap");
 				if (m==null) return false;
 				int x=e.getStat("TargetX");
@@ -1201,7 +1209,8 @@ public class Spell {
 		t.set("OnEffect",new Script() {
 			private static final long serialVersionUID = 3256999964814293296L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing target=e.getThing("Target");
 				Thing caster=e.getThing("Caster");
 				int eff=e.getStat("Strength");
@@ -1224,7 +1233,8 @@ public class Spell {
 		t.set("OnEffect",new Script() {
 			private static final long serialVersionUID = 3257002176856339760L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing target=e.getThing("Target");
 				Thing caster=e.getThing("Caster");
 				Item.identify(target);
@@ -1242,7 +1252,8 @@ public class Spell {
 		t.set("OnEffect",new Script() {
 			private static final long serialVersionUID = 3906363839908755504L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing target=e.getThing("Target");
 				Damage.inflict(target,5000,"normal");	
 				if (target.place==null) {
@@ -1571,7 +1582,8 @@ public class Spell {
 		t.set("OnLocationEffect",new Script() {
 			private static final long serialVersionUID = 3979270248400893753L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Map m=(Map)e.get("TargetMap");
 				if (m==null) return false;
 				int x=e.getStat("TargetX");
@@ -1610,6 +1622,7 @@ public class Spell {
 			
 		// sort spells
 		Collections.sort(spells,new Comparator<Thing>() {
+			@Override
 			public int compare(Thing a, Thing b) {
 				int ord=a.getString("Order").compareTo(b.getString("Order"));
 				if (ord!=0) return ord;

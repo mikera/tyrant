@@ -56,7 +56,8 @@ public class Lib_Perf extends Perf {
     
     protected Runnable createLib() {
         Runnable work = new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 Lib.clear();
                 Lib.instance();
             }

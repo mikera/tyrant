@@ -14,7 +14,8 @@ public class TestMapMaker extends TestCase {
     
     private static final String NL=MapMaker.NL;
 
-    protected void setUp() throws Exception {
+    @Override
+	protected void setUp() throws Exception {
         actual = new StringBuffer();
         mapMaker = new MapMaker();
     }

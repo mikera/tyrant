@@ -25,6 +25,7 @@ public class Scripts {
 	private static class AddEffectScript extends Script {
 		private static final long serialVersionUID = 9106886823123784009L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing effect=getThing("Effect");
 			int chance=getStat("Chance");
@@ -52,6 +53,7 @@ public class Scripts {
 	private static class AddThingScript extends Script {
 		private static final long serialVersionUID = 3257004345781465909L;
 
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing tt=(Thing)e.get(getString("TargetProperty"));
 			if (Rand.r(100)<getStat("Chance")) {
@@ -85,7 +87,8 @@ public class Scripts {
 		Script s=new Script() {
 			private static final long serialVersionUID = 3258130258556696629L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing target=e.getThing("Target");
 				int dam=getStat("Damage");
 				int prob=getStat("DamageProbability");
@@ -116,7 +119,8 @@ public class Scripts {
 		Script s=new Script() {
 			private static final long serialVersionUID = 3258130258556696629L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Map m=t.getMap();
 				if (m==null) return false;
 				Thing tt=m.getObjects(t.x,t.y);
@@ -177,7 +181,8 @@ public class Scripts {
 		Script sc=new Script() {
 			private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing tt=(Thing)e.get(getString("TargetProperty"));
 				if (tt==null) throw new Error("No target for statGain!");
 				
@@ -224,7 +229,8 @@ public class Scripts {
         Script script = new Script() {
             private static final long serialVersionUID = 1L;
             
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
                 Thing target = (Thing)e.get(getString("TargetProperty"));
                 int amount = getStat("Increment");
                 int chance = getStat("Chance");
@@ -273,7 +279,8 @@ public class Scripts {
     private static class CureScript extends Script {
         private static final long serialVersionUID = 3978138846573377330L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing target=e.getThing("Target");
 			int eff=e.getStat("Strength");
 
@@ -288,7 +295,8 @@ public class Scripts {
 		Script sc=new Script() {
 			private static final long serialVersionUID = 3691036565141074487L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing tt=(Thing)e.get(getString("TargetProperty"));
 				String stats=getString("Stats");
 				String[] ss=stats.split(",");
@@ -311,7 +319,8 @@ public class Scripts {
 		Script sc=new Script() {
 			private static final long serialVersionUID = 3257849865827530038L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				if (Rand.r(100)>=getStat("Chance")) return false;
 				
 				Thing tt=(Thing)e.get(getString("TargetProperty"));
@@ -331,7 +340,8 @@ public class Scripts {
 	private static class GeneratorScript extends Script {
 		private static final long serialVersionUID = 7473182575628000762L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Map map = t.getMap();
 			if (map == null) return false;
 			if (map.getFlag("IsWorldMap")) return false;
@@ -380,7 +390,8 @@ public class Scripts {
 	private static class DecayScript extends Script {
 		private static final long serialVersionUID = -8785297945265824277L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			int time=e.getStat("Time");
 			Map map=t.getMap();
 			int x=t.getMapX();
@@ -424,7 +435,8 @@ public class Scripts {
 	private static class  CombinedScript extends Script {
 		private static final long serialVersionUID = 543897876490907635L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			EventHandler[] ss=(EventHandler[])get("Scripts");
 			for (int i=0; i<ss.length; i++) {
 				if ((ss[i]!=null)&&(ss[i].handle(t,e))) return true;
@@ -488,7 +500,8 @@ public class Scripts {
 		Script s=new Script() {
 			private static final long serialVersionUID = 3544957670705740086L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				if (t.getFlag("IsCursed")) {
 					return getHandler("WhenCursed").handle(t,e);
 				} else if (t.getFlag("IsBlessed")) {
@@ -512,7 +525,8 @@ public class Scripts {
 		return new Script() {
 			private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				t.die();
 				return false;
 			}
@@ -523,7 +537,8 @@ public class Scripts {
 	public static Script returnTrue(Script s) {
 		Script ns= new Script() {
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Script innerScript=(Script)get("Script");
 				innerScript.handle(t,e);
 				return true;
@@ -537,7 +552,8 @@ public class Scripts {
 		Script s= new Script() {
 			private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Thing tt=e.getThing("Target");
 				tt.message(getString("Message"));
 				return false;

@@ -166,6 +166,7 @@ public class Personality extends Script {
 		
 	}
 
+	@Override
 	public boolean handle(Thing t, Event e) {
 		talk(getStat("Type"), t);
 		return true;
@@ -175,7 +176,8 @@ public class Personality extends Script {
 		Script s=new Script() {
 			private static final long serialVersionUID = 3258694307937596213L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				String l=getString("Line");
 				Game.message("\""+l+"\"");
 				return false;

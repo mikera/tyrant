@@ -38,7 +38,8 @@ public class Designer {
         void set(Map map, int x, int y, Thing toAdd);
     }
     private class StartBlock implements Runnable {
-        public void run() {
+        @Override
+		public void run() {
             Game.instance().setHero(Hero.createHero("Designer", "human", "fighter"));
             Game.instance().setDesignerMode(true);
             questApp.setupScreen();
@@ -48,7 +49,8 @@ public class Designer {
             levelMapPanel = gameScreen.getLevelMap();
             
             questApp.keyhandler=new KeyAdapter() {
-            	public void keyPressed(KeyEvent k) {
+            	@Override
+				public void keyPressed(KeyEvent k) {
             		Action a=gameScreen.convertEventToAction(k);
             		actionHandler.handleAction(null,a,k.isShiftDown());
             	}
@@ -58,7 +60,8 @@ public class Designer {
             mapPanel.addMouseMotionListener(new MyMouseMotionListener());
             gameScreen.addActionHandler(actionHandler);
             gameScreen.setGameHandler(new GameHandler() {
-                public void calculateVision(Thing thing) {
+                @Override
+				public void calculateVision(Thing thing) {
                     if(Game.instance().lineOfSightDisabled()) return;
                     thing.calculateVision();
                     Game.instance().isLineOfSightDisabled(true);
@@ -85,7 +88,8 @@ public class Designer {
     }
 
     private class MyActionHandler implements IActionHandler {
-        public boolean handleAction(Thing actor, Action action, boolean isShiftDown) {
+        @Override
+		public boolean handleAction(Thing actor, Action action, boolean isShiftDown) {
             lastAction = action;
             if (action.isMovementKey()) {
                 Point direction = GameHandler.convertActionToDirection(action);
@@ -157,7 +161,8 @@ public class Designer {
 
     private class MyMouseMotionListener extends MouseMotionAdapter {
         private int scrollCount;
-        public void mouseDragged(MouseEvent e) {
+        @Override
+		public void mouseDragged(MouseEvent e) {
             Point mapPoint = mapPanel.convertUICoordinatesToMap(e);
             inDrag = true;
             Rectangle place = questApp.getScreen().getMappanel().getBounds();
@@ -224,7 +229,8 @@ public class Designer {
     }
     
     private class MyMouseListener extends MouseAdapter {
-        public void mousePressed(MouseEvent e) {
+        @Override
+		public void mousePressed(MouseEvent e) {
             inDrag = false;
             Point mapPoint = mapPanel.convertUICoordinatesToMap(e);
             currentPoint = mapPoint;
@@ -374,21 +380,24 @@ public class Designer {
     
     private void createMapUpdaters() {
         addTile = new IMapUpdater() {
-            public void set(Map map, int x, int y, Thing toAdd) {
+            @Override
+			public void set(Map map, int x, int y, Thing toAdd) {
                 if(shouldNotAdd(toAdd, x, y)) return;
                 map.setTile(x, y, toAdd.getStat("TileValue"));
             }
         };
         
         addThing = new IMapUpdater() {
-            public void set(Map map, int x, int y, Thing toAdd) {
+            @Override
+			public void set(Map map, int x, int y, Thing toAdd) {
                 if(shouldNotAdd(toAdd, x, y)) return;
                 map.addThing(toAdd.cloneType(), x, y);
             }
         }; 
         
         deleteThing = new IMapUpdater() {
-            public void set(Map map, int x, int y, Thing toAdd) {
+            @Override
+			public void set(Map map, int x, int y, Thing toAdd) {
                 Thing[] ts=map.getThings(x, y);
                 for (int i=0; i<ts.length; i++) {
                 	ts[i].remove();
@@ -413,7 +422,8 @@ public class Designer {
         frame = new Frame("Tyrant - Designer - v" + Game.VERSION);
         frame.setBackground(Color.black);
         frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            @Override
+			public void windowClosing(WindowEvent e) {
             	designer.exit();
             }
         });
@@ -494,7 +504,8 @@ public class Designer {
         statusInput.add(textField, gridBagConstraints);
         
         textListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+			public void actionPerformed(ActionEvent e) {
                 doTextPerformed();
             }
         };
@@ -568,7 +579,8 @@ public class Designer {
             }
         }
         menu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+			public void actionPerformed(ActionEvent e) {
                 Action action = menuToAction.get(e.getActionCommand());
                 if(action == null) return;
                 actionHandler.handleAction(null, action, false);
@@ -586,7 +598,8 @@ public class Designer {
     private void createTilePalette() {
         tilePalette = new Frame("Tiles");
         tilePalette.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            @Override
+			public void windowClosing(WindowEvent e) {
                 tilePalette.setVisible(false);
             }
 //            public void windowActivated(WindowEvent e) {
@@ -598,7 +611,8 @@ public class Designer {
         tilePalette.add(tilesScreen, BorderLayout.CENTER);
         tilesScreen.setUp("Tiles", null, tilesAsThings());
         tilesScreen.getInventoryPanel().addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
+            @Override
+			public void itemStateChanged(ItemEvent e) {
                 currentThing = (Thing) e.getItem();
                 currentMapAdder = addTile;
                 System.out.println("current thing is " + currentThing);
@@ -612,7 +626,8 @@ public class Designer {
     private void createThingPalette() {
         thingPalette = new Frame("Things");
         thingPalette.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            @Override
+			public void windowClosing(WindowEvent e) {
                 thingPalette.setVisible(false);
             }
 //            public void windowActivated(WindowEvent e) {
@@ -624,7 +639,8 @@ public class Designer {
         thingPalette.add(thingsScreen, BorderLayout.CENTER);
         thingsScreen.setUp("Things", null, getThings());
         thingsScreen.getInventoryPanel().addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
+            @Override
+			public void itemStateChanged(ItemEvent e) {
                 currentThing = (Thing) e.getItem();
                 currentMapAdder = addThing;
                 System.out.println("current thing is " + currentThing);

@@ -10,7 +10,8 @@ public class Count {
         this.value = value;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return String.valueOf(value);
     }
 

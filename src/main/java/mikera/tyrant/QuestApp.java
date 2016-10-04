@@ -94,11 +94,13 @@ public class QuestApp extends Applet implements Runnable {
 
 	public static String fileEncoding = System.getProperty("file.encoding");
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(640 + 55, 480 + 150);
 	}
 
 	// stop the applet, freeing all resources used
+	@Override
 	public void stop() {
 		super.stop();
 		setInstance(null);
@@ -112,6 +114,7 @@ public class QuestApp extends Applet implements Runnable {
 			canFilterIndexColorModel = true;
 		}
 
+		@Override
 		public int filterRGB(int x, int y, int rgb) {
 			return (rgb & 0xff000000)
 					| (0x10101 * (((rgb & 0xff0000) >> 18)
@@ -141,6 +144,7 @@ public class QuestApp extends Applet implements Runnable {
 
 	// inits the applet, loading all necessary resources
 	// also kicks off the actual game thread
+	@Override
 	public void init() {
 		init(this);
 	}
@@ -295,6 +299,7 @@ public class QuestApp extends Applet implements Runnable {
 
 	// this is the actual game thread start
 	// it loops for each complete game played
+	@Override
 	public void run() {
 		while (true) {
 
@@ -591,6 +596,7 @@ public class QuestApp extends Applet implements Runnable {
 
 	// All keypresses get directed here.....
 	public final KeyAdapter keyadapter = new KeyAdapter() {
+		@Override
 		public void keyPressed(KeyEvent e) {
 			//Game.warn("Focus owned by:
 			// "+KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner());
@@ -605,6 +611,7 @@ public class QuestApp extends Applet implements Runnable {
 		}
 	};
 
+	@Override
 	public void destroy() {
 		removeAll();
 	}

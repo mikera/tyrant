@@ -17,6 +17,7 @@ public class PortalStone {
   
 	@SuppressWarnings("serial")
 	private static class PortalStoneAction extends Script {
+		@Override
 		public boolean handle(Thing t, Event e) {
 		  Thing user=e.getThing("User");
 		  PortalStone.use( user , t );

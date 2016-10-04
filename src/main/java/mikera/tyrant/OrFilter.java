@@ -24,7 +24,8 @@ public class OrFilter implements IThingFilter {
         filters.add(filter);
     }
     
-    public boolean accept(Thing thing, String query) {
+    @Override
+	public boolean accept(Thing thing, String query) {
         for (Iterator<IThingFilter> iter = filters.iterator(); iter.hasNext();) {
             IThingFilter filter = iter.next();
             if(filter.accept(thing, query)) return true;

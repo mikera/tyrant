@@ -43,7 +43,8 @@ public class Equipment {
 	private static class KeyUse extends Script {
 		private static final long serialVersionUID = 1L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing u=e.getThing("User");
 			u.message("Select direction:");
 			Point d=Game.getDirection();
@@ -82,6 +83,7 @@ public class Equipment {
 	private static class GoFish extends Script {
 		private static final long serialVersionUID = 3833466197629743666L;
         private static String[] theFish=new String[] {"tiny fish","small fish","fish","large fish","trout","salmon","large salmon"};
+		@Override
 		public boolean handle(Thing t, Event e) {
 			Thing u=e.getThing("User");
 			Map m=u.getMap();

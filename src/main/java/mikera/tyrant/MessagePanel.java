@@ -42,15 +42,18 @@ public class MessagePanel extends TPanel implements IMessageHandler {
 		return textzone.getText();
 	}
 
+	@Override
 	public void clear() {
 		textzone.setText("");
 	}
 	
+	@Override
 	public void add(String s) {
 		add(s,Color.lightGray);
 
 	}
 	
+	@Override
 	public void add(String s, Color c ) {	
 		String t = getText();
 		if (t.length() > 2000) {
@@ -75,11 +78,13 @@ public class MessagePanel extends TPanel implements IMessageHandler {
 	//	repaint();
 	//}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(500, 120);
 	}
 
-    public TPanel getPanel() {
+    @Override
+	public TPanel getPanel() {
         return this;
     }
 }

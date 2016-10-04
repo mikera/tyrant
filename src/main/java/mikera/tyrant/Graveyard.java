@@ -33,7 +33,8 @@ public class Graveyard {
 		exit.set("OnTravel",new Script() {
 			private static final long serialVersionUID = 1L;
 
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
 				Map m=t.getMap();
 				m.set("IsHostile",1);
 				return false;

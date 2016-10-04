@@ -30,7 +30,8 @@ public class TestFood extends TyrantTestCase {
         hero.addThing(salmon);
         final Count timesCalled = new Count();
         salmon.addHandler("OnEaten", new EventHandler() {
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
                 timesCalled.increment();
                 return false;
             }
@@ -59,7 +60,8 @@ public class TestFood extends TyrantTestCase {
         Thing apple = Lib.create("apple");
         final Count timesCalled = new Count();
         apple.addHandler("OnEaten", new EventHandler() {
-            public boolean handle(Thing t, Event e) {
+            @Override
+			public boolean handle(Thing t, Event e) {
                 timesCalled.increment();
                 return false;
             }

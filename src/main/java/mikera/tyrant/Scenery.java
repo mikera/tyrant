@@ -275,7 +275,8 @@ public class Scenery  {
     private static class WellScript extends Script {
     	private static final long serialVersionUID = 3832620690351338806L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
     		Thing tt=e.getThing("Target");
     		if (!tt.isHero()) return false;
     		
@@ -306,7 +307,8 @@ public class Scenery  {
     private static class AltarScript extends Script {
     	private static final long serialVersionUID = 1L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing h=e.getThing("Target");
 			if (!h.isHero()) {
 				return false;
@@ -337,7 +339,8 @@ public class Scenery  {
     private static class FountainScript extends Script {
     	private static final long serialVersionUID = 1L;
 
-        public boolean handle(Thing t, Event e) {
+        @Override
+		public boolean handle(Thing t, Event e) {
 			Thing h=e.getThing("Target");
 			if (!h.isHero()) {
 				return false;
@@ -492,7 +495,8 @@ public class Scenery  {
 				"If money thou art in need of any, dig three feet and find a penny!",		
 				"Treasure Seeker Dug Deep One Night\nTo His Misfortune, He died Of Fright."
     	};
-    	public boolean handle(Thing t, Event e) {
+    	@Override
+		public boolean handle(Thing t, Event e) {
     		int c=t.x+t.y*103+10017;
     		Thing h=e.getThing("Target");
     		if (h!=Game.hero()) return false;
