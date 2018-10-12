@@ -13,7 +13,7 @@ package mikera.tyrant.engine;
 
 public interface ThingOwner {
 
-	public void removeThing(Thing thing);
+	void removeThing(Thing thing);
 
-	public Map getMap();
+	Map getMap();
 }
