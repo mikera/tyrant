@@ -15,5 +15,5 @@ import mikera.tyrant.engine.Thing;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public interface EventHandler {
-	public boolean handle(Thing t, Event e);
+	boolean handle(Thing t, Event e);
 }
