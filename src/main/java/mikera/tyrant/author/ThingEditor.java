@@ -190,13 +190,13 @@ public class ThingEditor implements Runnable {
 
     private void sortKeys(String[] keys) {
         Arrays.sort(keys, new Comparator<String>() {
-             public int compare(String s1, String s2) {
+			public int compare(String s1, String s2) {
                 Map<String, Integer> important = getImportantAttributes();
                 Integer sortOrder1 = important.get(s1);
                 Integer sortOrder2 = important.get(s2);
                 if(sortOrder1 == null && sortOrder2 == null) return s1.compareTo(s2);
-                if(sortOrder1 == null && sortOrder2 != null) return 1;
-                if(sortOrder1 != null && sortOrder2 == null) return -1;
+                if(sortOrder1 == null) return 1;
+                if(sortOrder2 == null) return -1;
                 return sortOrder1.intValue() - sortOrder2.intValue();
             }
         });
@@ -207,7 +207,7 @@ public class ThingEditor implements Runnable {
             importantAttributes = new HashMap<>();
             String[] names = {"Name", "Number", "Level", "Frequency", "HPS", "UName"};
             for (int i = 0; i < names.length; i++) {
-                importantAttributes.put(names[i], new Integer(i));
+                importantAttributes.put(names[i], i);
             }
         }
         return importantAttributes;
@@ -270,7 +270,7 @@ public class ThingEditor implements Runnable {
     protected void doCheckboxPerformed(ItemEvent e) {
         Checkbox checkbox = (Checkbox)e.getSource();
         String key = checkbox.getLabel();
-        Integer value = new Integer(checkbox.getState() ? 1 : 0);
+        Integer value = checkbox.getState() ? 1 : 0;
         thing.set(key, value);
     }
     

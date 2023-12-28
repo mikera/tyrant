@@ -26,7 +26,8 @@ public class MapPanel extends Panel implements Runnable {
         public void mousePressed(MouseEvent e) {
         	Thing h=Game.hero();
         	
-        	int dir = (e.getModifiers() & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK
+        	@SuppressWarnings("deprecation")
+			int dir = (e.getModifiers() & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK
         			? -1
         			: 1;
 

@@ -116,7 +116,7 @@ public class Tile {
 	public static String tileNameFor(int tile) {
         if(tileByName == null)
             createMaps();
-        String name = nameById.get(new Integer(tile));
+        String name = nameById.get(tile);
         if(name != null) return name;
 		throw new Error("Tile of type ["+ tile +"] does not exist");
 	}
@@ -125,8 +125,8 @@ public class Tile {
         tileByName = new HashMap<>();
         nameById = new HashMap<>();
         for (int i=0; i<names.length; i++) {
-            tileByName.put(names[i], new Integer(i));
-            nameById.put(new Integer(i), names[i]);
+            tileByName.put(names[i], i);
+            nameById.put(i, names[i]);
         }
     }
 	

@@ -89,7 +89,7 @@ public class MapMaker {
         String name = Tile.tileNameFor(tile);
         Character tileChar = tiles.get(name);
         if(tileChar == null) {
-            tileChar = new Character((char)nextChar++);
+            tileChar = (char)nextChar++;
             tiles.put(name, tileChar);
             legend.put(String.valueOf(tileChar), name);
         }
