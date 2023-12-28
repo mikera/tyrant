@@ -19,6 +19,7 @@ public class Quest {
 	public static ArrayList<Thing> getQuests() {
 		if (Game.hero()==null) return null;
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<Thing> qs=(ArrayList<Thing>)Game.hero().get("Quests");
 		if (qs==null) {
 			qs=new ArrayList<>();
@@ -56,6 +57,7 @@ public class Quest {
 	}
 	
 	public static void addQuest(Thing h, Thing q) {
+		@SuppressWarnings("unchecked")
 		ArrayList<Thing> qs=(ArrayList<Thing>)h.get("Quests");
 		if (qs==null) {
 			qs= new ArrayList<>();
@@ -87,12 +89,14 @@ public class Quest {
 	}
 	
 	private static ArrayList<Thing> getSubQuests(Thing q) {
+		@SuppressWarnings("unchecked")
 		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
 		if (qs==null) qs= new ArrayList<>();
 		return qs;
 	}
 	
 	public static void addSubQuest(Thing q, Thing sq) {
+		@SuppressWarnings("unchecked")
 		ArrayList<Thing> qs=(ArrayList<Thing>)q.get("Quests");
 		if (qs==null) {
 			qs= new ArrayList<>();

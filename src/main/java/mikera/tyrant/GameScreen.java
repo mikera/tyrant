@@ -4,14 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Panel;
 import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.author.MapMaker;
+import mikera.tyrant.engine.BaseObject;
 import mikera.tyrant.engine.Lib;
 import mikera.tyrant.engine.Map;
 import mikera.tyrant.engine.Point;
@@ -248,7 +247,7 @@ public class GameScreen extends Screen {
       * platforms.
       */
     private boolean rejectEvent(KeyEvent keyEvent) {
-        return (keyEvent.getModifiers() | InputEvent.ALT_DOWN_MASK) > 0 && keyEvent.getKeyCode() == 18;
+        return keyEvent.getKeyCode() == KeyEvent.VK_ALT;
     }
    
 

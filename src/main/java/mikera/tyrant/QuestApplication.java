@@ -3,6 +3,7 @@ package mikera.tyrant;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 // import mikera.tyrant.util.PlugInUtility;
@@ -21,6 +22,7 @@ public class QuestApplication {
 		Game.loadVersionNumber();
 		
 		Frame f = new Frame("Tyrant - The Adventure - v"+Game.VERSION);
+		f.setIconImage(Toolkit.getDefaultToolkit().getImage("images/favicon.ico"));
 		f.setBackground(Color.black);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {

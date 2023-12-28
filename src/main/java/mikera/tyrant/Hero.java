@@ -741,6 +741,7 @@ public class Hero {
 	
 	private static HashMap<String, Integer> getKillHashMap() {
 		Thing h=Game.hero();
+		@SuppressWarnings("unchecked")
 		HashMap<String, Integer> hm=(HashMap<String, Integer>)h.get("Kills");
 		if (hm==null) {
 			hm=new HashMap<>();
@@ -754,10 +755,10 @@ public class Hero {
 		String name=t.name();
 		Integer i=hm.get(name);
 		if (i==null) {
-			i=new Integer(0);
+			i=0;
 		} 
 		int newKillCount=i.intValue()+1;
-		hm.put(name,new Integer(newKillCount));
+		hm.put(name,newKillCount);
 		
 		return newKillCount;
 	}

@@ -34,7 +34,7 @@ public class CharacterScreen extends Screen {
 	private String statString(String s) {
 		int bs = character.getBaseStat(s);
 		int ms = character.getStat(s) - bs;
-		return Text.centrePad(new Integer(bs).toString(), ((ms >= 0) ? "(+"
+		return Text.centrePad(Integer.valueOf(bs).toString(), ((ms >= 0) ? "(+"
 				+ ms : "(" + ms)
 				+ ")", 8);
 	}
@@ -317,7 +317,7 @@ if (Game.isDebug()) {
 		}
 		g.setColor(QuestApp.INFOTEXTCOLOUR);
 		//Yes, this is copy-pastage, 
-		//TODO: unify this code, dont know if it is worth the effort ;)
+		//TODO: unify this code, don't know if it is worth the effort ;)
 		g.drawString("Your abilities:",450, 40 + skillLines * 16 + 4);
 		
 		int abilityLines=0;

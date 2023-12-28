@@ -42,6 +42,7 @@ public class Gods {
 	}
 	
 	public static HashMap<String, Thing> getGods() {
+		@SuppressWarnings("unchecked")
 		HashMap<String, Thing> h=(HashMap<String, Thing>)Lib.instance().getObject("Gods");
 		if (h==null) {
 			h=new HashMap<>();

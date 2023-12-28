@@ -32,6 +32,7 @@ import mikera.util.Rand;
  * 
  * TODO: move game-related code out of QuestApp.
  */
+@SuppressWarnings("removal")
 public class QuestApp extends Applet implements Runnable {
 	private static final long serialVersionUID = 3257569503247284020L;
 
