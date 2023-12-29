@@ -102,7 +102,7 @@ public class TestThing extends TyrantTestCase {
     public void testAddAttribute() {
         assertNull(person.get("IsConfused"));
         person.addAttribute(Lib.create("confusion"));
-        assertEquals(new Integer(1), person.get("IsConfused"));
+        assertEquals(Integer.valueOf(1), person.get("IsConfused"));
     }
 
     public void testAddThingWithStacking() {

@@ -98,7 +98,7 @@ public class TestModifier extends TyrantTestCase {
         berry.add("CarriedModifiers", Modifier.constant("SK", 1));
         
         rabbit.addThing(berry);
-        assertEquals(new Integer(9), rabbit.get("SK"));
+        assertEquals(Integer.valueOf(9), rabbit.get("SK"));
     }
     
     public void testConstant_several_flipped() {
@@ -107,7 +107,7 @@ public class TestModifier extends TyrantTestCase {
         berry.add("CarriedModifiers", Modifier.constant("SK", 9));
         
         rabbit.addThing(berry);
-        assertEquals(new Integer(1), rabbit.get("SK"));
+        assertEquals(Integer.valueOf(1), rabbit.get("SK"));
     }
     
     public void testMultipleModifiers() {

@@ -120,7 +120,7 @@ public class LibInspector {
     protected int total(BaseObject thing) {
         Integer total = totalNumberOfAttributes.get(thing.get("Name"));
         if(total == null) {
-            total = new Integer(thing.size());
+            total = thing.size();
             totalNumberOfAttributes.put(thing.get("Name"), total);
         }
         return total.intValue();

@@ -25,8 +25,8 @@ public class Perf {
         double standardDeviation = Math.sqrt(((float) workFinished.length * sumOfSquares - sum * sum) / (workFinished.length * workFinished.length));
         PrintfFormat printf = new PrintfFormat("%-15s %-15s Runs: %5d     Avg: %5.2fms     Std: %5.2fms     Optimize: %s");
         float average = sum / workFinished.length;
-        System.out.println(printf.sprintf(new Object[] {className, message, new Integer(workFinished.length), 
-                new Float(average), new Float(standardDeviation), Boolean.valueOf(BaseObject.OPTIMIZE)}));
+        System.out.println(printf.sprintf(new Object[] {className, message, workFinished.length, 
+               average, standardDeviation, Boolean.valueOf(BaseObject.OPTIMIZE)}));
     }
 
     protected WorkDone[] timeToRun(IWork work, int iterations) {

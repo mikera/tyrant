@@ -54,7 +54,7 @@ public class MapHelper {
     
     private Thing createMarker(char c) {
         if(!Character.isLetter(c)) return null;
-        Character markerName = new Character(c);
+        Character markerName = c;
         Thing seen = seenMarkers.get(markerName);
         if(seen != null) return seen;
         Thing marker = Lib.get("marker");

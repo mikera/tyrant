@@ -39,12 +39,12 @@ public class Lib_Perf extends Perf {
 
     private IWork findWork(String className) {
         try {
-            return (IWork) Class.forName(className).newInstance();
+            return (IWork) Class.forName(className).getConstructor().newInstance();
         } catch(ClassNotFoundException cnfe) {
             Class<KillAllBaddies> theClass = KillAllBaddies.class;
             System.out.println("Class " + className + " not found, using " + theClass.getName() + " instead.");
             try {
-                return theClass.newInstance();
+                return theClass.getConstructor().newInstance();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
