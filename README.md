@@ -1,3 +1,5 @@
+![Tyrant banner](src/main/resources/images/title.png)
+
 # Tyrant
 
 A classic graphical roguelike game written in Java.
