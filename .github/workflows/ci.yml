@@ -20,4 +20,4 @@ jobs:
           cache: maven
 
       - name: Build and test
-        run: mvn -B verify
+        run: xvfb-run -a mvn -B verify
