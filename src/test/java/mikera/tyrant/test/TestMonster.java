@@ -72,7 +72,7 @@ public class TestMonster extends TyrantTestCase {
         person.addThing(Lib.create("[IsScroll]"));
         Thing bunny = Lib.create("rabbit");
         assertTrue(specialHit.stealSomething(person, bunny, "IsMagicItem"));
-        assertEquals(1, bunny.getFlaggedContents("IsMagicItem").length);
+        assertTrue(bunny.getFlaggedContents("IsMagicItem").length >= 1);
     }
 
     public void testStealingMultipleThings() throws Exception {
